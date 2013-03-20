@@ -1,0 +1,150 @@
+Start Page:
+Start
+Developed by:
+Tutors:
+Use Case:
+Work Scheme
+Define Chromosome
+Define Function
+Configure Algorithm
+Run Algorithm
+Exit
+Progress:
+C. Chromosome
+Variable
+Check Function
+Fitness
+Termination
+Check Settings
+Selector
+Operators
+Parameters
+Check Results
+Results
+Buttons:
+Define Genes
+Create Function
+of Fitness
+Termination
+Selector
+Operators
+Parameters
+Execute
+Results
+Save
+Open Config.
+Configure Genes:
+Variables Settings
+Name
+Type
+Integer
+Real
+Binary
+Character
+Nominal
+Aditional Settings
+Min
+Max
+Alleles Values
+Add
+Defined Variables
+Edit
+Remove
+Fitness and Termination functions:
+Add Variable
+Validity
+Validate
+Mathematics
+Trigonometry
+Conditionals/Cycles
+Logic
+Variables
+Others
+Window Size
+Selector:
+Natural Selector
+Roulette
+Tournament
+Classic Ranking
+Lineal Ranking
+Non Lineal Ranking
+Aditional Settings
+Tournament Size
+Expected Number of Offsprings
+Value of q
+Operators:
+Operators Settings
+Operators
+Classic Crossover
+Multi-Points Crossover
+Uniform Crossover
+Segment Crossover
+Random Crossover
+Classic Mutation
+Chromosome Mutation
+Swap Mutation
+Shuffle Mutation
+Inversion
+Prob. of Occurrence
+Aditional Settings
+Number of Points
+Uniform Prob.
+Segment Prob.
+Mutation Prob.
+Add
+Added Operators
+Edit
+Remove
+Parameters:
+Handler
+Classic
+Modified
+Population Size
+Max Number of Generations
+Number of Father to be Selected
+Questions:
+What would you like to save?
+Settings
+Results
+What kind of optimization will you do?
+Maximizatin
+Minimization
+Common Words:
+Accept
+Cancel
+File
+Open
+Save
+Exit
+Check Results:
+Best Chromosome
+Best Fitness
+Average of all Fitness
+ from the Generation
+Average Fitness
+Genetic Algorithm
+Generation
+Fitness
+Errors:
+The variable has not name
+The names must be unique for each variable
+The variables must follow the format for an identifier.
+Starts with an alphabetic character or underscore, followed by 0 or more alphanumeric characters or underscore.
+The range [
+) only allows one value
+The alleles can't be empty strings
+The alleles must be unique for this gene
+There must be at least two alleles for this gene
+Min and Max must be characters
+The file doesn't exist or it doesn't follows the format
+The genes must be defined before making a validation for the fitness function
+The return is not the same type as the expected one
+Function Error in the location:
+Is not possible to run the Genetic Algorthm because:
+Genes not defined
+Fitness Function not Valid
+Termination not Valid
+Selector not defined
+Operators not defined
+Parameters not defined
+It's not possible to show results, execute the Genetic Algorithm first

@@ -1,0 +1,150 @@
+Página de Inicio:
+Inicio
+Desarrollado por:
+Tutores:
+Casos De Uso:
+Esquema De Trabajo
+Definir Cromosoma
+Definir Función
+Configurar Algoritmo
+Ejecutar Algoritmo
+Salir
+Progreso:
+Ver Cromosoma
+Variable
+Ver Función
+Aptitud
+Terminación
+Ver Configuración
+Selector
+Operadores
+Parámetros
+Ver Resultados
+Resultados
+Botones:
+Definir Genes
+Crear Función
+de Aptitud
+Terminación
+Selector
+Operadores
+Parámetros
+Ejecutar
+Resultados
+Guardar
+Abrir Config.
+Configuracion Genes:
+Configuración de Variables
+Nombre
+Tipo
+Entero
+Real
+Binario
+Caracter
+Nominal
+Configuración Adicional
+Min
+Max
+Valores de Alelos
+Agregar
+Variables Definidas
+Editar
+Eliminar
+Funcion de Aptitud y Terminacion:
+Agregar Variable
+Validez
+Validar
+Matemáticas
+Trigonometría
+Condicional/Ciclos
+Lógica
+Variables
+Otros
+Tamaño de la Ventana
+Selector:
+Selector Natural
+Ruleta
+Torneo
+Ranking Clásico
+Ranking Lineal
+Ranking No Lineal
+Configuración Adicional
+Tamaño del Torneo
+Número Esperado de Descendientes
+Valor de q
+Operadores:
+Configuración de Operadores
+Operador
+Cruce Clásico
+Cruce Multi-Puntos
+Cruce Uniforme
+Cruce por Segmentos
+Cruce Aleatorio
+Mutación Clásica
+Mutación por Cromosoma
+Mutación por Intercambio
+Mutación por Barajeo
+Inversión
+Prob. de Ocurrencia
+Configuración Adicional
+Número de Puntos
+Prob. Uniforme
+Prob. Segmentos
+Prob. de Mutación
+Agregar
+Operadores Agregados
+Editar
+Eliminar
+Parámetros:
+Manejador
+Clásico
+Modificado
+Tamaño de la Población
+Número máx de Generaciones
+Número de Padres a Seleccionar
+Preguntas:
+¿Qué desea Guardar?
+Configuración
+Resultados
+¿Qué tipo de optimización va a realizar?
+Maximización
+Minimización
+Palabras Comunes:
+Aceptar
+Cancelar
+Archivo
+Abrir
+Guardar
+Salir
+Ver Resultados:
+Mejor Cromosoma
+Mejor Aptitud
+Promedio de todas las Aptitudes
+ de la Generación
+Promedio de Aptitudes
+Algoritmo Genético
+Generación
+Aptitud
+Errores:
+No se le coloco un nombre a la variable
+El nombre debe ser único para cada una de las variables
+Las variables deben seguir el formato de un identificador.
+Inicia con un caracter alfabético o el caracter de subrayado, seguido de 0 o más caracteres alfa-numéricos o el caracter de subrayado
+El rango [
+) solo permite un valor
+Los alelos no pueden ser string vacios
+Los alelos no pueden estar repetidos para este Gen
+Deben haber al menos dos alelos para este Gen
+Min y Max deben ser caracteres
+El archivo no existe o no cumple con el formato de entrada
+Se deben definir los genes antes de poder validar la función de aptitud
+El Retorno no es del tipo esperado
+Error de la función en la posición:
+No puede ejecutar el Algoritmo Genético porque:
+Genes no definidos
+Función de Aptitud no Valida
+Función de Terminación no Valida
+Selector no definido
+Operadores no definidos
+Parametros no definidos
+No se pueden mostrar resultados, ejecute el Algoritmo Genético primero
