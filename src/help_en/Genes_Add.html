@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.DefineChromosome.DefineGenes.Add"></a>Add Gene</h3>
+				</div>
+			</div>
+			
+			<p>
+				Once the previous steps are made, you can add the gene to the chromosome,
+				this can be done by pressing on the button that says "Add" (without the quotes).
+				If the gene being added is valid,
+				then it will be successfully added.
+			</p>
+			<p>
+				In some cases it may happen that a gene can not be added even though its configuration is valid.
+				This happens when you have one of these genetic operations active:
+			</p>
+			<div class="itemizedlist">
+				<ul type="disc">
+					<li><p><tt>Swap Mutation</tt></p></li>
+					<li><p><tt>Shuffle Mutation</tt></p></li>
+					<li><p><tt>Inversion</tt></p></li>
+				</ul>
+			</div>
+			<p>
+				And is because these operations require that all chromosome genes share the same configuration.
+			</p>
+			
+			<p>
+				Some problems may need to create many genes that share the same configuration,
+				for these cases we suggest using the <a href="Genes_Factory.html">Factory</a> option.
+			</p>
+		</div>
+	</body>
+</html>

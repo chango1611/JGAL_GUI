@@ -30,6 +30,8 @@ import JGAL.GAL_RouletteSelector;
 import JGAL.GAL_TournamentSelector;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
 
 public class SelectorWindow extends JFrame {
 
@@ -37,10 +39,13 @@ public class SelectorWindow extends JFrame {
 	private JPanel contentPane;
 	private JComboBox<String> cb_Selector;
 	private JPanel configuracionEspecifica;
+	private JPanel Elitismo;
 	private JSpinner spn_Torneo;
 	private JSpinner spn_Clasico;
 	private JSpinner spn_Lineal;
 	private JSpinner spn_NoLineal;
+	private JSpinner spn_elitist;
+	private JCheckBox chckbxElitismo;
 	
 	/**
 	 * Create the frame.
@@ -60,7 +65,7 @@ public class SelectorWindow extends JFrame {
 		setTitle(GAL_GUI.language.botonesPrincipales[4]);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 360, 265);
+		setBounds(100, 100, 360, 300);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -116,11 +121,26 @@ public class SelectorWindow extends JFrame {
 		mntmSalir.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnArchivo.add(mntmSalir);
 		
-		JMenu mnAyuda = new JMenu("Ayuda");
+		JMenu mnAyuda = new JMenu(GAL_GUI.language.CommonWords[6]);
 		mnAyuda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		menuBar.add(mnAyuda);
 		
-		JMenuItem mntmTutorial = new JMenuItem("Tutorial");
+		JMenuItem mntmTutorial = new JMenuItem(GAL_GUI.language.CommonWords[7]);
+		mntmTutorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[9]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
 		mntmTutorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnAyuda.add(mntmTutorial);
 		contentPane = new JPanel();
@@ -233,7 +253,7 @@ public class SelectorWindow extends JFrame {
 		RankingLineal.add(lblValorDeQ);
 		
 		spn_Lineal = new JSpinner();
-		spn_Lineal.setModel(new SpinnerNumberModel(0.0, 0.0, 1.0, 0.05));
+		spn_Lineal.setModel(new SpinnerNumberModel(1.0, 1.0, 2.0, 0.05));
 		spn_Lineal.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spn_Lineal.setBounds(0, 46, 70, 20);
 		RankingLineal.add(spn_Lineal);
@@ -264,6 +284,7 @@ public class SelectorWindow extends JFrame {
 				int tipo= cb_Selector.getSelectedIndex();
 				try{
 					GAL_GUI.gal.setSelector(createSelector(tipo));
+					GAL_GUI.gal.setElitistSize((Integer)spn_elitist.getValue());
 					dispose();
 				}catch(Exception ex){
 					JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -271,8 +292,36 @@ public class SelectorWindow extends JFrame {
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnAceptar.setBounds(126, 185, 89, 23);
+		btnAceptar.setBounds(125, 217, 89, 23);
 		contentPane.add(btnAceptar);
+		
+
+		Elitismo = new JPanel();
+		Elitismo.setBounds(83, 181, 256, 24);
+		contentPane.add(Elitismo);
+		Elitismo.setLayout(null);
+		
+		chckbxElitismo = new JCheckBox(GAL_GUI.language.SelectorConfiguration[10]);
+		chckbxElitismo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Elitismo.setVisible(GAL_GUI.gal.changeElitistState());
+			}
+		});
+		chckbxElitismo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		chckbxElitismo.setBounds(12, 181, 65, 23);
+		contentPane.add(chckbxElitismo);
+		
+		JLabel lblTamaoDelElitismo = new JLabel(GAL_GUI.language.SelectorConfiguration[11]);
+		lblTamaoDelElitismo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTamaoDelElitismo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblTamaoDelElitismo.setBounds(104, 4, 103, 14);
+		Elitismo.add(lblTamaoDelElitismo);
+		
+		spn_elitist = new JSpinner();
+		spn_elitist.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		spn_elitist.setModel(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
+		spn_elitist.setBounds(217, 1, 29, 20);
+		Elitismo.add(spn_elitist);
 	}
 
 	public void actualizar(){
@@ -298,6 +347,9 @@ public class SelectorWindow extends JFrame {
 				spn_NoLineal.setValue(((GAL_NonLinealRankingSelector) selector).getQ());
 			}
 		}
+		chckbxElitismo.setSelected(GAL_GUI.gal.isElitist());
+		Elitismo.setVisible(GAL_GUI.gal.isElitist());
+		spn_elitist.setValue(GAL_GUI.gal.getElitistSize());
 	}
 	
 	public GAL_NaturalSelector createSelector(int tipo)throws Exception{

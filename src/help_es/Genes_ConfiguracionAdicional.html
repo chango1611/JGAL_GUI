@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional"></a>Configuración Adicional del Gen</h3>
+				</div>
+			</div>
+			
+			<p>
+				Dependiendo del tipo de gen, se muestra una configuración adicional que debe ser definida antes de poder agregar el gen.
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional.Entero"></a>Entero</h3>
+					</div>
+				</div>
+				
+				<p>
+					En el caso de los enteros, se debe definir el rango al que pertenece el gen. Se debe tener en cuenta que Max>Min y que el rango permita más de un elemento.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional.Real"></a>Real</h3>
+					</div>
+				</div>
+				
+				<p>
+					Al igual que con los enteros, se debe definir el rango al que pertenece el gen. Se debe tener en cuenta que Max>Min.
+					Los spinner para Max y Min incrementan de la misma manera que la de los entero, para colocar decimales utilice el punto "." para separar la parte entera de la decimal.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional.Binario"></a>Binario</h3>
+					</div>
+				</div>
+				
+				<p>
+					Los genes binarios no requieren de configuración adicional.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional.Caracter"></a>Caracter</h3>
+					</div>
+				</div>
+				
+				<p>
+					Para los genes de tipo caracter, se debe definir el rango al que pertenece. Se debe tener en cuenta que Max>Min y que el rango permita más de un elemento.
+					Además, se debe recordar que éstos solo aceptan caracteres individuales.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional.Nominal"></a>Nominal</h3>
+					</div>
+				</div>
+				
+				<p>
+					Los genes de tipo Nominal requieren de una configuración más compleja a los anteriores.
+					En la siguiente figura se muestra la configuración adicional para tipos Nominales:
+				</p>
+				
+				<img src="images/DefinirGenes_Nominal.PNG" alt="">
+				<p>
+					Donde cada número representa los pasos para crear uno de los posibles Alelos para el Nominal:
+				</p>
+				<div class="itemizedlist">
+					<ol>
+						<li><p><tt>Definir Nombre del Alelo</tt></p></li>
+						<li><p><tt>Agregar Alelo</tt></p></li>
+						<li><p><tt>Alelos Definidos</tt></p></li>
+					</ol>
+				</div>
+				<p>
+					1. Definir Nombre del Alelo: Consiste en colocar un nombre al Alelo que se esta creando,
+					se debe cumplir que el Alelo no tenga un nombre repetido a alguno de los otros Alelos del Gen que se está definiendo.
+				</p>
+				<p>
+					2. Agregar Alelo: Al presionar sobre el botón con el simbolo ">" (Sin las comillas), se agrega el Alelo a los Alelos definidos para el gen.
+				</p>
+				<p>
+					3. Alelos Definidos: Muestra una lista de los alelos que ya fueron definidos,
+					esta lista debe contener al menos 2 alelos para que el gen sea aceptado.
+					Los alelos pueden ser eliminados si se selecciona uno y se presiona el botón con el simbolo "<" (Sin las comillas).
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

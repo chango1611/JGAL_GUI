@@ -44,7 +44,7 @@ public class ResultsViewWindow extends JFrame {
 	public ResultsViewWindow() {
 		final DecimalFormat df= new DecimalFormat("#.####");
 		final boolean optimizationType= GAL_GUI.gal.optimizationType();
-		setTitle(GAL_GUI.language.progreso[2]);
+		setTitle(GAL_GUI.language.progreso[9]);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 500, 640);

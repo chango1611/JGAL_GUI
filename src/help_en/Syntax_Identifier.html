@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Identificador"></a>Identifiers</h2>
+				</div>
+			</div>
+
+			<p>
+				Identifiers allow constant values ??or variables be used in operations inside the function.
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60Identifier&gt ::= $(&#60Name&gt | &quot{&quot&#60Arithmetic Statement&gt&quot}&quot)
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				There are two ways to access an identifier, by name or by position.
+			</p>
+			
+			<p>
+				By name it search in the list of identifiers and returns the variable with that name.
+			</p>
+			
+			<p>
+				By position the identifier is selected by the position that is passed.
+				If the position is greater than the amount of current variables -1, then the parser will throw an error.
+				GAL_Parser considered the first positions (0 .. N-1), as the positions of the N constant values.
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Identificador.Ejemplo"></a>e.g:</h2>
+					</div>
+				</div>
+				<p><tt>
+					//Assuming that there are three constant values<br>
+					$i:= 4;<br>
+					$j:= 5;<br>
+					${3}+$j;
+				</tt></p>
+				
+				<p>
+					The above code assigns the value 4 to the variable i and 5 to the variable j.<br>
+					After this, an operation is performed between two identifiers ${3} and $j.<br>
+					${3} is an identifier by position, so that the identifier that is returned is in position 3,
+					which would be $i, since the position from 0 to 2 are the constant values ??and
+					the first variable declared was $i which is equal to 4.<br>
+					The second identifier is by name, it is achieved that $j is equal to 5.<br>
+					It returns the result of the sum, which would be 4+5=9.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Identificador.Retorno"></a>Return</h2>
+					</div>
+				</div>
+				
+				<p>
+					Identifiers return the most recent value of the variable or constant.
+				</p>
+			</div>
+			
+		</div>
+	</body>
+</html>

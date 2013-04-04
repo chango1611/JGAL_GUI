@@ -16,6 +16,9 @@ import javax.swing.border.BevelBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.CardLayout;
+import javax.swing.ImageIcon;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GeneralWindow extends JFrame {
 
@@ -47,7 +50,7 @@ public class GeneralWindow extends JFrame {
 		
 		JPanel progress = new JPanel();
 		progress.setBounds(5, 446, 779, 101);
-		progress.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), "Progreso De Trabajo", TitledBorder.LEADING, TitledBorder.TOP, new Font("Arial",Font.BOLD,12), new Color(0, 0, 0)));
+		progress.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0), 2), GAL_GUI.language.progreso[11], TitledBorder.LEADING, TitledBorder.TOP, new Font("Arial",Font.BOLD,12), new Color(0, 0, 0)));
 		
 		JButton btnVerCromosoma = new JButton(GAL_GUI.language.progreso[0]);
 		btnVerCromosoma.addActionListener(new ActionListener() {
@@ -239,6 +242,53 @@ public class GeneralWindow extends JFrame {
 		progress.add(pnl_ProgressResultados);
 		progress.add(lblresultados);
 		progress.add(lblOperadores);
+		
+		JButton btn_LimpiarTodo = new JButton("");
+		btn_LimpiarTodo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GAL_GUI.gal.limpiarTodo();
+				pnl_ProgressCromosoma.setBackground(new Color(240, 240, 240));
+				pnl_ProgressFuncion1.setBackground(new Color(240, 240, 240));
+				pnl_ProgressFuncion2.setBackground(new Color(240, 240, 240));
+				pnl_ProgressConfig1.setBackground(new Color(240, 240, 240));
+				pnl_ProgressConfig2.setBackground(new Color(240, 240, 240));
+				pnl_ProgressConfig3.setBackground(new Color(240, 240, 240));
+				pnl_ProgressResultados.setBackground(new Color(240, 240, 240));
+			}
+		});
+		btn_LimpiarTodo.setIcon(new ImageIcon(GeneralWindow.class.getResource("/Images/limpiar.png")));
+		btn_LimpiarTodo.setToolTipText("Limpiar Todo");
+		btn_LimpiarTodo.setBounds(15, 18, 20, 20);
+		progress.add(btn_LimpiarTodo);
+		
+		JPanel help = new JPanel();
+		help.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[4]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
+		help.setBackground(new Color(0, 0, 0));
+		help.setBounds(747, 7, 28, 28);
+		progress.add(help);
+		help.setLayout(null);
+		
+		JLabel label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setIcon(new ImageIcon(GeneralWindow.class.getResource("/Images/help.png")));
+		label.setBackground(Color.BLACK);
+		label.setBounds(0, 0, 28, 28);
+		help.add(label);
 		contentPane.add(buttons);
 		buttons.setLayout(null);
 		buttons.add(btnEsquemaDeTrabajo);

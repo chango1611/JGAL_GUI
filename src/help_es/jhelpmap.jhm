@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN" "http://java.sun.com/products/javahelp/map_1_0.dtd">
+<map version="1.0">
+	<mapID target="JGAL" url="JGAL.html"/>
+	
+	<mapID target="JGAL.EsquemaDeTrabajo" url="EsquemaDeTrabajo.html"/>
+	
+	<mapID target="JGAL.DefinirCromosoma" url="DefinirCromosoma.html"/>
+		<mapID target="JGAL.DefinirCromosoma.DefinirGenes" url="DefinirGenes.html"/>
+			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.DefinirNombre" url="Genes_DefinirNombre.html"/>
+			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.DefinirTipo" url="Genes_DefinirTipo.html"/>
+			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional" url="Genes_ConfiguracionAdicional.html"/>
+			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.Agregar" url="Genes_Agregar.html"/>
+			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.VariablesDefinidas" url="Genes_VariablesDefinidas.html"/>
+			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.Fabrica" url="Genes_Fabrica.html"/>
+			
+	<mapID target="JGAL.DefinirFuncion" url="DefinirFuncion.html"/>
+		<mapID target="JGAL.DefinirFuncion.Sintaxis.Constantes" url="Sintaxis_ValoresConstantes.html"/>
+		<mapID target="JGAL.DefinirFuncion.Sintaxis" url="Funcion_Sintaxis.html"/>
+			<mapID target="JGAL.DefinirFuncion.Sintaxis.Ciclos" url="Sintaxis_While.html"/>
+			<mapID target="JGAL.DefinirFuncion.Sintaxis.Condicional" url="Sintaxis_If.html"/>
+			<mapID target="JGAL.DefinirFuncion.Sintaxis.Asignacion" url="Sintaxis_Assign.html"/>
+				<mapID target="JGAL.DefinirFuncion.Sintaxis.Fabrica" url="Sintaxis_Fabrica.html"/>
+			<mapID target="JGAL.DefinirFuncion.Sintaxis.Logical" url="Sintaxis_Logical.html"/>
+			<mapID target="JGAL.DefinirFuncion.Sintaxis.Arithmetic" url="Sintaxis_Arithmetic.html"/>
+			<mapID target="JGAL.DefinirFuncion.Sintaxis.Identifier" url="Sintaxis_Identifier.html"/>
+		<mapID target="JGAL.DefinirFuncion.Aptitud" url="Funcion_Aptitud.html"/>
+		<mapID target="JGAL.DefinirFuncion.Terminacion" url="Funcion_Terminacion.html"/>
+			<mapID target="JGAL.DefinirFuncion.Funcion.EspacioDeCodigo" url="Funcion_EspacioDeCodigo.html"/>
+			<mapID target="JGAL.DefinirFuncion.Funcion.Calculadora" url="Funcion_Calculadora.html"/>
+			<mapID target="JGAL.DefinirFuncion.Funcion.Complejos" url="Funcion_Complejos.html"/>
+			<mapID target="JGAL.DefinirFuncion.Funcion.AgregarVariable" url="Funcion_AgregarVariable.html"/>
+			<mapID target="JGAL.DefinirFuncion.Funcion.Validar" url="Funcion_Validar.html"/>
+			<mapID target="JGAL.DefinirFuncion.Funcion.TamanoVentana" url="Funcion_TamanoVentana.html"/>
+	
+	<mapID target="JGAL.ConfigurarAlgoritmo" url="ConfigurarAlgoritmo.html"/>
+	
+		<mapID target="JGAL.ConfigurarAlgoritmo.Selector" url="Configurar_Selector.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Selector.Elitismo" url="Selector_Elitismo.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Selector.Ruleta" url="Selector_Ruleta.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Selector.Torneo" url="Selector_Torneo.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Selector.Ranking" url="Selector_Ranking.html"/>
+				<mapID target="JGAL.ConfigurarAlgoritmo.Selector.Ranking.Clasico" url="Selector_RankingClasico.html"/>
+				<mapID target="JGAL.ConfigurarAlgoritmo.Selector.Ranking.Lineal" url="Selector_RankingLineal.html"/>
+				<mapID target="JGAL.ConfigurarAlgoritmo.Selector.Ranking.NoLineal" url="Selector_RankingNoLineal.html"/>
+				
+		<mapID target="JGAL.ConfigurarAlgoritmo.Operador" url="Configurar_Operador.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo" url="Operador_DefinirTipo.html"/>
+				<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce" url="Operador_Cruce.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Clasico" url="Operador_CruceClasico.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.MultiPuntos" url="Operador_CruceMultiPuntos.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Uniforme" url="Operador_CruceUniforme.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Segmento" url="Operador_CruceSegmento.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Aleatorio" url="Operador_CruceAleatorio.html"/>
+				<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionClasica" url="Operador_MutacionClasica.html"/>
+				<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo" url="Operador_MutacionIndividuo.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Cromosoma" url="Operador_MutacionCromosoma.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Intercambio" url="Operador_MutacionIntercambio.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Barajeo" url="Operador_MutacionBarajeo.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Inversion" url="Operador_Inversion.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Operador.Ocurrencia" url="Operador_Ocurrencia.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Operador.Agregar" url="Operador_Agregar.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Operador.OperadoresAgregados" url="Operador_OperadoresAgregados.html"/>
+			
+		<mapID target="JGAL.ConfigurarAlgoritmo.Parametros" url="Configurar_Parametros.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Parametros.Clasico" url="Configurar_ParametrosClasico.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Parametros.Modificado" url="Configurar_ParametrosModificado.html"/>
+			
+		<mapID target="JGAL.EjecutarAlgoritmo" url="EjecutarAlgoritmo.html">
+			<mapID target="JGAL.EjecutarAlgoritmo.Ejecutar" url="Ejecutar_Ejecutar.html"/>
+			<mapID target="JGAL.EjecutarAlgoritmo.Resultados" url="Ejecutar_Resultados.html"/>
+			
+		<mapID target="JGAL.ProgresoDeTrabajo" url="ProgresoDeTrabajo.html"/>
+		
+		<mapID target="JGAL.GuardarYAbrir" url="GuardarYAbrir.html"/>
+</map>

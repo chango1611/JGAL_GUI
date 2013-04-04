@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Arithmetic"></a>Arithmetic Operation</h2>
+				</div>
+			</div>
+
+			<p>
+				Arithmetic operations are all operations that can be performed between numerical objects.
+				They are divided into simple operations (+, -, *, /,%, **) and complex operations
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60Arithmetic Statement&gt ::= &#60Simple Arithmetic&gt  |  &#60Complex Arithmetic&gt
+				</tt></p></li>
+				<li><p><tt>
+					&#60Simple Arithmetic&gt ::= &#60Arithmetic Object&gt ((+  |  -  |  *  |  /  |  %  |  **) &#60Arithmetic Object&gt)?
+				</tt></p></li>
+				<li><p><tt>
+					&#60Arithmetic Object&gt ::= (-)? (&#60Number&gt  |  &#60Identifier&gt  |  &#60Arithmetic Statement&gt)
+				</tt></p></li>
+				<li><p><tt>
+					&#60Number&gt ::= (0..9)+ | PI | E
+				</tt></p></li>
+				<li><p><tt>
+					&#60Complex Arithmetic&gt ::= &#60Operator&gt(&quot(&quot&#60Arithmetic Object&gt (,&#60Arithmetic Object&gt)*&quot)&quot)?
+				</tt></p></li>
+				<li><p><tt>
+					&#60Operator&gt ::= Abs  |  Max  |  Min | Root | Log | Sin | Cos | Tan | Asin | Acos | Atan | Hypot | toRadians | toDegrees | Round | Ceil | Floor | RandI | RandD | RandB
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				Los &#60Arithmetic Object&gt can be Numbers, Identifiers or other arithmetic operation.
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Arithmetic.Complex"></a>Complex Operations</h2>
+					</div>
+				</div>
+				
+				<p>
+					The Complex operations, are the remaining operations that are not found in the simple operations,
+					The number of parameters depends directly on the operation being performed.
+				</p>
+				
+				<p>
+					The Complex Operations accepted are:
+				</p>
+				<div class="itemizedlist">
+					<ul type="disc">
+						<li><p><tt>Abs(X): Returns absolute value of X</tt></p></li>
+						<li><p><tt>Max(X,Y): Returns X if X>Y, Y otherwise</tt></p></li>
+						<li><p><tt>Min(X,Y): Returns X if X<Y, Y otherwise</tt></p></li>
+						<li><p><tt>Root(X,Y): Returns the root base Y of X</tt></p></li>
+						<li><p><tt>Log(X,Y): Returns the logarithm base Y of X</tt></p></li>
+						<li><p><tt>Sin(X): Returns the sin of X</tt></p></li>
+						<li><p><tt>Cos(X): Returns the cosin of X</tt></p></li>
+						<li><p><tt>Tan(X): Returns the tangent of X</tt></p></li>
+						<li><p><tt>Asin(X): Returns the arco-sin of X</tt></p></li>
+						<li><p><tt>Acos(X): Returns the arco-cosin of X</tt></p></li>
+						<li><p><tt>Atan(X): Returns the arco-tangent of X</tt></p></li>
+						<li><p><tt>Hypot(X,Y): Returns the hypotenuse value which two other sides of the triangle are X and Y</tt></p></li>
+						<li><p><tt>toRadians(X): Returns the transformation of X from degrees to radians</tt></p></li>
+						<li><p><tt>toDegrees(X): Returns the transformation of X from radians to degrees</tt></p></li>
+						<li><p><tt>Round(X): Returns the closest integer to X</tt></p></li>
+						<li><p><tt>Ceil(X): Returns the smallest integer that is greater or equal than X</tt></p></li>
+						<li><p><tt>Floor(X): Returns the biggest integer that is less or equal than X</tt></p></li>
+						<li><p><tt>RandI(X,Y): Returns a random integer in the range [X..Y)</tt></p></li>
+						<li><p><tt>RandD(X,Y): Returns a random double in the range  [X..Y)</tt></p></li>
+						<li><p><tt>RandB: Returns 0 o 1 randomly</tt></p></li>
+					</ul>
+				</div>
+				
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Arithmetic.Ejemplo"></a>e.g:</h2>
+					</div>
+				</div>
+				<p><tt>
+					Max(5,3)+5;
+				</tt></p>
+				
+				<p>
+					The code above performs the Max between 5 and 3, returning the value 5 and then adds the value 5, returning 10.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Arithmetic.Retorno"></a>Return</h2>
+					</div>
+				</div>
+				
+				<p>
+					The arithmetic operations return the result of the operation.
+				</p>
+			</div>
+			
+		</div>
+	</body>
+</html>

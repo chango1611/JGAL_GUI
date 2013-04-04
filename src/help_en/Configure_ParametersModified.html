@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.ConfigureAlgorithm.Parameters.Modified"></a>Modified Handler</h3>
+				</div>
+			</div>
+
+			<p>
+				It's a variation of the GA, where the seletion stage is subdivided in two steps.
+				It was designed in order to reduce the influence which may generate undesired
+				function characteristics.
+			</p>
+
+			<p>
+				Follows the next program structure:
+			</p>
+			
+			<p><tt>
+				<b>procedure</b> AGmod<br>
+				&nbsp <b>begin</b><br>
+				&nbsp&nbsp t = 0;<br>
+				&nbsp&nbsp initialize P(t);<br>
+				&nbsp&nbsp evaluate P(t);<br>
+				&nbsp&nbsp <b>while</b> (<b>not</b> condición de terminación) <b>do</b><br>
+				&nbsp&nbsp&nbsp t= t+1;<br>
+				&nbsp&nbsp&nbsp select fathers from P(t – 1);<br>
+				&nbsp&nbsp&nbsp select deaths from P(t – 1);<br>
+				&nbsp&nbsp&nbsp create P(t): reproduce fathers;<br>
+				&nbsp&nbsp&nbsp evaluate P(t);<br>
+				&nbsp&nbsp <b>end;</b><br>
+				&nbsp <b>end;</b><br>
+			</tt></p>
+			
+			<p>
+				As shown, the selection is divided into two steps:
+			</p>
+			
+			<div class="itemizedlist">
+				<ul type="disc">
+					<li><p><tt>Step 1 – Select Fathers: Independently are selected r chromosomes
+					(Not necessarily distinct) to reproduce.</tt></p></li>
+					<li><p><tt>Step 2 – Select Deaths: r different chromosomes are selected to die.</tt></p></li>
+				</ul>
+			</div>
+			
+			<p>
+				After these two steps, three not necessarily disjoint groups are formed:
+			</p>
+			
+			<div class="itemizedlist">
+				<ul type="disc">
+					<li><p><tt>r chromosomes to reproduce.</tt></p></li>
+					<li><p><tt>r chromosomes to die.</tt></p></li>
+					<li><p><tt>The rest of the chromosomes, called neutral chromosomes.</tt></p></li>
+				</ul>
+			</div>
+			
+			<p>
+				The new population will be created by:
+			</p>
+			
+			
+			<div class="itemizedlist">
+				<ul type="disc">
+					<li><p><tt>The r offsprings formed from the r parents.</tt></p></li>
+					<li><p><tt>The pop_size – r chromosomes that were not chosen to die.</tt></p></li>
+				</ul>
+			</div>
+			
+			<p>
+				For the Modified Handler it must be define the population size, the maximum number of generations and
+				number of father to be selected(r).
+			</p>
+			
+			<p>
+				<b>Note.</b> The sum of all the probabilities of ocurrence of the genetic operators must be equal to 1,
+				since they are going to be applied over all the r chromosomes to reproduce.
+			</p>
+			
+		</div>
+	</body>
+</html>

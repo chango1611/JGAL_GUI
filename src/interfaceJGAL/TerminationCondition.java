@@ -13,8 +13,15 @@ public class TerminationCondition extends GAL_TerminationCondition{
 		this.windowExpectedSize= windowExpectedSize;
 	}
 	
+	public TerminationCondition(int windowExpectedSize){
+		this.interpreter= null;
+		this.windowExpectedSize= windowExpectedSize;
+	}
+	
 	@Override
 	public boolean verifyTerminationCondition(GAL_Population[] window) {
+		if(interpreter==null)
+			return false;
 		GAL_Interpreter aux= GAL_GUI.gal.getInterpreter(1);
 		aux.setVariable(0, window[0].size());
 		int size= window.length*2+1;

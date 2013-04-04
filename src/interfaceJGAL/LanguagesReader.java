@@ -1,7 +1,10 @@
 package interfaceJGAL;
 
 import java.io.FileReader;
+import java.util.LinkedList;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
 
 public class LanguagesReader {
 
@@ -18,13 +21,30 @@ public class LanguagesReader {
 	public String[] CommonWords;
 	public String[] Results;
 	public String[] Errors;
+	public String[] helpTargets;
 	public String language;
+	public String helpLanguage;
 	public String imageLanguage;
 	
 	public LanguagesReader() throws Exception{
 		Scanner S= new Scanner(new FileReader("language.ini"));
-		language= S.next();
-		imageLanguage= "image_es";
+		LinkedList<String> Languages= new LinkedList<String>();
+		LinkedList<String> FileName= new LinkedList<String>();
+		LinkedList<String> helpOption= new LinkedList<String>();
+		LinkedList<String> ImageOption= new LinkedList<String>();
+		while (S.hasNext()){
+			Languages.add(S.next());
+			FileName.add(S.next());
+			helpOption.add(S.next());
+			ImageOption.add(S.next());
+		}
+		String aux= (String)JOptionPane.showInputDialog(null, "Select Language:", "Language Selection", JOptionPane.PLAIN_MESSAGE, null, Languages.toArray(new String[0]), Languages.get(0));
+		int pos= Languages.indexOf(aux);
+		if(pos==-1)
+			throw new Exception("Language not selected, the program now will close");
+		language= FileName.get(pos);
+		helpLanguage= helpOption.get(pos);
+		imageLanguage= ImageOption.get(pos);
 		if(S.hasNext())
 			imageLanguage= S.next();
 		S= new Scanner(new FileReader(language + ".language"));
@@ -44,8 +64,8 @@ public class LanguagesReader {
 		
 		//Progreso
 		S.nextLine();
-		progreso= new String[11];
-		for(i=0;i<11;i++)
+		progreso= new String[12];
+		for(i=0;i<12;i++)
 			progreso[i]= S.nextLine();
 		
 		//Botones Principales
@@ -56,20 +76,20 @@ public class LanguagesReader {
 		
 		//Configuracion del Gen
 		S.nextLine();
-		GeneConfiguration= new String[16];
-		for(i=0;i<16;i++)
+		GeneConfiguration= new String[18];
+		for(i=0;i<18;i++)
 			GeneConfiguration[i]= S.nextLine();
 		
 		//Configuracion de funcion aptitud/terminacion
 		S.nextLine();
-		FitnessAndTerminationConfiguration= new String[10];
-		for(i=0;i<10;i++)
+		FitnessAndTerminationConfiguration= new String[11];
+		for(i=0;i<11;i++)
 			FitnessAndTerminationConfiguration[i]= S.nextLine();
 
 		//Configuracion de selector
 		S.nextLine();
-		SelectorConfiguration= new String[10];
-		for(i=0;i<10;i++)
+		SelectorConfiguration= new String[12];
+		for(i=0;i<12;i++)
 			SelectorConfiguration[i]= S.nextLine();
 
 		//Configuracion de operadores
@@ -92,8 +112,8 @@ public class LanguagesReader {
 
 		//Palabras Comunes
 		S.nextLine();
-		CommonWords= new String[6];
-		for(i=0;i<6;i++)
+		CommonWords= new String[8];
+		for(i=0;i<8;i++)
 			CommonWords[i]= S.nextLine();
 
 		//Ventana de Resultados
@@ -104,9 +124,15 @@ public class LanguagesReader {
 		
 		//Errores
 		S.nextLine();
-		Errors= new String[22];
-		for(i=0;i<22;i++)
+		Errors= new String[30];
+		for(i=0;i<30;i++)
 			Errors[i]= S.nextLine();
+		
+		//Errores
+		S.nextLine();
+		helpTargets= new String[12];
+		for(i=0;i<12;i++)
+			helpTargets[i]= S.nextLine();
 		
 	}
 }

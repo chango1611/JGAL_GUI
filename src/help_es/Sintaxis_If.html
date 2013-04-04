@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Condicional"></a>Condicional</h2>
+				</div>
+			</div>
+
+			<p>
+				Los condicionales son instrucciones que se pueden ejecutar o no en función del valor de una condición.
+				En el caso de GAL_Parser los condicionales se manejan con el &#60If Statement&gt.
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60If Statement&gt ::= If &#60Logical Statement&gt Then &#60Function&gt (Else &#60Function&gt)? End
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				El &#60Logical Statement&gt es la condición que se evalua.
+			</p>
+			<p>
+				Si la condición es verdad entonces se ejecuta el &#60Function&gt que se encuentra inmediatamente después del Then.
+			</p>
+			<p>
+				Si la condición es falsa, existen dos opciones:<br>
+				<div class="itemizedlist">
+					<ul type="disc">
+						<li>Si el segmento del Else existe, se ejecuta el &#60Function&gt que se encuentra inmediatamente después del Else.</li>
+						<li>Si el segmento del Else no existe, entonces se salta el condicional por completo.</li>
+					</ul>
+				</div>
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Condicional.Ejemplo"></a>Ejemplo</h2>
+					</div>
+				</div>
+				<p><tt>
+					$i:= 20;<br>
+					If $i&#60=10 Then<br>
+					&nbsp&nbsp$i:=10;<br>
+					Else
+					&nbsp&nbsp$i:=0;<br>
+					End;
+				</tt></p>
+				
+				<p>
+					El codigo anterior inicia con la creación de una variable i a la que se le asigna 20.
+					Luego se ingresa a un condicional, donde si i es menor igual que 10 se ejecuta el Then, sino el Else.
+					Como la condición es falsa, se ejecuta el segmento del Else, donde a i se le asigna 0.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Condicional.Retorno"></a>Retorno</h2>
+					</div>
+				</div>
+				
+				<p>
+					Los condicionales retornan la última instrucción que se ejecutó interno a ellos.
+					Si la condición es falsa y no existe el segmento del Else, retorna null.
+				</p>
+			</div>
+			
+		</div>
+	</body>
+</html>

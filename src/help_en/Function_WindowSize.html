@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.DefineChromosome.Funcion.WindowSize"></a>Window Size</h3>
+				</div>
+			</div>
+			
+			<p>
+				The window is used to store the last populations evaluated up to the moment,
+				in order to use them on the definition of the termination condition.
+			</p>
+			
+			<p>
+				The size of the window allows to define how many populations may be within the window.
+			</p>
+			
+			<p>
+				It is important to know that the window size, changes the amount of constant values ??for the function.
+			</p>
+			<p><b>
+				e.g.
+			</b></p>
+			<p>
+				If you have a window size = 1, then it will have 3 constant values (popsize, bestFitness_0, averageFitness_0).<br>
+				If you have a window size = 2, then it will have 5 constant values (popsize, bestFitness_0, averageFitness_0, bestFitness_1, averageFitness_1).<br>
+			</p>
+			
+			<p>
+				This means that if the window size is N, then there will be 2 * N +1 constants.
+			</p>
+			
+			<p>
+				<b>Note.</b> bestFitness_0 represents the best fitness for the most recent population.<br>
+				bestFitness_1 the second most recent... and successively.
+			</p>
+		</div>
+	</body>
+</html>

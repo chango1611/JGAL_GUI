@@ -1,5 +1,6 @@
 package interfaceJGAL;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -13,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ConfigurarAlgoritmo extends JPanel {
 
@@ -31,10 +34,27 @@ public class ConfigurarAlgoritmo extends JPanel {
 		picture.setBackground(Color.WHITE);
 		
 		JPanel help = new JPanel();
+		help.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[2]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
 		help.setBounds(598, 7, 28, 28);
 		help.setBackground(new Color(255, 50, 0));
 		
 		JButton btn_selector = new JButton("");
+		btn_selector.setIcon(new ImageIcon(ConfigurarAlgoritmo.class.getResource("/Images/btn_Seleccionar.png")));
 		btn_selector.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SelectorWindow Newframe= new SelectorWindow();
@@ -48,6 +68,7 @@ public class ConfigurarAlgoritmo extends JPanel {
 		lblSelector.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JButton btn_Operadores = new JButton("");
+		btn_Operadores.setIcon(new ImageIcon(ConfigurarAlgoritmo.class.getResource("/Images/btn_Operacion.png")));
 		btn_Operadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				OperatorsWindow Newframe= new OperatorsWindow();
@@ -61,6 +82,7 @@ public class ConfigurarAlgoritmo extends JPanel {
 		lblOperadores.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JButton btn_Parametros = new JButton("");
+		btn_Parametros.setIcon(new ImageIcon(ConfigurarAlgoritmo.class.getResource("/Images/btn_Parametros.png")));
 		btn_Parametros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ParametersWindow Newframe= new ParametersWindow();

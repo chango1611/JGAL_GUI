@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax"></a>Syntax</h2>
+				</div>
+			</div>
+
+			<p>
+				The Fitness function and Termination Function uses GAL_Parser language,
+				which was designed specifically for this purpose.
+				This language is characterized in that all instructions returns a value, so that the last instruction
+				running represents the return of the function.
+			</p>
+			
+			<p>
+				General Syntax:
+			</p>
+			
+			<div class="itemizedlist">
+				<ul style="list-style: none;">
+					<li><p><tt>
+						&#60Function&gt ::= ((&#60While Statement&gt  |  &#60If Statement&gt  |  &#60Assign Statement&gt  |  &#60Logical Statement&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt);)+
+					</tt></p></li>
+					<li><p><tt>
+						&#60While Statement&gt ::= While &#60Logical Statement&gt Do &#60Function&gt End
+					</tt></p></li>
+					<li><p><tt>
+						&#60If Statement&gt ::= If &#60Logical Statement&gt Then &#60Function&gt (Else &#60Function&gt)? End
+					</tt></p></li>
+					<li><p><tt>
+						&#60Assign Statement&gt ::= &#60Identifier&gt := (&#60Logical Statement&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt  |  &#60String&gt  |  &#60Char&gt) | &#60Factory Statement&gt
+					</tt></p></li>
+					<li><p><tt>
+						&#60Factory Statement&gt ::= Factory(&#60Identifier&gt,&quot{&quot{&#60Logical Statement&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt  |  &#60String&gt  |  &#60Char&gt};&quot}&quot)
+					</tt></p></li>
+					<li><p><tt>
+						&#60Logical Statement&gt ::= &#60Logical Object&gt ((&quot&amp&amp&quot  |  &quot||&quot  |  &quot^&quot) &#60Logical Object&gt)?
+					</tt></p></li>
+					<li><p><tt>
+						&#60Logical Object&gt ::= (Not)? (True  |  False  |  &#60Comparison Statement&gt  |  &#60Identifier&gt  |  &#60Logical Statement&gt)
+					</tt></p></li>
+					<li><p><tt>
+						&#60Comparison Statement&gt ::= &#60Comparable Object&gt ((&quot&#60&quot  |  &quot&gt&quot  |  &quot=&quot  |  &quot&#60=&quot  |  &quot&gt=&quot  |  &quot&#60&gt&quot) &#60Comparable Object&gt)?
+					</tt></p></li>
+					<li><p><tt>
+						&#60Comparable Object&gt ::= &#60String&gt  |  &#60Char&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt
+					</tt></p></li>
+					<li><p><tt>
+						&#60Arithmetic Statement&gt ::= &#60Simple Arithmetic&gt  |  &#60Complex Arithmetic&gt
+					</tt></p></li>
+					<li><p><tt>
+						&#60Simple Arithmetic&gt ::= &#60Arithmetic Object&gt ((+  |  -  |  *  |  /  |  %  |  **) &#60Arithmetic Object&gt)?
+					</tt></p></li>
+					<li><p><tt>
+						&#60Arithmetic Object&gt ::= (-)? (&#60Number&gt  |  &#60Identifier&gt  |  &#60Arithmetic Statement&gt)
+					</tt></p></li>
+					<li><p><tt>
+						&#60Number&gt ::= (0..9)+ | PI | E
+					</tt></p></li>
+					<li><p><tt>
+						&#60Complex Arithmetic&gt ::= &#60Operator&gt(&quot(&quot&#60Arithmetic Object&gt (,&#60Arithmetic Object&gt)*&quot)&quot)?
+					</tt></p></li>
+					<li><p><tt>
+						&#60Operator&gt ::= Abs  |  Max  |  Min | Root | Log | Sin | Cos | Tan | Asin | Acos | Atan | Hypot | toRadians | toDegrees | Round | Ceil | Floor | RandI | RandD | RandB
+					</tt></p></li>
+					<li><p><tt>
+						&#60Identifier&gt ::= $(&#60Name&gt | &quot{&quot&#60Arithmetic Statement&gt&quot}&quot)
+					</tt></p></li>
+					<li><p><tt>
+						&#60Name&gt ::= (A..Z|a..z|_) &#60Chars&gt*
+					</tt></p></li>
+					<li><p><tt>
+						&#60String&gt ::= &quot(&#60Chars&gt | &#60WhiteSpace&gt)*&quot
+					</tt></p></li>
+					<li><p><tt>
+						&#60Chars&gt ::= (A..Z|a..z|_|0..9)
+					</tt></p></li>
+					<li><p><tt>
+						&#60Char&gt ::= '(&#60Chars&gt | &#60WhiteSpace&gt)' | RandC&quot(&quot&#60Chars&gt,&#60Chars&gt&quot)&quot
+					</tt></p></li>
+
+				</ul>
+			</div>
+			<p>
+				To further understand the syntax, please read the specific information.
+			</p>
+			
+		</div>
+	</body>
+</html>

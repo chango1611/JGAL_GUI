@@ -1,5 +1,6 @@
 package interfaceJGAL;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -13,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DefinirFuncion extends JPanel {
 
@@ -31,10 +34,28 @@ public class DefinirFuncion extends JPanel {
 		picture.setBackground(Color.WHITE);
 		
 		JPanel help = new JPanel();
+		help.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[1]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
 		help.setBounds(598, 7, 28, 28);
 		help.setBackground(new Color(128, 0, 128));
 		
 		JButton btn_CrearFuncion = new JButton("");
+		btn_CrearFuncion.setIcon(new ImageIcon(DefinirFuncion.class.getResource("/Images/btn_DefinirAptitud.png")));
 		btn_CrearFuncion.setBounds(48, 28, 76, 50);
 		btn_CrearFuncion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -56,6 +77,7 @@ public class DefinirFuncion extends JPanel {
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JButton btn_CrearTerminacion = new JButton("");
+		btn_CrearTerminacion.setIcon(new ImageIcon(DefinirFuncion.class.getResource("/Images/btn_DefinirTerminacion.png")));
 		btn_CrearTerminacion.setBounds(167, 28, 76, 50);
 		btn_CrearTerminacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

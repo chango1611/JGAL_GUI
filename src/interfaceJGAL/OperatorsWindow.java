@@ -115,11 +115,26 @@ public class OperatorsWindow extends JFrame {
 		mntmSalir.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnArchivo.add(mntmSalir);
 		
-		JMenu mnAyuda = new JMenu("Ayuda");
+		JMenu mnAyuda = new JMenu(GAL_GUI.language.CommonWords[6]);
 		mnAyuda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		menuBar.add(mnAyuda);
 		
-		JMenuItem mntmTutorial = new JMenuItem("Tutorial");
+		JMenuItem mntmTutorial = new JMenuItem(GAL_GUI.language.CommonWords[7]);
+		mntmTutorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[10]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
 		mntmTutorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnAyuda.add(mntmTutorial);
 		contentPane = new JPanel();
@@ -353,12 +368,18 @@ public class OperatorsWindow extends JFrame {
 							aux= new GAL_ChromosomeMutation(prob, (double) spn_MutCrom.getValue());
 						break;
 						case 7:
+							if(!GAL_GUI.gal.isMutableGeneConfig())
+								throw new Exception(GAL_GUI.language.Errors[23]);
 							aux= new GAL_SwapMutation(prob);
 						break;
 						case 8:
+							if(!GAL_GUI.gal.isMutableGeneConfig())
+								throw new Exception(GAL_GUI.language.Errors[23]);
 							aux= new GAL_ShuffleMutation(prob);
 						break;
 						case 9:
+							if(!GAL_GUI.gal.isMutableGeneConfig())
+								throw new Exception(GAL_GUI.language.Errors[23]);
 							aux= new GAL_Inversion(prob);
 						break;
 					}

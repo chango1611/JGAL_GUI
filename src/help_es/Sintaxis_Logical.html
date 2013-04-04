@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Logical"></a>Operación Lógica</h2>
+				</div>
+			</div>
+
+			<p>
+				Las operaciones lógicas son todas las operaciones que se pueden realizar entre objetos lógicos, como el AND(&quot&amp&amp&quot), OR(&quot||&quot) y XOR(&quot^&quot).
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60Logical Statement&gt ::= &#60Logical Object&gt ((&quot&amp&amp&quot  |  &quot||&quot  |  &quot^&quot) &#60Logical Object&gt)?
+				</tt></p></li>
+				<li><p><tt>
+					&#60Logical Object&gt ::= (Not)? (True  |  False  |  &#60Comparison Statement&gt  |  &#60Identifier&gt  |  &#60Logical Statement&gt)
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				Los &#60Logical Object&gt pueden ser True, False, una Comparación, un identificador u otra Operación Lógica. Además éstos pueden estar negados con el Not.
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Logical.Comparison"></a>Comparaciones</h2>
+					</div>
+				</div>
+				
+				<p>
+					En GAL_Parser se pueden realizar comparaciones entre dos objetos mediante los operadores (&quot&#60&quot  |  &quot&gt&quot  |  &quot=&quot  |  &quot&#60=&quot  |  &quot&gt=&quot  |  &quot&#60&gt&quot).
+				</p>
+				
+				<ul style="list-style: none;">
+					<li><p><tt>
+						&#60Comparison Statement&gt ::= &#60Comparable Object&gt ((&quot&#60&quot  |  &quot&gt&quot  |  &quot=&quot  |  &quot&#60=&quot  |  &quot&gt=&quot  |  &quot&#60&gt&quot) &#60Comparable Object&gt)?
+					</tt></p></li>
+					<li><p><tt>
+						&#60Comparable Object&gt ::= &#60String&gt  |  &#60Char&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt
+					</tt></p></li>
+				</ul>
+				
+				<p>
+					Estas comparaciones retornan True si se cumplen o False en caso contario.
+					Las comparaciones deben ser entre elementos del mismo tipo o el parser arrojará un error.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Logical.Ejemplo"></a>Ejemplo</h2>
+					</div>
+				</div>
+				<p><tt>
+					(5>4) && True;
+				</tt></p>
+				
+				<p>
+					El codigo anterior realiza la comparación 5>4 el cual retorna True y luego opera con un AND contra True, retornando True.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Logical.Retorno"></a>Retorno</h2>
+					</div>
+				</div>
+				
+				<p>
+					Las Operaciones Logicas retornan el resultado de la operación.
+				</p>
+			</div>
+			
+		</div>
+	</body>
+</html>

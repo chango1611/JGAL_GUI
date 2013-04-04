@@ -113,15 +113,45 @@ public class FitnessFunctionWindow extends JFrame {
 		mntmSalir.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnArchivo.add(mntmSalir);
 		
-		mnAyuda = new JMenu("Ayuda");
+		mnAyuda = new JMenu(GAL_GUI.language.CommonWords[6]);
 		mnAyuda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		menuBar.add(mnAyuda);
 		
-		mntmSintaxis = new JMenuItem("Sintaxis");
+		mntmSintaxis = new JMenuItem(GAL_GUI.language.FitnessAndTerminationConfiguration[10]);
+		mntmSintaxis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[6]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
 		mntmSintaxis.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnAyuda.add(mntmSintaxis);
 		
-		JMenuItem mntmTutorial = new JMenuItem("Tutorial");
+		JMenuItem mntmTutorial = new JMenuItem(GAL_GUI.language.CommonWords[7]);
+		mntmTutorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[7]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
 		mntmTutorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnAyuda.add(mntmTutorial);
 		contentPane = new JPanel();
@@ -361,8 +391,8 @@ public class FitnessFunctionWindow extends JFrame {
 						btn_Optional2.setText("Then");
 						btn_Optional3.setText("Else");
 						btn_Optional4.setText("While");
-						btn_Optional5.setText("End");
-						btn_Optional6.setText("");
+						btn_Optional5.setText("Do");
+						btn_Optional6.setText("End");
 						btn_Optional7.setText("");
 						btn_Optional8.setText("");
 						btn_Optional9.setText("");
@@ -385,7 +415,7 @@ public class FitnessFunctionWindow extends JFrame {
 						btn_Optional4.setText(":=");
 						btn_Optional5.setText("\"");
 						btn_Optional6.setText("'");
-						btn_Optional7.setText("");
+						btn_Optional7.setText("Factory");
 						btn_Optional8.setText("");
 						btn_Optional9.setText("");
 					break;

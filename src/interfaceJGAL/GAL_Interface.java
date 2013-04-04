@@ -20,6 +20,7 @@ import JGAL.GAL_ClassicMutation;
 import JGAL.GAL_ClassicRankingSelector;
 import JGAL.GAL_Configuration;
 import JGAL.GAL_DoubleGeneConfig;
+import JGAL.GAL_ElitistSelector;
 import JGAL.GAL_GeneConfig;
 import JGAL.GAL_GeneticOperator;
 import JGAL.GAL_Handler;
@@ -48,8 +49,8 @@ public class GAL_Interface {
 	private LinkedList<GAL_GeneticOperator> operators; //Los operadores a ser usado
 	private GAL_Interpreter fitnessFunctionInterpreter, terminationInterpreter; //Interpretes para la funcion de Aptitud y Terminacion
 	private GAL_InterpreterNode fitness, termination;
-	private int handlerToUse, popSize, maxGen, modParam, windowSize; //Parametros especificos
-	private boolean parameters, optimizationType; //Booleano que define si los parametros especificos fueron definidos
+	private int handlerToUse, popSize, maxGen, modParam, windowSize, elitistSize; //Parametros especificos
+	private boolean parameters, optimizationType, elitist; //Booleano que define si los parametros especificos fueron definidos
 	private GAL_Handler handler;
 	
 	GAL_Interface(){
@@ -57,11 +58,13 @@ public class GAL_Interface {
 		GeneNames= new LinkedList<String>();
 		operators= new LinkedList<GAL_GeneticOperator>();
 		parameters= false;
+		elitist= false;
 		handlerToUse= 0;
 		popSize= 1;
 		maxGen= 1;
 		modParam= 1;
 		windowSize= 1;
+		elitistSize= 1;
 		selector= null;
 		fitnessFunctionInterpreter= new GAL_Interpreter("",0);
 		fitnessFunctionInterpreter.initializeFitness(GeneNames.toArray(new String[0]));
@@ -73,9 +76,16 @@ public class GAL_Interface {
 	}
 	
 	//Agrega una nueva configuracion de gen
-	void addGeneConfig(GAL_GeneConfig<?> a, String name){
+	void addGeneConfig(GAL_GeneConfig<?> a, String name)throws Exception{
 		GeneConfig.add(a);
 		GeneNames.add(name);
+		if(!isMutableGeneConfig()){
+			if(isMutableOperatorPresent()){
+				GeneConfig.removeLast();
+				GeneNames.removeLast();
+				throw new Exception(GAL_GUI.language.Errors[24]);
+			}
+		}
 	}
 	
 	//Elimina la configuracion de gen en la pos index
@@ -85,14 +95,72 @@ public class GAL_Interface {
 	}
 	
 	//Edita la configuracion de gen en la pos index
-	void editGeneConfig(int index,GAL_GeneConfig<?> a, String name){
+	void editGeneConfig(int index,GAL_GeneConfig<?> a, String name)throws Exception{
+		GAL_GeneConfig<?> aux= GeneConfig.get(index);
+		String aux2= GeneNames.get(index);
 		GeneConfig.set(index, a);
 		GeneNames.set(index, name);
+		if(!isMutableGeneConfig()){
+			if(isMutableOperatorPresent()){
+				GeneConfig.set(index, aux);
+				GeneNames.set(index, aux2);
+				throw new Exception(GAL_GUI.language.Errors[24]);
+			}
+		}
 	}
 	
 	//Agarra la pos del gen en index
 	GAL_GeneConfig<?> getGeneConfig(int index){
 		return GeneConfig.get(index);
+	}
+	
+	//Utilizado para verificar si la configuracion de genes permite mutacion individual 
+	boolean isMutableGeneConfig(){
+		if(GeneConfig.size()<2) return true;
+		
+		GAL_GeneConfig<?> anterior= GeneConfig.get(0), actual;
+		
+		int type= 0;
+		if(anterior instanceof GAL_IntegerGeneConfig)
+			type= 0;
+		else if(anterior instanceof GAL_DoubleGeneConfig)
+			type= 1;
+		else if(anterior instanceof GAL_BinaryGeneConfig)
+			type= 2;
+		else if(anterior instanceof GAL_CharacterGeneConfig)
+			type= 3;
+		else if(anterior instanceof GAL_NominalGeneConfig)
+			type= 4;
+		
+		for(int i=1;i<GeneConfig.size();i++){
+			actual= GeneConfig.get(i);
+			switch(type){
+				case 0:
+					if(!(actual instanceof GAL_IntegerGeneConfig)) return false;
+					if(!((GAL_IntegerGeneConfig) actual).getMax().equals(((GAL_IntegerGeneConfig) anterior).getMax())) return false;
+					if(!((GAL_IntegerGeneConfig) actual).getMin().equals(((GAL_IntegerGeneConfig) anterior).getMin())) return false;
+				break;
+				case 1:
+					if(!(actual instanceof GAL_DoubleGeneConfig)) return false;
+					if(!((GAL_DoubleGeneConfig) actual).getMax().equals(((GAL_DoubleGeneConfig) anterior).getMax())) return false;
+					if(!((GAL_DoubleGeneConfig) actual).getMin().equals(((GAL_DoubleGeneConfig) anterior).getMin())) return false;
+				break;
+				case 2:
+					if(!(actual instanceof GAL_BinaryGeneConfig)) return false;
+				break;
+				case 3:
+					if(!(actual instanceof GAL_CharacterGeneConfig)) return false;
+					if(((GAL_CharacterGeneConfig) actual).getMax()!=((GAL_CharacterGeneConfig) anterior).getMax()) return false;
+					if(((GAL_CharacterGeneConfig) actual).getMin()!=((GAL_CharacterGeneConfig) anterior).getMin()) return false;
+				break;
+				case 4:
+					if(!(actual instanceof GAL_NominalGeneConfig)) return false;
+					if(!((GAL_NominalGeneConfig) actual).getAlleles().equals(((GAL_NominalGeneConfig) anterior).getAlleles())) return false;
+				break;
+			}
+			anterior= actual;
+		}
+		return true;
 	}
 	
 	//Agarra todos los nombres de genes
@@ -134,6 +202,19 @@ public class GAL_Interface {
 		return "";
 	}
 	
+	//Usado para comprobar la presencia de operadores de mutacion individual
+	private boolean isMutableOperatorPresent(){
+		for(int i=0;i<operators.size();i++){
+			if(operators.get(i) instanceof GAL_SwapMutation)
+				return true;
+			if(operators.get(i) instanceof GAL_ShuffleMutation)
+				return true;
+			if(operators.get(i) instanceof GAL_Inversion)
+				return true;
+		}
+		return false;
+	}
+	
 	//Cambia el selector natural
 	void setSelector(GAL_NaturalSelector a){
 		selector= a;
@@ -157,6 +238,24 @@ public class GAL_Interface {
 		if(selector instanceof GAL_NonLinealRankingSelector)
 			return GAL_GUI.language.SelectorConfiguration[5];
 		return "";
+	}
+	
+	//Cambia entre modo elitista y normal
+	boolean changeElitistState(){
+		elitist= !elitist;
+		return elitist;
+	}
+	
+	boolean isElitist(){
+		return elitist;
+	}
+	
+	void setElitistSize(int elitistSize){
+		this.elitistSize= elitistSize;
+	}
+	
+	int getElitistSize(){
+		return elitistSize;
 	}
 	
 	//Agrega un operador
@@ -361,17 +460,17 @@ public class GAL_Interface {
 	//Convierte en string el selector
 	private String toStringSelector(){
 		if(selector == null)
-			return "-1";
+			return "-1 0 0";
 		if(selector instanceof GAL_RouletteSelector)
-			return "0\n";
+			return "0 " + (elitist?1:0) + " " + elitistSize + "\n";
 		if(selector instanceof GAL_TournamentSelector)
-			return "1 "+ ((GAL_TournamentSelector) selector).getTournamentSize() +"\n";
+			return "1 "+ ((GAL_TournamentSelector) selector).getTournamentSize() +" "+ (elitist?1:0) + " " + elitistSize + "\n";
 		if(selector instanceof GAL_ClassicRankingSelector)
-			return "2 "+ ((GAL_ClassicRankingSelector) selector).getMax() +"\n";
+			return "2 "+ ((GAL_ClassicRankingSelector) selector).getMax() +" "+ (elitist?1:0) + " " + elitistSize + "\n";
 		if(selector instanceof GAL_LinealRankingSelector)
-			return "3 "+ ((GAL_LinealRankingSelector) selector).getQ() +"\n";
+			return "3 "+ ((GAL_LinealRankingSelector) selector).getQ() +" "+ (elitist?1:0) + " " + elitistSize + "\n";
 		if(selector instanceof GAL_NonLinealRankingSelector)
-			return "4 "+ ((GAL_NonLinealRankingSelector) selector).getQ() +"\n";
+			return "4 "+ ((GAL_NonLinealRankingSelector) selector).getQ() +" "+ (elitist?1:0) + " " + elitistSize + "\n";
 		return "";
 	}
 	
@@ -408,6 +507,8 @@ public class GAL_Interface {
 				selector= null;
 			break;
 		}
+		elitist= fr.nextInt()==1;
+		elitistSize= fr.nextInt();
 	}
 	
 	//Abre un archivo que contiene al selector
@@ -508,6 +609,8 @@ public class GAL_Interface {
 			return fitnessFunctionInterpreter.getLines() + "\n" + fitnessFunctionInterpreter.getCode()+"\n";
 		if(tipo==1 && terminationInterpreter.getLines()>0) //Termination
 				return terminationInterpreter.getLines() + "\n" + terminationInterpreter.getCode() + "\n" + windowSize+"\n";
+		if(tipo==1)
+			return "0\n" + windowSize + "\n";
 		return "0\n";
 	}
 	
@@ -527,9 +630,11 @@ public class GAL_Interface {
 		int t= fr.nextInt(),i;
 		String ret= "";
 		fr.nextLine();
-		for(i=0;i<t-1;i++)
-			ret+= fr.nextLine() + "\n";
-		ret+= fr.nextLine();
+		if(t!=0){
+			for(i=0;i<t-1;i++)
+				ret+= fr.nextLine() + "\n";
+			ret+= fr.nextLine();
+		}
 		if(tipo==0){
 			fitnessFunctionInterpreter= new GAL_Interpreter(ret, t);
 			fitnessFunctionInterpreter.initializeFitness(GeneNames.toArray(new String[0]));
@@ -563,6 +668,21 @@ public class GAL_Interface {
 		}
 	}
 	
+	void saveResults(File file)throws Exception{
+		FileWriter fw= new FileWriter(file);
+		fw.write(GAL_GUI.language.Results[0]+":\n");
+		GAL_Chromosome best= handler.getBestFromAll();
+		if(optimizationType)
+			fw.write(GAL_GUI.language.Results[7]+": " + best.getFitness()+"\n");
+		else
+			fw.write(GAL_GUI.language.Results[7]+": " + (1000000000 - best.getFitness()) +"\n");
+		fw.write(GAL_GUI.language.FitnessAndTerminationConfiguration[7]+":\n");
+		int i;
+		for(i=0;i<GeneNames.size();i++)
+			fw.write(GeneNames.get(i) + ": " + best.getTrait(i)+"\n");
+		fw.close();
+	}
+	
 	//Abre toda la configuracion desde un archivo
 	void openAll(File file)throws Exception{
 		Scanner fr= new Scanner(new FileReader(file));
@@ -586,10 +706,6 @@ public class GAL_Interface {
 			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[14] + "\n" + GAL_GUI.language.Errors[16]);
 			return false;
 		}
-		if(!terminationInterpreter.getValid()){
-			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[14] + "\n" + GAL_GUI.language.Errors[17]);
-			return false;
-		}
 		if(selector==null){
 			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[14] + "\n" + GAL_GUI.language.Errors[18]);
 			return false;
@@ -605,11 +721,12 @@ public class GAL_Interface {
 		
 		try{
 			//Creo la configuracion
-			GAL_Configuration config= new GAL_Configuration
+			GAL_Configuration config;
+			config= new GAL_Configuration
 					(new GAL_ChromosomeConfig(GeneConfig.toArray(new GAL_GeneConfig[0])),
-					new TerminationCondition(termination, windowSize),
+					terminationInterpreter.getValid()?new TerminationCondition(termination, windowSize):new TerminationCondition(windowSize),
 					new FitnessFunction(fitness,optimizationType),
-					selector,
+					elitist?new GAL_ElitistSelector(elitistSize, selector):selector,
 					operators.toArray(new GAL_GeneticOperator[0]));
 			
 			//Creo el handler y le paso por parametro la configuracion
@@ -618,6 +735,7 @@ public class GAL_Interface {
 			else
 				handler= new GAL_ModHandler(config, maxGen, popSize, windowSize,modParam);
 			
+			//Corro el handler
 			handler.runGAL();
 			
 			return true;
@@ -689,5 +807,27 @@ public class GAL_Interface {
 	
 	public boolean executed(){
 		return handler!=null;
+	}
+	
+	public void limpiarTodo(){
+		GeneConfig= new LinkedList<GAL_GeneConfig<?>>();
+		GeneNames= new LinkedList<String>();
+		operators= new LinkedList<GAL_GeneticOperator>();
+		parameters= false;
+		elitist= false;
+		handlerToUse= 0;
+		popSize= 1;
+		maxGen= 1;
+		modParam= 1;
+		windowSize= 1;
+		elitistSize= 1;
+		selector= null;
+		fitnessFunctionInterpreter= new GAL_Interpreter("",0);
+		fitnessFunctionInterpreter.initializeFitness(GeneNames.toArray(new String[0]));
+		terminationInterpreter= new GAL_Interpreter("",0);
+		terminationInterpreter.initializeTermination(windowSize);
+		handler= null;
+		fitness= null;
+		termination= null;
 	}
 }

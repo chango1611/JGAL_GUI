@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration"></a>Additional Configuration of the Gene</h3>
+				</div>
+			</div>
+			
+			<p>
+				Depending on the type of gene, is shown additional configuration that must be defined before you can add the gene.
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration.Integer"></a>Integer</h3>
+					</div>
+				</div>
+				
+				<p>
+					For Integers, define the range the gene belongs to. It should be noted that Max> Min and the range must allow more than one element.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration.Double"></a>Double</h3>
+					</div>
+				</div>
+				
+				<p>
+					As same as the Integers, define the range the gene belongs to. It should be noted that Max> Min.
+					The Max and Min spinner increase in the same manner as that of the integer; to use decimals, you must use point "." to separate the integer part of the decimal part.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration.Binary"></a>Binary</h3>
+					</div>
+				</div>
+				
+				<p>
+					The binary genes do not require additional configuration.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration.Character"></a>Character</h3>
+					</div>
+				</div>
+				
+				<p>
+					For Integers, define the range the gene belongs to. It should be noted that Max> Min and the range must allow more than one element.
+					Also, remember that they only accept individual characters.
+				</p>
+			</div>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration.Nominal"></a>Nominal</h3>
+					</div>
+				</div>
+				
+				<p>
+					Nominal type genes require a more complex configuration.
+					The following figure shows the additional configuration for the nominal type:
+				</p>
+				
+				<img src="images/DefineGenes_Nominal.PNG" alt="">
+				<p>
+					Where each number represents the steps to create one of the possible alleles for the Nominal:
+				</p>
+				<div class="itemizedlist">
+					<ol>
+						<li><p><tt>Define Name of the allele</tt></p></li>
+						<li><p><tt>Add Allele</tt></p></li>
+						<li><p><tt>Defined Alelles</tt></p></li>
+					</ol>
+				</div>
+				<p>
+					1. Define Name of the Allele: involves putting a name to the Allele being created,
+					must fulfill that the allele has not a duplicate name to one of the other alleles of the gene being defined.
+				</p>
+				<p>
+					2. Add Allele: Pressing the button with the symbol ">" (without the quotes), adds the allele to the defined alleles for the gene.
+				</p>
+				<p>
+					3. Defined Alelles: Displays a list of alleles that have already been defined,
+					This list must contain at least two alleles for the gene to be accepted.
+					Alleles can be eliminated if one is selected and you press the button with the symbol "<" (without the quotes).
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

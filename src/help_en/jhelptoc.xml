@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN" "http://java.sun.com/products/javahelp/toc_1_0.dtd">
+<toc version="1.0">
+	<tocitem target="JGAL" text="JGAL">
+		
+		<tocitem target="JGAL.WorkScheme" text="Working Scheme"/>
+		
+		<tocitem target="JGAL.DefineChromosome" text="Define Chromosome">
+			<tocitem target="JGAL.DefineChromosome.DefineGenes" text="Define Genes">
+				<tocitem target="JGAL.DefineChromosome.DefineGenes.DefineName" text="Define Name of the Gene"/>
+				<tocitem target="JGAL.DefineChromosome.DefineGenes.DefineType" text="Define Type of the Gene"/>
+				<tocitem target="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration" text="Additional Configuración of the Gene"/>
+				<tocitem target="JGAL.DefineChromosome.DefineGenes.Add" text="Add Gene"/>
+				<tocitem target="JGAL.DefineChromosome.DefineGenes.DefinedVariables" text="Defined Variables of the Chromosome"/>
+				<tocitem target="JGAL.DefineChromosome.DefineGenes.Factory" text="Factory"/>
+			</tocitem>
+		</tocitem>
+		
+		<tocitem target="JGAL.DefineFunction" text="Define Function">
+			<tocitem target="JGAL.DefineFunction.Syntax.Constants" text="Constants Values"/>
+			<tocitem target="JGAL.DefineFunction.Syntax" text="Syntax">
+				<tocitem target="JGAL.DefineFunction.Syntax.Cycles" text="Syntax for Cycles"/>
+				<tocitem target="JGAL.DefineFunction.Syntax.Conditional" text="Syntax for Conditionals"/>
+				<tocitem target="JGAL.DefineFunction.Syntax.Assign" text="Syntax for Assign">
+					<tocitem target="JGAL.DefineFunction.Syntax.Factory" text="Syntax for Factory"/>
+				</tocitem>
+				<tocitem target="JGAL.DefineFunction.Syntax.Logical" text="Syntax for Logical Operations"/>
+				<tocitem target="JGAL.DefineFunction.Syntax.Arithmetic" text="Syntax for Arithmetic Operations"/>
+				<tocitem target="JGAL.DefineFunction.Syntax.Identifier" text="Syntax for Identifiers"/>
+			</tocitem>
+			<tocitem target="JGAL.DefineFunction.Fitness" text="Fitness Function">
+				<tocitem target="JGAL.DefineFunction.Function.CodeArea" text="Code Area"/>
+				<tocitem target="JGAL.DefineFunction.Function.Calculator" text="Calculator"/>
+				<tocitem target="JGAL.DefineFunction.Function.Complex" text="Complex Buttons"/>
+				<tocitem target="JGAL.DefineFunction.Function.AddVariable" text="Add Variable"/>
+				<tocitem target="JGAL.DefineFunction.Function.Validate" text="Validate"/>
+			</tocitem>
+			<tocitem target="JGAL.DefineFunction.Termination" text="Termination Function">
+				<tocitem target="JGAL.DefineFunction.Function.CodeArea" text="Code Area"/>
+				<tocitem target="JGAL.DefineFunction.Function.Calculator" text="Calculator"/>
+				<tocitem target="JGAL.DefineFunction.Function.Complex" text="Complex Buttons"/>
+				<tocitem target="JGAL.DefineFunction.Function.AddVariable" text="Add Variable"/>
+				<tocitem target="JGAL.DefineFunction.Function.WindowSize" text="Window Size"/>
+				<tocitem target="JGAL.DefineFunction.Function.Validate" text="Validate"/>
+			</tocitem>
+		</tocitem>
+		
+		<tocitem target="JGAL.ConfigureAlgorithm" text="Configure Algorithm">
+			<tocitem target="JGAL.ConfigureAlgorithm.Selector" text="Selector">
+				<tocitem target="JGAL.ConfigureAlgorithm.Selector.Elitism" text="Elitism"/>
+				<tocitem target="JGAL.ConfigureAlgorithm.Selector.Roulette" text="Roulette"/>
+				<tocitem target="JGAL.ConfigureAlgorithm.Selector.Tournament" text="Tournament"/>
+				<tocitem target="JGAL.ConfigureAlgorithm.Selector.Ranking" text="Ranking">
+					<tocitem target="JGAL.ConfigureAlgorithm.Selector.Ranking.Classic" text="Classic Ranking"/>
+					<tocitem target="JGAL.ConfigureAlgorithm.Selector.Ranking.Lineal" text="Lineal Ranking"/>
+					<tocitem target="JGAL.ConfigureAlgorithm.Selector.Ranking.NonLineal" text="Non Lineal Ranking"/>
+				</tocitem>
+			</tocitem>
+			<tocitem target="JGAL.ConfigureAlgorithm.Operator" text="Operators">
+				<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType" text="Define Type">
+					<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover" text="Crossover">
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Classic" text="Classic Crossover"/>
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.MultiPoints" text="Multi-Points Crossover"/>
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Uniform" text="Uniform Crossover"/>
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Segment" text="Segments Crossover"/>
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Random" text="Random Crossover"/>
+					</tocitem>
+					<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.ClassicMutation" text="Classic Mutation"/>
+					<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation" text="Individual Mutation">
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Chromosome" text="Chromosome Mutation"/>
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Swap" text="Swap Mutation"/>
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Shuffle" text="Shuffle Mutation"/>
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Inversion" text="Inversion"/>
+					</tocitem>
+				</tocitem>
+				<tocitem target="JGAL.ConfigureAlgorithm.Operator.Ocurrence" text="Define Probability of Ocurrence"/>
+				<tocitem target="JGAL.ConfigureAlgorithm.Operator.Add" text="Add Operator"/>
+				<tocitem target="JGAL.ConfigureAlgorithm.Operator.AddedOperators" text="Added Operators"/>
+			</tocitem>
+			<tocitem target="JGAL.ConfigureAlgorithm.Parameters" text="Parameters">
+				<tocitem target="JGAL.ConfigureAlgorithm.Parameters.Classic" text="Classic Handler"/>
+				<tocitem target="JGAL.ConfigureAlgorithm.Parameters.Modified" text="Modified Handler"/>
+			</tocitem>
+		</tocitem>
+		
+		<tocitem target="JGAL.RunAlgorithm" text="Run Algorithm">
+			<tocitem target="JGAL.RunAlgorithm.Run" text="Run"/>
+			<tocitem target="JGAL.RunAlgorithm.Results" text="Results"/>
+		</tocitem>
+		
+		<tocitem target="JGAL.WorkingProgress" text="Working Progress"/>
+		
+		<tocitem target="JGAL.SaveAndOpen" text="Save and Open"/>
+	</tocitem>
+</toc>

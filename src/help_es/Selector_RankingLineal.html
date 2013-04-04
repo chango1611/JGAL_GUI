@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.ConfigurarAlgoritmo.Selector.Ranking.Lineal"></a>Ranking Lineal</h3>
+				</div>
+			</div>
+
+			<p>
+				Es un tipo de selector por Ranking.
+			</p>
+			<p>	
+				Se basa en la formula lineal:<br>
+				Prob(rank)= q - (rank-1)r<br>
+			</p>
+			
+			<p>
+				Donde q debe estar en el rango [1/tam_poblacion,2/tam_poblacion]
+			</p>
+			
+			<p>
+				Requiere que el usuario ingrese el valor de q.
+				Debido a que la condición en q no puede ser validada para este momento,
+				el valor de q se encontrara en el rango [1,2],
+				de manera que el verdadero valor sería q/tam_poblacion.
+			</p>
+
+		</div>
+	</body>
+</html>

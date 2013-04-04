@@ -1,6 +1,7 @@
 package interfaceJGAL;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout;
@@ -15,6 +16,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class EjecutarAlgoritmo extends JPanel {
 
@@ -33,10 +36,27 @@ public class EjecutarAlgoritmo extends JPanel {
 		picture.setBackground(Color.WHITE);
 		
 		JPanel help = new JPanel();
+		help.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[3]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
 		help.setBounds(598, 7, 28, 28);
 		help.setBackground(new Color(0, 0, 255));
 		
 		JButton btn_Ejecutar = new JButton("");
+		btn_Ejecutar.setIcon(new ImageIcon(EjecutarAlgoritmo.class.getResource("/Images/btn_Ejecutar.png")));
 		btn_Ejecutar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int ret= JOptionPane.showOptionDialog(EjecutarAlgoritmo.this, GAL_GUI.language.Questions[3], GAL_GUI.language.botonesPrincipales[7], 0, JOptionPane.PLAIN_MESSAGE,
@@ -59,6 +79,7 @@ public class EjecutarAlgoritmo extends JPanel {
 		lblEjecutar.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JButton btn_VerResultados = new JButton("");
+		btn_VerResultados.setIcon(new ImageIcon(EjecutarAlgoritmo.class.getResource("/Images/btn_Resultados.png")));
 		btn_VerResultados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!GAL_GUI.gal.executed())
@@ -76,6 +97,7 @@ public class EjecutarAlgoritmo extends JPanel {
 		lblVerResultados.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JButton btn_Guardar = new JButton("");
+		btn_Guardar.setIcon(new ImageIcon(EjecutarAlgoritmo.class.getResource("/Images/btn_Guardar.png")));
 		btn_Guardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int ret= JOptionPane.showOptionDialog(EjecutarAlgoritmo.this, GAL_GUI.language.Questions[0], GAL_GUI.language.botonesPrincipales[9], 0, JOptionPane.PLAIN_MESSAGE,
@@ -86,7 +108,16 @@ public class EjecutarAlgoritmo extends JPanel {
 					if(returnVal == JFileChooser.APPROVE_OPTION)
 						GAL_GUI.gal.saveAll(fc.getSelectedFile());
 				}if(ret==1){
-					;
+					try {
+						if(!GAL_GUI.gal.executed())
+							throw new Exception(GAL_GUI.language.Errors[22]);
+						JFileChooser fc= new JFileChooser();
+						int returnVal= fc.showSaveDialog(EjecutarAlgoritmo.this);
+						if(returnVal == JFileChooser.APPROVE_OPTION)
+							GAL_GUI.gal.saveResults(fc.getSelectedFile());
+					} catch (Exception e1) {
+						JOptionPane.showMessageDialog(EjecutarAlgoritmo.this, e1.getMessage());
+					}
 				}
 			}
 		});
@@ -97,6 +128,7 @@ public class EjecutarAlgoritmo extends JPanel {
 		lblGuardar.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JButton btn_AbrirConfiguracion = new JButton("");
+		btn_AbrirConfiguracion.setIcon(new ImageIcon(EjecutarAlgoritmo.class.getResource("/Images/btn_AbrirConfig.png")));
 		btn_AbrirConfiguracion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -104,10 +136,10 @@ public class EjecutarAlgoritmo extends JPanel {
 					int returnVal= fc.showOpenDialog(EjecutarAlgoritmo.this);
 					if(returnVal == JFileChooser.APPROVE_OPTION)
 						GAL_GUI.gal.openAll(fc.getSelectedFile());
-					actualizar();
 				}catch(Exception ex){
 					JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[10]);
 				}
+				actualizar();
 			}
 		});
 		btn_AbrirConfiguracion.setBounds(402, 28, 76, 50);

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Fabrica"></a>Sintaxis de Fábricas</h2>
+				</div>
+			</div>
+
+			<p>
+				Las fábricas permiten asignar multiples variables de una manera más rápida. Siguen la siguiente sintáxis:
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60Factory Statement&gt ::= Factory(&#60Identifier&gt,&quot{&quot{&#60Logical Statement&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt  |  &#60String&gt  |  &#60Char&gt};&quot}&quot)
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				El &#60Identifier&gt permite saber a que variables se le realizará la asignación.
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Fabrica.Ejemplo"></a>Ejemplo</h2>
+					</div>
+				</div>
+				<p><tt>
+					$Factory($a,{5;True;3+3;});
+				</tt></p>
+				
+				<p>
+					El codigo anterior le asigna el valor 5 a la variable $a_0, True a la variable $a_1 y 6 a la variable $a_2.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Asignacion.Retorno"></a>Retorno</h2>
+					</div>
+				</div>
+				
+				<p>
+					Las fabricas retornan el resultado de la última asignación.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

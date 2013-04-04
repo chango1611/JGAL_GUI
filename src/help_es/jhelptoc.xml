@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN" "http://java.sun.com/products/javahelp/toc_1_0.dtd">
+<toc version="1.0">
+	<tocitem target="JGAL" text="JGAL">
+		
+		<tocitem target="JGAL.EsquemaDeTrabajo" text="Esquema de Trabajo"/>
+		
+		<tocitem target="JGAL.DefinirCromosoma" text="Definir Cromosoma">
+			<tocitem target="JGAL.DefinirCromosoma.DefinirGenes" text="Definir Genes">
+				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.DefinirNombre" text="Definir Nombre del Gen"/>
+				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.DefinirTipo" text="Definir Tipo del Gen"/>
+				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional" text="Configuración Adicional del Gen"/>
+				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.Agregar" text="Agregar Gen"/>
+				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.VariablesDefinidas" text="Variables Definidas del Cromosoma"/>
+				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.Fabrica" text="Fábrica"/>
+			</tocitem>
+		</tocitem>
+		
+		<tocitem target="JGAL.DefinirFuncion" text="Definir Funcion">
+			<tocitem target="JGAL.DefinirFuncion.Sintaxis.Constantes" text="Valores Constantes"/>
+			<tocitem target="JGAL.DefinirFuncion.Sintaxis" text="Sintaxis">
+				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Ciclos" text="Sintaxis para Ciclos"/>
+				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Condicional" text="Sintaxis para Condicionales"/>
+				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Asignacion" text="Sintaxis para Asignaciones">
+					<tocitem target="JGAL.DefinirFuncion.Sintaxis.Fabrica" text="Sintaxis para Fábricas"/>
+				</tocitem>
+				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Logical" text="Sintaxis para Operaciones Lógicas"/>
+				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Arithmetic" text="Sintaxis para Operaciones Aritmeticas"/>
+				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Identifier" text="Sintaxis para Identificadores"/>
+			</tocitem>
+			<tocitem target="JGAL.DefinirFuncion.Aptitud" text="Función de Aptitud">
+				<tocitem target="JGAL.DefinirFuncion.Funcion.EspacioDeCodigo" text="Espacio de Codigo"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.Calculadora" text="Calculadora"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.Complejos" text="Botones Complejos"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.AgregarVariable" text="Agregar Variable"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.Validar" text="Validar"/>
+			</tocitem>
+			<tocitem target="JGAL.DefinirFuncion.Terminacion" text="Función de Terminacion">
+				<tocitem target="JGAL.DefinirFuncion.Funcion.EspacioDeCodigo" text="Espacio de Codigo"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.Calculadora" text="Calculadora"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.Complejos" text="Botones Complejos"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.AgregarVariable" text="Agregar Variable"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.TamanoVentana" text="Tamaño de la Ventana"/>
+				<tocitem target="JGAL.DefinirFuncion.Funcion.Validar" text="Validar"/>
+			</tocitem>
+		</tocitem>
+		
+		<tocitem target="JGAL.ConfigurarAlgoritmo" text="Configurar Algoritmo">
+			<tocitem target="JGAL.ConfigurarAlgoritmo.Selector" text="Selector">
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Selector.Elitismo" text="Elitismo"/>
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Selector.Ruleta" text="Ruleta"/>
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Selector.Torneo" text="Torneo"/>
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Selector.Ranking" text="Ranking">
+					<tocitem target="JGAL.ConfigurarAlgoritmo.Selector.Ranking.Clasico" text="Ranking Clásico"/>
+					<tocitem target="JGAL.ConfigurarAlgoritmo.Selector.Ranking.Lineal" text="Ranking Lineal"/>
+					<tocitem target="JGAL.ConfigurarAlgoritmo.Selector.Ranking.NoLineal" text="Ranking No Lineal"/>
+				</tocitem>
+			</tocitem>
+			<tocitem target="JGAL.ConfigurarAlgoritmo.Operador" text="Operadores">
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo" text="Definir Tipo">
+					<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce" text="Cruce">
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Clasico" text="Cruce Clásico"/>
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.MultiPuntos" text="Cruce Multi-Puntos"/>
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Uniforme" text="Cruce Uniforme"/>
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Segmento" text="Cruce por Segmento"/>
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Aleatorio" text="Cruce Aleatorio"/>
+					</tocitem>
+					<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionClasica" text="Mutación Clásica"/>
+					<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo" text="Mutación por Individuo">
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Cromosoma" text="Mutación por Cromosoma"/>
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Intercambio" text="Mutación por Intercambio"/>
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Barajeo" text="Mutación por Barajeo"/>
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Inversion" text="Inversión"/>
+					</tocitem>
+				</tocitem>
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.Ocurrencia" text="Definir Probabilidad de Ocurrencia"/>
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.Agregar" text="Agregar Operador"/>
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.OperadoresAgregados" text="Operadores Agregados"/>
+			</tocitem>
+			<tocitem target="JGAL.ConfigurarAlgoritmo.Parametros" text="Parametros">
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Parametros.Clasico" text="Manejador Clásico"/>
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Parametros.Modificado" text="Manejador Modificado"/>
+			</tocitem>
+		</tocitem>
+		
+		<tocitem target="JGAL.EjecutarAlgoritmo" text="Ejecutar Algoritmo">
+			<tocitem target="JGAL.EjecutarAlgoritmo.Ejecutar" text="Ejecutar"/>
+			<tocitem target="JGAL.EjecutarAlgoritmo.Resultados" text="Resultados"/>
+		</tocitem>
+		
+		<tocitem target="JGAL.ProgresoDeTrabajo" text="Progreso de Trabajo"/>
+		
+		<tocitem target="JGAL.GuardarYAbrir" text="Guardar y Abrir"/>
+	</tocitem>
+</toc>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN" "http://java.sun.com/products/javahelp/map_1_0.dtd">
+<map version="1.0">
+	<mapID target="JGAL" url="JGAL.html"/>
+	
+	<mapID target="JGAL.WorkScheme" url="WorkScheme.html"/>
+	
+	<mapID target="JGAL.DefineChromosome" url="DefineChromosome.html"/>
+		<mapID target="JGAL.DefineChromosome.DefineGenes" url="DefineGenes.html"/>
+			<mapID target="JGAL.DefineChromosome.DefineGenes.DefineName" url="Genes_DefineName.html"/>
+			<mapID target="JGAL.DefineChromosome.DefineGenes.DefineType" url="Genes_DefineType.html"/>
+			<mapID target="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration" url="Genes_AditionalConfiguration.html"/>
+			<mapID target="JGAL.DefineChromosome.DefineGenes.Add" url="Genes_Add.html"/>
+			<mapID target="JGAL.DefineChromosome.DefineGenes.DefinedVariables" url="Genes_DefinedVariables.html"/>
+			<mapID target="JGAL.DefineChromosome.DefineGenes.Factory" url="Genes_Factory.html"/>
+			
+	<mapID target="JGAL.DefineFunction" url="DefineFunction.html"/>
+		<mapID target="JGAL.DefineFunction.Syntax.Constants" url="Syntax_ConstantsValues.html"/>
+		<mapID target="JGAL.DefineFunction.Syntax" url="Function_Syntax.html"/>
+			<mapID target="JGAL.DefineFunction.Syntax.Cycles" url="Syntax_While.html"/>
+			<mapID target="JGAL.DefineFunction.Syntax.Conditional" url="Syntax_If.html"/>
+			<mapID target="JGAL.DefineFunction.Syntax.Assign" url="Syntax_Assign.html"/>
+				<mapID target="JGAL.DefineFunction.Syntax.Factory" url="Syntax_Factory.html"/>
+			<mapID target="JGAL.DefineFunction.Syntax.Logical" url="Syntax_Logical.html"/>
+			<mapID target="JGAL.DefineFunction.Syntax.Arithmetic" url="Syntax_Arithmetic.html"/>
+			<mapID target="JGAL.DefineFunction.Syntax.Identifier" url="Syntax_Identifier.html"/>
+		<mapID target="JGAL.DefineFunction.Fitness" url="Function_Fitness.html"/>
+		<mapID target="JGAL.DefineFunction.Termination" url="Function_Termination.html"/>
+			<mapID target="JGAL.DefineFunction.Function.CodeArea" url="Function_CodeArea.html"/>
+			<mapID target="JGAL.DefineFunction.Function.Calculator" url="Function_Calculator.html"/>
+			<mapID target="JGAL.DefineFunction.Function.Complex" url="Function_Complex.html"/>
+			<mapID target="JGAL.DefineFunction.Function.AddVariable" url="Function_AddVariable.html"/>
+			<mapID target="JGAL.DefineFunction.Function.Validate" url="Function_Validate.html"/>
+			<mapID target="JGAL.DefineFunction.Function.WindowSize" url="Function_WindowSize.html"/>
+	
+	<mapID target="JGAL.ConfigureAlgorithm" url="ConfigureAlgorithm.html"/>
+	
+		<mapID target="JGAL.ConfigureAlgorithm.Selector" url="Configure_Selector.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Selector.Elitism" url="Selector_Elitism.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Selector.Roulette" url="Selector_Roulette.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Selector.Tournament" url="Selector_Tournament.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Selector.Ranking" url="Selector_Ranking.html"/>
+				<mapID target="JGAL.ConfigureAlgorithm.Selector.Ranking.Classic" url="Selector_ClassicRanking.html"/>
+				<mapID target="JGAL.ConfigureAlgorithm.Selector.Ranking.Lineal" url="Selector_LinealRanking.html"/>
+				<mapID target="JGAL.ConfigureAlgorithm.Selector.Ranking.NonLineal" url="Selector_NonLinealRanking.html"/>
+				
+		<mapID target="JGAL.ConfigureAlgorithm.Operator" url="Configure_Operator.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType" url="Operator_DefineType.html"/>
+				<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover" url="Operator_Crossover.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Classic" url="Operator_ClassicCrossover.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.MultiPoints" url="Operator_MultiPointsCrossover.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Uniform" url="Operator_UniformCrossover.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Segment" url="Operator_SegmentsCrossover.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Random" url="Operator_RandomCrossover.html"/>
+				<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.ClassicMutation" url="Operator_ClassicMutation.html"/>
+				<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation" url="Operator_IndividualMutation.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Chromosome" url="Operator_ChromosomeMutation.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Swap" url="Operator_SwapMutation.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Shuffle" url="Operator_ShuffleMutation.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Inversion" url="Operator_Inversion.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Operator.Ocurrence" url="Operator_Ocurrence.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Operator.Add" url="Operator_Add.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Operator.AddedOperators" url="Operator_AddedOperators.html"/>
+			
+		<mapID target="JGAL.ConfigureAlgorithm.Parameters" url="Configure_Parameters.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Parameters.Classic" url="Configure_ParametersClassic.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Parameters.Modified" url="Configure_ParametersModified.html"/>
+			
+		<mapID target="JGAL.RunAlgorithm" url="RunAlgorithm.html">
+			<mapID target="JGAL.RunAlgorithm.Run" url="Run_Run.html"/>
+			<mapID target="JGAL.RunAlgorithm.Results" url="Run_Results.html"/>
+			
+		<mapID target="JGAL.WorkingProgress" url="WorkingProgress.html"/>
+		
+		<mapID target="JGAL.SaveAndOpen" url="SaveAndOpen.html"/>
+</map>

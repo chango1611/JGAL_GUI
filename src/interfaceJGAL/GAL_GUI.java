@@ -1,45 +1,45 @@
 package interfaceJGAL;
 
 import java.awt.EventQueue;
+import java.net.URL;
 
+import javax.help.HelpSet;
+import javax.help.JHelp;
 import javax.swing.JOptionPane;
 
-/*import JGAL.GAL_CharacterGeneConfig;
-import JGAL.GAL_Chromosome;
-import JGAL.GAL_ChromosomeConfig;
-import JGAL.GAL_DoubleGeneConfig;
-import JGAL.GAL_GeneConfig;
-import JGAL.GAL_IntegerGeneConfig;
-import JGAL.GAL_NominalGeneConfig;*/
 
 public class GAL_GUI {
 	
 	static GAL_Interface gal;
 	static LanguagesReader language;
+	static JHelp helpViewer;
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		/*GAL_InterpreterParser inter= new GAL_InterpreterParser(new String[]{"hola","adios"});
-		GAL_GeneConfig<?>[] aux= new GAL_GeneConfig<?>[2];
-		GAL_Chromosome crom= null;
+		helpViewer = null;
+		
+		
 		try{
-			aux[0]= new GAL_NominalGeneConfig(new String[] {"hola","adios"});
-			aux[1]= new GAL_IntegerGeneConfig(0,10);
-			GAL_ChromosomeConfig config= new GAL_ChromosomeConfig(aux);
-			crom= config.createNewChromosome();
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}
-		System.out.println(crom.getTrait(0).toString() + " " + crom.getTrait(1).toString());
-		*/
-		try{
+			//Leo el lenguaje
 			language= new LanguagesReader();
+			
+			//Abro el help
+			ClassLoader cl = GAL_GUI.class.getClassLoader();
+			// Use the findHelpSet method of HelpSet to create a URL referencing the helpset file.
+			// Note that in this example the location of the helpset is implied as being in the same
+			// directory as the program by specifying "jhelpset.hs" without any directory prefix,
+			// this should be adjusted to suit the implementation.
+			URL url = HelpSet.findHelpSet(cl, language.helpLanguage +"/jhelpset.hs");
+			// Create a new JHelp object with a new HelpSet.
+			helpViewer = new JHelp(new HelpSet(cl, url));
+			// Set the initial entry point in the table of contents.
+			helpViewer.setCurrentID("JGAL");
+			
+			//Inicializo el interface
 			gal= new GAL_Interface();
 
-			/*System.out.println(inter.parseFitness(
-					"$i:=0; $ret:=0; \nWhile $i<$adios Do\n $i:=$i+1; ${3}:=$ret+$i;\n End; $ret; //Comentario", crom));*/
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {

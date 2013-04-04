@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.ConfigureAlgorithm.Parameters.Classic"></a>Classic Handler</h3>
+				</div>
+			</div>
+
+			<p>
+				It's the commonly used handler when developing a Genetic Algorithm.
+			</p>
+
+			<p>
+				Follows the next program structure:
+			</p>
+			
+			<p><tt>
+				<b>procedure</b> Genetic Algorithm<br>
+				&nbsp <b>begin</b><br>
+				&nbsp&nbsp t = 0;<br>
+				&nbsp&nbsp initialize P(t);<br>
+				&nbsp&nbsp evaluate P(t);<br>
+				&nbsp&nbsp <b>while</b> (<b>not</b> condición de terminación) <b>do</b><br>
+				&nbsp&nbsp&nbsp t= t+1;<br>
+				&nbsp&nbsp&nbsp select P(t) from P(t –- 1);<br>
+				&nbsp&nbsp&nbsp alter P(t);<br>
+				&nbsp&nbsp&nbsp evaluate P(t);<br>
+				&nbsp&nbsp <b>end;</b><br>
+				&nbsp&nbsp return;<br>
+				&nbsp <b>end;</b>
+			</tt></p>
+			
+			<p>
+				For the classic handler it must be define the population size and maximum number of generations
+			</p>
+			
+		</div>
+	</body>
+</html>

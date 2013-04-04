@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Constants"></a>Constants Values</h2>
+				</div>
+			</div>
+
+			<p>
+				Constants are identifiers that are defined before executing the function.
+				These identifiers vary between the fitness function and the termination function
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Constants.Fitness"></a>Constants of the Fitness Function</h2>
+					</div>
+				</div>
+								
+				<p>
+					The constants for the fitness function are the genes of the chromosome thats being evaluated,
+					to access them you can use the name or position of the gene.
+				</p>
+			</div>
+
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Constants.Termination"></a>Constants of the Termination Function</h2>
+					</div>
+				</div>
+				
+				<p>
+					The constants for the termination function is the current population size,
+					the best fitness and average fitness from the populations of the window.
+					To access them:<br>
+					popsize is used for the population size<br>
+					bestFitness_i and averageFitness_i for the best fitness and average fitness (With i a number in the range of the window).
+				</p>
+				
+				<p>
+					<b>Note.</b> i=0 represents the most recent population.<br>
+					i=1 represents the second most recent population.... and successively.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -39,6 +39,11 @@ public class GAL_Interpreter {
 	   return  lines.length;
 	}
 	
+	public void reset(String[] GeneNames){
+		valid=false;
+		initializeFitness(GeneNames);
+	}
+	
 	public int getLines(){
 		return lines;
 	}
@@ -101,13 +106,17 @@ public class GAL_Interpreter {
 			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[12]);
 			valid= false;
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[13].substring(0, 19));
+			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[13].substring(0, 19)+":\n"+e.getMessage());
 			valid= false;
 		}
 		return null;
 	}
 	
 	public GAL_InterpreterNode validateTermination(GAL_ChromosomeConfig chrom, int popsize, int windowExpectedSize){
+		if(code.equals("")){
+			valid= false;
+			return null;
+		}
 		//Crear poblacion artificial
 		GAL_Population[] window= new GAL_Population[windowExpectedSize];
 		try{
@@ -139,7 +148,7 @@ public class GAL_Interpreter {
 			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[12]);
 			valid= false;
 		}catch(Exception e){
-			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[13].substring(0, 19));
+			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[13].substring(0, 19)+":\n"+e.getMessage());
 			valid= false;
 		}
 		return null;

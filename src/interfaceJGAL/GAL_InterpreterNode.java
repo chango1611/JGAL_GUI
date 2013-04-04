@@ -129,9 +129,9 @@ public class GAL_InterpreterNode {
 			return (Double) aux;
 		if(aux instanceof Integer)
 			return ((Integer) aux).doubleValue();
-		if(aux instanceof Short)
-			return ((Short) aux).doubleValue();
-		throw new RuntimeException("");
+		if(aux instanceof Byte)
+			return ((Byte) aux).doubleValue();
+		throw new RuntimeException(GAL_GUI.language.Errors[25]);
 	}
 	
 	/* 26. >
@@ -143,50 +143,50 @@ public class GAL_InterpreterNode {
 	 */
 	public boolean comparators_operate(){
 		boolean ret= true;
-		int comparation= 0;
+		double comparation= 0;
 		Object comparables0, comparables1;
 		comparables0= hijos[0].comparables();
 		comparables1= hijos[1].comparables();
 		try{
 			if(comparables0 instanceof Double){
 				if(comparables1 instanceof Double)
-					comparation= ((Double) comparables0).compareTo((Double) comparables1);
+					comparation= ((Double) comparables0) - ((Double) comparables1);
 				if(comparables1 instanceof Integer)
-					comparation= ((Double) comparables0).compareTo(((Integer) comparables1).doubleValue());
-				if(comparables1 instanceof Short)
-					comparation= ((Double) comparables0).compareTo(((Short) comparables1).doubleValue());
+					comparation= ((Double) comparables0)- ((Integer) comparables1);
+				if(comparables1 instanceof Byte)
+					comparation= ((Double) comparables0)- ((Byte) comparables1);
 			}
 			else if(comparables0 instanceof Integer){
 				if(comparables1 instanceof Integer)
-					comparation= ((Integer) comparables0).compareTo((Integer) comparables1);
+					comparation= ((Integer) comparables0) - ((Integer) comparables1);
 				if(comparables1 instanceof Double)
-					comparation= ((Integer) comparables0).compareTo(((Double) comparables1).intValue());
-				if(comparables1 instanceof Short)
-					comparation= ((Integer) comparables0).compareTo(((Short) comparables1).intValue());
+					comparation= ((Integer) comparables0) - ((Double) comparables1);
+				if(comparables1 instanceof Byte)
+					comparation= ((Integer) comparables0) - ((Byte) comparables1);
 			}
-			else if(comparables0 instanceof Short){
-				if(comparables1 instanceof Short)
-					comparation= ((Short) comparables0).compareTo((Short) comparables1);
+			else if(comparables0 instanceof Byte){
+				if(comparables1 instanceof Byte)
+					comparation= ((Byte) comparables0) - ((Byte) comparables1);
 				if(comparables1 instanceof Double)
-					comparation= ((Short) comparables0).compareTo(((Double) comparables1).shortValue());
+					comparation= ((Byte) comparables0) - ((Double) comparables1);
 				if(comparables1 instanceof Integer)
-					comparation= ((Short) comparables0).compareTo(((Integer) comparables1).shortValue());
+					comparation= ((Byte) comparables0) - ((Integer) comparables1);
 			}
 			else if(comparables0 instanceof Character)
 				comparation= ((Character) comparables0).compareTo((Character) comparables1);
 			else if(comparables0 instanceof String)
 				comparation= ((String) comparables0).compareTo((String) comparables1);
 			switch(operation){
-				case 26: ret= comparation>0;
-				case 27: ret= comparation<0;
-				case 28: ret= comparation==0;
-				case 29: ret= comparation>=0;
-				case 30: ret= comparation<=0;
-				case 31: ret= comparation!=0; 
+				case 26: ret= comparation>0.0001; break;
+				case 27: ret= comparation<-0.0001; break;
+				case 28: ret= Math.abs(comparation)<0.0001; break;
+				case 29: ret= comparation>=0; break;
+				case 30: ret= comparation<=0; break;
+				case 31: ret= Math.abs(comparation)>0.0001; break; 
 			};
 			return ret;
 		}catch(Exception e){
-			throw new RuntimeException("");
+			throw new RuntimeException(GAL_GUI.language.Errors[26]);
 		}
 	}
 	
@@ -249,7 +249,10 @@ public class GAL_InterpreterNode {
 			return true;
 		if(operation==45)
 			return false;
-		return (Boolean)identifier();
+		Object identifier= identifier();
+		if(identifier instanceof Boolean)
+			return (Boolean)identifier();
+		throw new RuntimeException(GAL_GUI.language.Errors[27]);
 	}
 	
 	/* 36. If
@@ -273,8 +276,12 @@ public class GAL_InterpreterNode {
 	 */
 	public Object while_statement(){
 		Object ret= null;
-		while(hijos[0].logic_operate())
+		long time= System.currentTimeMillis();
+		while(hijos[0].logic_operate()){
 			ret= hijos[1].operate();
+			if(System.currentTimeMillis() - time > 10000)
+				throw new RuntimeException(GAL_GUI.language.Errors[28]);
+		}
 		return ret;
 	}
 	
@@ -290,10 +297,20 @@ public class GAL_InterpreterNode {
 	public Object assignStatement(){
 		int pos= (int) hijos[0].aritmetic_operate();
 		if(interpreter==0 && pos < GAL_GUI.gal.getGeneNames().length)
-			throw new RuntimeException();
+			throw new RuntimeException(GAL_GUI.language.Errors[29]);
 		if(interpreter==1 && pos < GAL_GUI.gal.getWindowSize()*2+1)
-			throw new RuntimeException();
+			throw new RuntimeException(GAL_GUI.language.Errors[29]);
 		return GAL_GUI.gal.getInterpreter(interpreter).setVariable(pos, hijos[1].operate());
+	}
+	
+	/* 51. Factory
+	 */
+	public Object factoryStatement(){
+		Object aux= null;
+		for(GAL_InterpreterNode hijo: hijos){
+			aux= hijo.assignStatement();
+		}
+		return aux;
 	}
 	
 	/* 50. ;
@@ -303,6 +320,7 @@ public class GAL_InterpreterNode {
 	 * 37. If/Else
 	 * 38. While
 	 * 49. Assign
+	 * 51. Factory
 	 * 48. Identifier
 	 */
 	public Object operate(){
@@ -322,7 +340,14 @@ public class GAL_InterpreterNode {
 			return while_statement();
 		if(operation==49)
 			return assignStatement();
-		return identifier();
+		if(operation==51)
+			return factoryStatement();
+		Object aux= identifier(); 
+		if(aux instanceof Byte)
+			return ((Byte) aux).doubleValue();
+		if(aux instanceof Integer)
+			return ((Integer) aux).doubleValue();
+		return aux;
 	}
 	
 	public String toString(String prof){

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Identificador"></a>Identificadores</h2>
+				</div>
+			</div>
+
+			<p>
+				Los Identificadores permiten utilizar valores constantes o variables en operaciones de la función.
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60Identifier&gt ::= $(&#60Name&gt | &quot{&quot&#60Arithmetic Statement&gt&quot}&quot)
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				Existen dos maneras de acceder a un identificador, por el nombre o por posición.
+			</p>
+			
+			<p>
+				Por el nombre se busca en la lista de identificadores el nombre y se retorna la variable.
+			</p>
+			
+			<p>
+				Por posición se selecciona el identificador que se encuentre en la posición que se pasó.
+				Si la posición es mayor a la cantidad de variables actual -1, entonces el parser arrojará un error.
+				GAL_Parser considera las primeras posiciones (0..N-1), como las posiciones de los N valores constantes. 
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Identificador.Ejemplo"></a>Ejemplo</h2>
+					</div>
+				</div>
+				<p><tt>
+					//Suponiendo que existen 3 valores constantes<br>
+					$i:= 4;<br>
+					$j:= 5;<br>
+					${3}+$j;
+				</tt></p>
+				
+				<p>
+					El codigo anterior le asigna el valor 4 a la variable i y 5 a la variable j.<br>
+					Posterior a esto, se realiza una operación entre dos identificadores ${3} y $j.<br>
+					${3} es un identificador por posición, de manera que se retorna el identificador en la posición 3,
+					que vendría siendo $i, dado que las posicione de 0 a 2 son los valores constantes y
+					la primera variable declarada fue $i que es igual a 4.<br>
+					El segundo identificador es por nombre, se consigue que $j es igual a 5.<br>
+					Se retorna el resultado de la suma, que vendría siendo 4+5=9.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Identificador.Retorno"></a>Retorno</h2>
+					</div>
+				</div>
+				
+				<p>
+					Los Identificadores retornan el valor más reciente de la variable o constante.
+				</p>
+			</div>
+			
+		</div>
+	</body>
+</html>

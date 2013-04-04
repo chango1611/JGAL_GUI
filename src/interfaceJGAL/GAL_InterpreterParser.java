@@ -70,7 +70,7 @@ public class GAL_InterpreterParser {
 							"True","False","PI","E", //Constantes 
 							"If","Then","Else","End", //Condicional
 							"While","Do", //Ciclos
-							"$", ":=", //Variables
+							"$", ":=", "Factory", //Variables
 							"'","\"",",","(", ")","{","}",";" //Caracteres del Lenguaje
 							);
 	
@@ -521,6 +521,39 @@ public class GAL_InterpreterParser {
 			});
 	}
 	
+	private Parser<GAL_InterpreterNode> Factory(Parser<GAL_InterpreterNode> exec){
+		Parser<String> factoryIdentifier= term("$").next(Terminals.Identifier.PARSER);
+		return term("Factory").next(Parsers.between(term("("), Parsers.tuple(factoryIdentifier, term(",").next(Parsers.between(term("{"), exec.many1(), term("}")))), term(")"))).
+			map(new Map< Pair<String,List<GAL_InterpreterNode>>, GAL_InterpreterNode>(){
+				public GAL_InterpreterNode map(Pair<String,List<GAL_InterpreterNode>> arg){
+					int i, j, size= arg.b.size();
+					GAL_InterpreterNode[] aux= new GAL_InterpreterNode[size];
+					for(i=0;i<size;i++){
+						aux[i]=null;
+						for(j=0;j<constantNames.length;j++)
+							if(constantNames[j].equals(arg.a+"_"+i)){
+								aux[i]= new GAL_InterpreterNode(new GAL_InterpreterNode[]{
+										new GAL_InterpreterLeaf((double)j, 39, interpreter),arg.b.get(i)},49,interpreter);
+								break;
+							}
+						for(j=0;j<variablesNames.size();j++)
+							if(variablesNames.get(j).equals(arg.a+"_"+i)){
+								aux[i]= new GAL_InterpreterNode(new GAL_InterpreterNode[]{
+										new GAL_InterpreterLeaf((double)(j+constantNames.length), 39, interpreter),arg.b.get(i)},49,interpreter);
+								break;
+							}
+						if(aux[i]==null){
+							variablesNames.add(arg.a+"_"+i);
+							variables.add(null);
+							aux[i]= new GAL_InterpreterNode(new GAL_InterpreterNode[]{
+									new GAL_InterpreterLeaf((double)(j+constantNames.length), 39, interpreter),arg.b.get(i)},49,interpreter);
+						}
+					}
+					return new GAL_InterpreterNode(aux, 51, interpreter);
+				}
+			});
+	}
+	
 	//un parser que dado un identificador, consigue la posicion en el arreglo de variables, usado para la asignacion
 	private Parser<GAL_InterpreterNode> assignIdentifier(){
 		Parser<GAL_InterpreterNode> id= Terminals.Identifier.PARSER.map(new Map<String,GAL_InterpreterNode>(){
@@ -556,8 +589,9 @@ public class GAL_InterpreterParser {
 		Parser.Reference<GAL_InterpreterNode> while_ref= Parser.newReference();
 		Parser.Reference<GAL_InterpreterNode> if_ref= Parser.newReference();
 		Parser.Reference<GAL_InterpreterNode> assign_ref= Parser.newReference();
+		Parser.Reference<GAL_InterpreterNode> factory_ref= Parser.newReference();
 		//El map obliga a que lo ultimo que se evalue sea el retorno
-		Parser<GAL_InterpreterNode> exec= Parsers.or(Parsers.tuple(while_ref.lazy(),term(";")),Parsers.tuple(if_ref.lazy(),term(";")),assign_ref.lazy(),
+		Parser<GAL_InterpreterNode> exec= Parsers.or(Parsers.tuple(while_ref.lazy(),term(";")),Parsers.tuple(if_ref.lazy(),term(";")),assign_ref.lazy(),Parsers.tuple(factory_ref.lazy(),term(";")),
 			Parsers.tuple(LOGICAL,term(";")),Parsers.tuple(CALCULATOR,term(";")),Parsers.tuple(identifier,term(";"))).many1().map(new Map< List<?>, GAL_InterpreterNode>(){
 			@SuppressWarnings("unchecked")
 			public GAL_InterpreterNode map(List<?> arg){
@@ -597,8 +631,18 @@ public class GAL_InterpreterParser {
 		
 		Parser<GAL_InterpreterNode> While= while_cond(exec);
 		while_ref.set(While);
+		
 		Parser<GAL_InterpreterNode> If= if_then_else(exec);
 		if_ref.set(If);
+		
+		Parser<GAL_InterpreterNode> Factory= Factory(Parsers.or(Parsers.tuple(LOGICAL,term(";")),Parsers.tuple(CALCULATOR,term(";")),Parsers.tuple(STRING,term(";")),Parsers.tuple(CHAR,term(";")),Parsers.tuple(identifier,term(";")))
+			.map(new Map< Pair<?,?>, GAL_InterpreterNode>(){
+				public GAL_InterpreterNode map(Pair<?,?> arg){
+					return (GAL_InterpreterNode) arg.a;
+				}
+			}));
+		factory_ref.set(Factory);
+		
 		Parser<GAL_InterpreterNode> assign= asignToVariable(Parsers.or(Parsers.tuple(LOGICAL,term(";")),Parsers.tuple(CALCULATOR,term(";")),Parsers.tuple(STRING,term(";")),Parsers.tuple(CHAR,term(";")),Parsers.tuple(identifier,term(";")))
 			.map(new Map< Pair<?,?>, GAL_InterpreterNode>(){
 				public GAL_InterpreterNode map(Pair<?,?> arg){
@@ -606,6 +650,7 @@ public class GAL_InterpreterParser {
 				}
 			}));
 		assign_ref.set(assign);
+		
 		return exec;
 	}
 

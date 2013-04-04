@@ -99,11 +99,26 @@ public class ParametersWindow extends JFrame {
 		mntmSalir.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnArchivo.add(mntmSalir);
 		
-		JMenu mnAyuda = new JMenu("Ayuda");
+		JMenu mnAyuda = new JMenu(GAL_GUI.language.CommonWords[6]);
 		mnAyuda.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		menuBar.add(mnAyuda);
 		
-		JMenuItem mntmTutorial = new JMenuItem("Tutorial");
+		JMenuItem mntmTutorial = new JMenuItem(GAL_GUI.language.CommonWords[7]);
+		mntmTutorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GAL_GUI.helpViewer.setCurrentID(GAL_GUI.language.helpTargets[11]);
+				// Create a new frame.
+				JFrame helpFrame = new JFrame();
+				// Set it's size.
+				helpFrame.setSize(800,600);
+				// Add the created helpViewer to it.
+				helpFrame.getContentPane().add(GAL_GUI.helpViewer);
+				// Set a default close operation.
+				helpFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				//Ponemos en visible
+				helpFrame.setVisible(true);
+			}
+		});
 		mntmTutorial.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		mnAyuda.add(mntmTutorial);
 		contentPane = new JPanel();

@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.DefinirCromosoma.Funcion.TamanoVentana"></a>Tamaño de la Ventana</h3>
+				</div>
+			</div>
+			
+			<p>
+				La ventana es utilizada para guardar las últimas poblaciones evaluadas hasta un momento,
+				para poder usarlas en la definición de la condición de terminación.
+			</p>
+			
+			<p>
+				El tamaño de la ventana permite definir cuantas poblaciones se pueden tener dentro de la ventana. 
+			</p>
+			
+			<p>
+				Es importante conocer, que el tamaño de la ventana, cambian la cantidad de valores constantes para la función.
+			</p>
+			<p><b>
+				Por ejemplo.
+			</b></p>
+			<p>
+				Si se tiene un tamaño de ventana= 1, entonces se tendrán 3 valores constantes (popsize, bestFitness_0, averageFitness_0).<br>
+				Si se tiene un tamaño de ventana= 2, entonces se tendrán 5 valores constantes (popsize, bestFitness_0, averageFitness_0, bestFitness_1, averageFitness_1).<br>
+			</p>
+			
+			<p>
+				Esto quiere decir, que si el tamaño de la ventana es N, entonces se tendran 2*N+1 constantes.
+			</p>
+			
+			<p>
+				<b>Nota.</b> bestFitness_0 representa la mejor aptitud de la población más reciente.<br>
+				bestFitness_1 la segunda más reciente... así sucesivamente.
+			</p>
+		</div>
+	</body>
+</html>

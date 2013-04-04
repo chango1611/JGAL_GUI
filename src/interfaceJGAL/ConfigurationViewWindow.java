@@ -36,6 +36,8 @@ import JGAL.GAL_RouletteSelector;
 import JGAL.GAL_SegmentCrossover;
 import JGAL.GAL_TournamentSelector;
 import JGAL.GAL_UniformCrossover;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
 
 public class ConfigurationViewWindow extends JFrame {
 
@@ -100,7 +102,7 @@ public class ConfigurationViewWindow extends JFrame {
 		Selector.add(lbl_SelectorReal);
 		
 		final JPanel ConfigAdicional = new JPanel();
-		ConfigAdicional.setBounds(19, 83, 398, 129);
+		ConfigAdicional.setBounds(19, 83, 398, 113);
 		Selector.add(ConfigAdicional);
 		ConfigAdicional.setLayout(new CardLayout(0, 0));
 		
@@ -164,6 +166,31 @@ public class ConfigurationViewWindow extends JFrame {
 		lbl_RankingReal.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lbl_RankingReal.setBounds(65, 29, 70, 16);
 		OtrosRankings.add(lbl_RankingReal);
+		
+		JCheckBox chckbxElitismo = new JCheckBox(GAL_GUI.language.SelectorConfiguration[10]);
+		chckbxElitismo.setEnabled(false);
+		chckbxElitismo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		chckbxElitismo.setBounds(19, 203, 138, 23);
+		chckbxElitismo.setSelected(GAL_GUI.gal.isElitist());
+		Selector.add(chckbxElitismo);
+		
+		JPanel Elitismo = new JPanel();
+		Elitismo.setLayout(null);
+		Elitismo.setBounds(163, 202, 256, 24);
+		Elitismo.setVisible(GAL_GUI.gal.isElitist());
+		Selector.add(Elitismo);
+		
+		JLabel label_14 = new JLabel(""+GAL_GUI.gal.getElitistSize());
+		label_14.setHorizontalAlignment(SwingConstants.RIGHT);
+		label_14.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		label_14.setBounds(183, 4, 63, 14);
+		Elitismo.add(label_14);
+		
+		JLabel lbl_Elitismo = new JLabel(GAL_GUI.language.SelectorConfiguration[11]);
+		lbl_Elitismo.setHorizontalAlignment(SwingConstants.RIGHT);
+		lbl_Elitismo.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		lbl_Elitismo.setBounds(10, 4, 163, 14);
+		Elitismo.add(lbl_Elitismo);
 		
 		JPanel OperadoresGeneticos = new JPanel();
 		tabbedPane.addTab(GAL_GUI.language.botonesPrincipales[5], null, OperadoresGeneticos, null);

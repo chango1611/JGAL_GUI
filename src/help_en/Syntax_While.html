@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Cycles"></a>Cycles</h2>
+				</div>
+			</div>
+
+			<p>
+				Cycles are instructions that are performed repeatedly until the condition attached to the cycle no longer applies.
+				For GAL_Parser cycles are handled with the &#60While Statement&gt.
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60While Statement&gt ::= While &#60Logical Statement&gt Do &#60Function&gt End
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				The &#60Logical Statement&gt is the condition to be met before each repetition of the cycle,
+				while the &#60Function&gt are the instructions to be evaluated each time the condition is met.
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Cycles.Ejemplo"></a>e.g.</h2>
+					</div>
+				</div>
+				<p><tt>
+					$i:= 0;<br>
+					While $i<10 Do<br>
+					&nbsp&nbsp$i:=$i+1;<br>
+					End;
+				</tt></p>
+				
+				<p>
+					The code above starts by creating a variable i which is assigned 0.
+					Then it enter a cycle where while i is less than 10	internal instructions are executed,
+					which in this case would be an increase of the variable i by 1.
+					Eventually i is equal to 10 in which case the cycle ends.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Cycles.Retorno"></a>Return</h2>
+					</div>
+				</div>
+				
+				<p>
+					Cycles return the last statement that was run internal to them.
+					If the condition is false from the start, returns null.
+				</p>
+			</div>
+			
+			<p>
+				<b>Note.</b> If the execution of a cycle is longer than 10 seconds, then it will throw a "Run Time Exceeded" error.
+			</p>
+		</div>
+	</body>
+</html>

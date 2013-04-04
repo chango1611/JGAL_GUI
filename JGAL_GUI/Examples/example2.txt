@@ -1,0 +1,36 @@
+10
+2 elem0
+2 elem1
+2 elem2
+2 elem3
+2 elem4
+2 elem5
+2 elem6
+2 elem7
+2 elem8
+2 elem9
+16
+Factory($v,{45;10;71;49;41;26;32;18;23;15;});
+Factory($w,{12;30;54;23;56;42;23;60;54;10;});
+$valor:=0; $peso:=0;
+$i:=0;
+While $i<10 Do
+	If ${$i}=1 Then
+		$valor:= $valor+${$i+10};
+		$peso:= $peso+${$i+20};
+	End;
+	$i:= $i+1;
+End;
+If $peso>250 Then
+	0;
+Else
+	$valor;
+End;
+1
+$bestFitness_0>288;
+1
+0 0 1
+2
+0 0.7000000000000001
+5 0.0175
+0 50 20 1

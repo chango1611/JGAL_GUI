@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Conditional"></a>Conditional</h2>
+				</div>
+			</div>
+
+			<p>
+				Conditionals are instructions that can be executed or not depending on the value of a condition.
+				For GAL_Parser conditionals are handled by the &#60If Statement&gt.
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60If Statement&gt ::= If &#60Logical Statement&gt Then &#60Function&gt (Else &#60Function&gt)? End
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				The &#60Logical Statement&gt is the condition to be evaluated.
+			</p>
+			<p>
+				If the condition is true then it runs &#60Function&gt that is immediately after the Then.
+			</p>
+			<p>
+				If the condition is false, there are two options:<br>
+				<div class="itemizedlist">
+					<ul type="disc">
+						<li>If the Else segment exists then runs &#60Function&gt that is immediately after the Else.</li>
+						<li>If the Else segment does not exist, then it skips the conditional.</li>
+					</ul>
+				</div>
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Conditional.Ejemplo"></a>e.g.</h2>
+					</div>
+				</div>
+				<p><tt>
+					$i:= 20;<br>
+					If $i&#60=10 Then<br>
+					&nbsp&nbsp$i:=10;<br>
+					Else
+					&nbsp&nbsp$i:=0;<br>
+					End;
+				</tt></p>
+				
+				<p>
+					The code above starts by creating a variable i which is assigned 20.
+					Then it enters a conditional where if i is less or equal than 10 runs the Then segment, otherwise the Else segment.
+					As the condition is false, the Else segment is executed and i is assigned 0.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefineFunction.Syntax.Conditional.Retorno"></a>Return</h2>
+					</div>
+				</div>
+				
+				<p>
+					The conditionals return the last statement that was executed inside them.
+					If the condition is false and there is no segment Else, returns null.
+				</p>
+			</div>
+			
+		</div>
+	</body>
+</html>

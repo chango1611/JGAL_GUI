@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Ciclos"></a>Ciclos</h2>
+				</div>
+			</div>
+
+			<p>
+				Los ciclos son instrucciones que se realizan repetidas veces, hasta que la condición asignada a dicho ciclo deje de cumplirse.
+				En el caso de GAL_Parser los ciclos se manejan con el &#60While Statement&gt.
+			</p>
+			
+			<ul style="list-style: none;">
+				<li><p><tt>
+					&#60While Statement&gt ::= While &#60Logical Statement&gt Do &#60Function&gt End
+				</tt></p></li>
+			</ul>
+			
+			<p>
+				El &#60Logical Statement&gt es la condición que debe cumplirse antes de cada repetición del ciclo,
+				mientras que &#60Function&gt son las instrucciones que se evaluarán cada vez que la condición se cumple.
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Ciclos.Ejemplo"></a>Ejemplo</h2>
+					</div>
+				</div>
+				<p><tt>
+					$i:= 0;<br>
+					While $i<10 Do<br>
+					&nbsp&nbsp$i:=$i+1;<br>
+					End;
+				</tt></p>
+				
+				<p>
+					El codigo anterior inicia con la creación de una variable i a la que se le asigna 0.
+					Luego se ingresa a un ciclo, donde mientras i sea menor que 10
+					se ejecutará las instrucciones internas, que en este caso sería un incremento de la variable i en 1.
+					Eventualmente i será igual a 10 en cuyo caso el ciclo terminara.
+				</p>
+			</div>
+			
+			<div class="section">
+
+				<div class="titlepage">
+					<div>
+						<h2 class="title" style="clear: both"><a id="JGAL.DefinirFuncion.Sintaxis.Ciclos.Retorno"></a>Retorno</h2>
+					</div>
+				</div>
+				
+				<p>
+					Los ciclos retornan la última instrucción que se ejecutó interno a ellos.
+					Si la condición es falsa desde el comienzo, retorna null.
+				</p>
+			</div>
+			
+			<p>
+				<b>Nota.</b> Si la ejecución de un ciclo dura más de 10 segundos, entonces se arrojará un "Tiempo de ejecución Excedido".
+			</p>
+			
+		</div>
+	</body>
+</html>
