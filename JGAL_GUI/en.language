@@ -51,8 +51,8 @@ Add
 Defined Variables
 Edit
 Remove
-Factory
-Set Factory Size
+Add Many
+How many genes you want to add?
 Fitness and Termination functions:
 Add Variable
 Validity
@@ -86,6 +86,7 @@ Multi-Points Crossover
 Uniform Crossover
 Segment Crossover
 Random Crossover
+Ordered Crossover
 Classic Mutation
 Chromosome Mutation
 Swap Mutation
@@ -108,6 +109,8 @@ Modified
 Population Size
 Max Number of Generations
 Number of Father to be Selected
+Inicializer
+Permutations
 Questions:
 What would you like to save?
 Settings
@@ -115,6 +118,7 @@ Results
 What kind of optimization will you do?
 Maximizatin
 Minimization
+Are you sure of cleaning all?
 Common Words:
 Accept
 Cancel
@@ -124,6 +128,7 @@ Save
 Exit
 Help
 Open Help
+Clean All
 Check Results:
 Best Chromosome
 Best Fitness
@@ -164,7 +169,9 @@ Invalid comparison operation
 Invalid logic operation
 Run Time Exceeded
 Illegal assignment
-Help Targets
+The permutation initialization can not be used with the current configuration.
+Check the help to see under what conditions it can be used.
+Help Targets:
 JGAL.DefineChromosome
 JGAL.DefineFunction
 JGAL.ConfigureAlgorithm
