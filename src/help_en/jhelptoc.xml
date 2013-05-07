@@ -11,8 +11,8 @@
 				<tocitem target="JGAL.DefineChromosome.DefineGenes.DefineType" text="Define Type of the Gene"/>
 				<tocitem target="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration" text="Additional Configuración of the Gene"/>
 				<tocitem target="JGAL.DefineChromosome.DefineGenes.Add" text="Add Gene"/>
+				<tocitem target="JGAL.DefineChromosome.DefineGenes.AddMany" text="Add Many"/>
 				<tocitem target="JGAL.DefineChromosome.DefineGenes.DefinedVariables" text="Defined Variables of the Chromosome"/>
-				<tocitem target="JGAL.DefineChromosome.DefineGenes.Factory" text="Factory"/>
 			</tocitem>
 		</tocitem>
 		
@@ -22,7 +22,7 @@
 				<tocitem target="JGAL.DefineFunction.Syntax.Cycles" text="Syntax for Cycles"/>
 				<tocitem target="JGAL.DefineFunction.Syntax.Conditional" text="Syntax for Conditionals"/>
 				<tocitem target="JGAL.DefineFunction.Syntax.Assign" text="Syntax for Assign">
-					<tocitem target="JGAL.DefineFunction.Syntax.Factory" text="Syntax for Factory"/>
+					<tocitem target="JGAL.DefineFunction.Syntax.Factory" text="Syntax for Array"/>
 				</tocitem>
 				<tocitem target="JGAL.DefineFunction.Syntax.Logical" text="Syntax for Logical Operations"/>
 				<tocitem target="JGAL.DefineFunction.Syntax.Arithmetic" text="Syntax for Arithmetic Operations"/>
@@ -64,6 +64,7 @@
 						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Uniform" text="Uniform Crossover"/>
 						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Segment" text="Segments Crossover"/>
 						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Random" text="Random Crossover"/>
+						<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Ordered" text="Ordered Crossover"/>
 					</tocitem>
 					<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.ClassicMutation" text="Classic Mutation"/>
 					<tocitem target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation" text="Individual Mutation">
@@ -80,6 +81,7 @@
 			<tocitem target="JGAL.ConfigureAlgorithm.Parameters" text="Parameters">
 				<tocitem target="JGAL.ConfigureAlgorithm.Parameters.Classic" text="Classic Handler"/>
 				<tocitem target="JGAL.ConfigureAlgorithm.Parameters.Modified" text="Modified Handler"/>
+				<tocitem target="JGAL.ConfigureAlgorithm.Parameters.Initializers" text="Initializers"/>
 			</tocitem>
 		</tocitem>
 		

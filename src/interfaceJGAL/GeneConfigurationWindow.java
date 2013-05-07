@@ -40,6 +40,7 @@ import JGAL.GAL_DoubleGeneConfig;
 import JGAL.GAL_GeneConfig;
 import JGAL.GAL_IntegerGeneConfig;
 import JGAL.GAL_NominalGeneConfig;
+import javax.swing.ImageIcon;
 
 public class GeneConfigurationWindow extends JFrame {
 
@@ -73,7 +74,7 @@ public class GeneConfigurationWindow extends JFrame {
 		setTitle(GAL_GUI.language.botonesPrincipales[0]);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 442, 307);
+		setBounds(100, 100, 442, 350);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -394,7 +395,7 @@ public class GeneConfigurationWindow extends JFrame {
 		
 		JLabel lblVariablesDefinidas = new JLabel(GAL_GUI.language.GeneConfiguration[13]);
 		lblVariablesDefinidas.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblVariablesDefinidas.setBounds(10, 7, 143, 14);
+		lblVariablesDefinidas.setBounds(10, 7, 126, 14);
 		Variables.add(lblVariablesDefinidas);
 		
 		JButton btnEliminar = new JButton(GAL_GUI.language.GeneConfiguration[15]);
@@ -453,6 +454,21 @@ public class GeneConfigurationWindow extends JFrame {
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnEditar.setBounds(10, 221, 69, 23);
 		Variables.add(btnEditar);
+		
+		JButton clean = new JButton("");
+		clean.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int ret=JOptionPane.showConfirmDialog(null, GAL_GUI.language.Questions[6],GAL_GUI.language.CommonWords[8],JOptionPane.OK_CANCEL_OPTION);
+				if(ret== JOptionPane.OK_OPTION){
+					GAL_GUI.gal.limpiarGenes();
+					actualizar();
+				}
+			}
+		});
+		clean.setIcon(new ImageIcon(GeneConfigurationWindow.class.getResource("/Images/limpiar.png")));
+		clean.setToolTipText(GAL_GUI.language.CommonWords[8]);
+		clean.setBounds(138, 7, 20, 20);
+		Variables.add(clean);
 		
 		JButton btnCrear = new JButton(GAL_GUI.language.GeneConfiguration[12]);
 		btnCrear.addActionListener(new ActionListener() {
@@ -522,6 +538,14 @@ public class GeneConfigurationWindow extends JFrame {
 					}
 					GAL_GUI.gal.getInterpreter(0).reset(GAL_GUI.gal.getGeneNames());
 					GeneralWindow.pnl_ProgressFuncion1.setBackground(new Color(240,240,240));
+					try{
+						GAL_GUI.gal.validateInitializer();
+					}catch(Exception ex){
+						JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[30]+"\n"+GAL_GUI.language.Errors[31]);
+						GAL_GUI.gal.setInitializer();
+						GAL_GUI.gal.resetParameters();
+						GeneralWindow.pnl_ProgressConfig3.setBackground(new Color(240,240,240));
+					}
 				}catch(Exception ex){
 					JOptionPane.showMessageDialog(null, ex.getMessage());
 				}
@@ -531,11 +555,10 @@ public class GeneConfigurationWindow extends JFrame {
 		btnCrear.setBounds(173, 221, 80, 23);
 		Configuracion.add(btnCrear);
 		
-		JMenuItem mntmFactory = new JMenuItem(GAL_GUI.language.GeneConfiguration[16]);
-		mntmFactory.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		mntmFactory.addActionListener(new ActionListener() {
+		JButton btnAgregarvarios = new JButton(GAL_GUI.language.GeneConfiguration[16]);
+		btnAgregarvarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JSpinner spinner = new JSpinner(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
+				JSpinner spinner = new JSpinner(new SpinnerNumberModel(new Integer(1), new Integer(1), null, new Integer(1)));
 				int option = JOptionPane.showOptionDialog(null, spinner, GAL_GUI.language.GeneConfiguration[17], JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
 				int fact_size=0, i;
 				if (option == JOptionPane.CANCEL_OPTION || option== JOptionPane.CLOSED_OPTION){
@@ -574,17 +597,17 @@ public class GeneConfigurationWindow extends JFrame {
 									throw new Exception("Min("+minEntero+") >= Max("+maxEntero+")");
 								if(maxEntero-minEntero==1)
 									throw new Exception(GAL_GUI.language.Errors[4] + minEntero + ".." + maxEntero+GAL_GUI.language.Errors[5]);
-								aux= new GAL_IntegerGeneConfig(nombre,minEntero,maxEntero);
+								aux= new GAL_IntegerGeneConfig(nombres[i],minEntero,maxEntero);
 							break;
 							case 1:
 								double minReal= (double)spn_MinReal.getValue(),
 								maxReal= (double)spn_MaxReal.getValue();
 								if(minReal>=maxReal)
 									throw new Exception("Min("+minReal+") >= Max("+maxReal+")");
-								aux= new GAL_DoubleGeneConfig(nombre,minReal,maxReal);
+								aux= new GAL_DoubleGeneConfig(nombres[i],minReal,maxReal);
 							break;
 							case 2:
-								aux= new GAL_BinaryGeneConfig(nombre);
+								aux= new GAL_BinaryGeneConfig(nombres[i]);
 							break;
 							case 3:
 								String minChar=txt_MinCaracter.getText(), maxChar=txt_MaxCaracter.getText();
@@ -594,7 +617,7 @@ public class GeneConfigurationWindow extends JFrame {
 									throw new Exception("Min("+minChar+") >= Max("+maxChar+")");
 								if(maxChar.charAt(0)-minChar.charAt(0)==(char)1)
 									throw new Exception(GAL_GUI.language.Errors[4]+minChar+".."+maxChar+GAL_GUI.language.Errors[5]);
-								aux= new GAL_CharacterGeneConfig(nombre,minChar.charAt(0),maxChar.charAt(0));
+								aux= new GAL_CharacterGeneConfig(nombres[i],minChar.charAt(0),maxChar.charAt(0));
 							break;
 							case 4:
 								int size= valoresAllele2.getModel().getSize();
@@ -603,7 +626,7 @@ public class GeneConfigurationWindow extends JFrame {
 								String[] alelos= new String[size];
 								for(int j=0;j<size;j++)
 									alelos[j]= (String) valoresAllele2.getModel().getElementAt(i);
-								aux= new GAL_NominalGeneConfig(nombre,alelos);
+								aux= new GAL_NominalGeneConfig(nombres[i],alelos);
 							break;
 						}
 						GAL_GUI.gal.addGeneConfig(aux,nombres[i]);
@@ -612,12 +635,38 @@ public class GeneConfigurationWindow extends JFrame {
 					editar= -1;
 					GAL_GUI.gal.getInterpreter(0).reset(GAL_GUI.gal.getGeneNames());
 					GeneralWindow.pnl_ProgressFuncion1.setBackground(new Color(240,240,240));
+					try{
+						GAL_GUI.gal.validateInitializer();
+					}catch(Exception ex){
+						JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[30]+"\n"+GAL_GUI.language.Errors[31]);
+						GAL_GUI.gal.setInitializer();
+						GAL_GUI.gal.resetParameters();
+						GeneralWindow.pnl_ProgressConfig3.setBackground(new Color(240,240,240));
+					}
 				}catch(Exception ex){
 					JOptionPane.showMessageDialog(null, ex.getMessage());
 				}
 			}
 		});
-		mnArchivo.add(mntmFactory);
+		btnAgregarvarios.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		btnAgregarvarios.setBounds(57, 221, 106, 23);
+		Configuracion.add(btnAgregarvarios);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel.setBounds(2, 256, 432, 45);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JButton btnAceptar = new JButton(GAL_GUI.language.CommonWords[0]);
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnAceptar.setBounds(171, 11, 89, 23);
+		panel.add(btnAceptar);
 		mnArchivo.add(mntmSalir);
 	}
 	

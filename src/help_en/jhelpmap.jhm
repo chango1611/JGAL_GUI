@@ -11,8 +11,8 @@
 			<mapID target="JGAL.DefineChromosome.DefineGenes.DefineType" url="Genes_DefineType.html"/>
 			<mapID target="JGAL.DefineChromosome.DefineGenes.AditionalConfiguration" url="Genes_AditionalConfiguration.html"/>
 			<mapID target="JGAL.DefineChromosome.DefineGenes.Add" url="Genes_Add.html"/>
+			<mapID target="JGAL.DefineChromosome.DefineGenes.AddMany" url="Genes_AddMany.html"/>
 			<mapID target="JGAL.DefineChromosome.DefineGenes.DefinedVariables" url="Genes_DefinedVariables.html"/>
-			<mapID target="JGAL.DefineChromosome.DefineGenes.Factory" url="Genes_Factory.html"/>
 			
 	<mapID target="JGAL.DefineFunction" url="DefineFunction.html"/>
 		<mapID target="JGAL.DefineFunction.Syntax.Constants" url="Syntax_ConstantsValues.html"/>
@@ -52,6 +52,7 @@
 					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Uniform" url="Operator_UniformCrossover.html"/>
 					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Segment" url="Operator_SegmentsCrossover.html"/>
 					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Random" url="Operator_RandomCrossover.html"/>
+					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.Crossover.Ordered" url="Operator_OrderedCrossover.html"/>
 				<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.ClassicMutation" url="Operator_ClassicMutation.html"/>
 				<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation" url="Operator_IndividualMutation.html"/>
 					<mapID target="JGAL.ConfigureAlgorithm.Operator.DefineType.IndividualMutation.Chromosome" url="Operator_ChromosomeMutation.html"/>
@@ -65,6 +66,7 @@
 		<mapID target="JGAL.ConfigureAlgorithm.Parameters" url="Configure_Parameters.html"/>
 			<mapID target="JGAL.ConfigureAlgorithm.Parameters.Classic" url="Configure_ParametersClassic.html"/>
 			<mapID target="JGAL.ConfigureAlgorithm.Parameters.Modified" url="Configure_ParametersModified.html"/>
+			<mapID target="JGAL.ConfigureAlgorithm.Parameters.Initializers" url="Configure_Initializers.html"/>
 			
 		<mapID target="JGAL.RunAlgorithm" url="RunAlgorithm.html">
 			<mapID target="JGAL.RunAlgorithm.Run" url="Run_Run.html"/>

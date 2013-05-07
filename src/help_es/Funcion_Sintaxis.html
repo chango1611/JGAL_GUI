@@ -41,10 +41,10 @@
 						&#60If Statement&gt ::= If &#60Logical Statement&gt Then &#60Function&gt (Else &#60Function&gt)? End
 					</tt></p></li>
 					<li><p><tt>
-						&#60Assign Statement&gt ::= &#60Identifier&gt := (&#60Logical Statement&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt  |  &#60String&gt  |  &#60Char&gt) | &#60Factory Statement&gt
+						&#60Assign Statement&gt ::= &#60Identifier&gt := (&#60Logical Statement&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt  |  &#60String&gt  |  &#60Char&gt) | &#60Array Statement&gt
 					</tt></p></li>
 					<li><p><tt>
-						&#60Factory Statement&gt ::= Factory(&#60Identifier&gt,&quot{&quot{&#60Logical Statement&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt  |  &#60String&gt  |  &#60Char&gt};&quot}&quot)
+						&#60Array Statement&gt ::= Factory(&#60Identifier&gt,&quot{&quot{&#60Logical Statement&gt  |  &#60Arithmetic Statement&gt  |  &#60Identifier&gt  |  &#60String&gt  |  &#60Char&gt};&quot}&quot)
 					</tt></p></li>
 					<li><p><tt>
 						&#60Logical Statement&gt ::= &#60Logical Object&gt ((&quot&amp&amp&quot  |  &quot||&quot  |  &quot^&quot) &#60Logical Object&gt)?
@@ -74,7 +74,7 @@
 						&#60Complex Arithmetic&gt ::= &#60Operator&gt(&quot(&quot&#60Arithmetic Object&gt (,&#60Arithmetic Object&gt)*&quot)&quot)?
 					</tt></p></li>
 					<li><p><tt>
-						&#60Operator&gt ::= Abs  |  Max  |  Min | Root | Log | Sin | Cos | Tan | Asin | Acos | Atan | Hypot | toRadians | toDegrees | Round | Ceil | Floor | RandI | RandD | RandB
+						&#60Operator&gt ::= Abs  |  Max  |  Min | Root | Log | Sin | Cos | Tan | Asin | Acos | Atan | Hypot | toRadians | toDegrees | Round | Ceil | Floor | RandI | RandD | RandB | Bin2Int | Pos
 					</tt></p></li>
 					<li><p><tt>
 						&#60Identifier&gt ::= $(&#60Name&gt | &quot{&quot&#60Arithmetic Statement&gt&quot}&quot)
@@ -95,7 +95,8 @@
 				</ul>
 			</div>
 			<p>
-				Para entender más a fondo la sintaxis, se recomienda leer la información específica.
+				Para entender más a fondo la sintaxis, se recomienda leer la información específica,
+				la cual incluye ejemplos de uso del lenguaje.
 			</p>
 			
 		</div>

@@ -11,8 +11,8 @@
 			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.DefinirTipo" url="Genes_DefinirTipo.html"/>
 			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional" url="Genes_ConfiguracionAdicional.html"/>
 			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.Agregar" url="Genes_Agregar.html"/>
+			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.AgregarVarios" url="Genes_AgregarVarios.html"/>
 			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.VariablesDefinidas" url="Genes_VariablesDefinidas.html"/>
-			<mapID target="JGAL.DefinirCromosoma.DefinirGenes.Fabrica" url="Genes_Fabrica.html"/>
 			
 	<mapID target="JGAL.DefinirFuncion" url="DefinirFuncion.html"/>
 		<mapID target="JGAL.DefinirFuncion.Sintaxis.Constantes" url="Sintaxis_ValoresConstantes.html"/>
@@ -52,6 +52,7 @@
 					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Uniforme" url="Operador_CruceUniforme.html"/>
 					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Segmento" url="Operador_CruceSegmento.html"/>
 					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Aleatorio" url="Operador_CruceAleatorio.html"/>
+					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Ordenado" url="Operador_CruceOrdenado.html"/>
 				<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionClasica" url="Operador_MutacionClasica.html"/>
 				<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo" url="Operador_MutacionIndividuo.html"/>
 					<mapID target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo.Cromosoma" url="Operador_MutacionCromosoma.html"/>
@@ -65,6 +66,7 @@
 		<mapID target="JGAL.ConfigurarAlgoritmo.Parametros" url="Configurar_Parametros.html"/>
 			<mapID target="JGAL.ConfigurarAlgoritmo.Parametros.Clasico" url="Configurar_ParametrosClasico.html"/>
 			<mapID target="JGAL.ConfigurarAlgoritmo.Parametros.Modificado" url="Configurar_ParametrosModificado.html"/>
+			<mapID target="JGAL.ConfigurarAlgoritmo.Parametros.Inicializador" url="Configurar_Inicializador.html"/>
 			
 		<mapID target="JGAL.EjecutarAlgoritmo" url="EjecutarAlgoritmo.html">
 			<mapID target="JGAL.EjecutarAlgoritmo.Ejecutar" url="Ejecutar_Ejecutar.html"/>

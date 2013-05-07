@@ -246,18 +246,21 @@ public class GeneralWindow extends JFrame {
 		JButton btn_LimpiarTodo = new JButton("");
 		btn_LimpiarTodo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GAL_GUI.gal.limpiarTodo();
-				pnl_ProgressCromosoma.setBackground(new Color(240, 240, 240));
-				pnl_ProgressFuncion1.setBackground(new Color(240, 240, 240));
-				pnl_ProgressFuncion2.setBackground(new Color(240, 240, 240));
-				pnl_ProgressConfig1.setBackground(new Color(240, 240, 240));
-				pnl_ProgressConfig2.setBackground(new Color(240, 240, 240));
-				pnl_ProgressConfig3.setBackground(new Color(240, 240, 240));
-				pnl_ProgressResultados.setBackground(new Color(240, 240, 240));
+				int ret=JOptionPane.showConfirmDialog(null, GAL_GUI.language.Questions[6],GAL_GUI.language.CommonWords[8],JOptionPane.OK_CANCEL_OPTION);
+				if(ret== JOptionPane.OK_OPTION){
+					GAL_GUI.gal.limpiarTodo();
+					pnl_ProgressCromosoma.setBackground(new Color(240, 240, 240));
+					pnl_ProgressFuncion1.setBackground(new Color(240, 240, 240));
+					pnl_ProgressFuncion2.setBackground(new Color(240, 240, 240));
+					pnl_ProgressConfig1.setBackground(new Color(240, 240, 240));
+					pnl_ProgressConfig2.setBackground(new Color(240, 240, 240));
+					pnl_ProgressConfig3.setBackground(new Color(240, 240, 240));
+					pnl_ProgressResultados.setBackground(new Color(240, 240, 240));
+				}
 			}
 		});
 		btn_LimpiarTodo.setIcon(new ImageIcon(GeneralWindow.class.getResource("/Images/limpiar.png")));
-		btn_LimpiarTodo.setToolTipText("Limpiar Todo");
+		btn_LimpiarTodo.setToolTipText(GAL_GUI.language.CommonWords[8]);
 		btn_LimpiarTodo.setBounds(15, 18, 20, 20);
 		progress.add(btn_LimpiarTodo);
 		

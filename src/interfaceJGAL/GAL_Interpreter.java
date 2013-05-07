@@ -97,7 +97,7 @@ public class GAL_Interpreter {
 			valid= true;
 			return ret;
 		}catch(ParserException e){
-			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[13] + "\n"+e.getLocation());
+			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[13] + "\n"+e.getMessage());
 			valid= false;
 		}catch(NotValidChromosomeException e){
 			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[11]);
@@ -142,7 +142,7 @@ public class GAL_Interpreter {
 			valid= true;
 			return ret;
 		}catch(ParserException e){
-			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[13] + "\n"+e.getLocation());
+			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[13] + "\n"+e.getMessage());
 			valid= false;
 		}catch(ClassCastException e){
 			JOptionPane.showMessageDialog(null, GAL_GUI.language.Errors[12]);

@@ -70,8 +70,9 @@ public class GAL_InterpreterParser {
 							"True","False","PI","E", //Constantes 
 							"If","Then","Else","End", //Condicional
 							"While","Do", //Ciclos
-							"$", ":=", "Factory", //Variables
-							"'","\"",",","(", ")","{","}",";" //Caracteres del Lenguaje
+							"$", ":=", "Array", "Pos", //Variables
+							"'","\"",",","(", ")","{","}",";", //Caracteres del Lenguaje
+							"Bin2Int"
 							);
 	
 	//Constantes
@@ -349,10 +350,32 @@ public class GAL_InterpreterParser {
 		});
 	}
 	
+	private Parser<GAL_InterpreterNode> Bin2Int(Parser<GAL_InterpreterNode> calc){
+		Parser<List<GAL_InterpreterNode>> calc2= Parsers.tuple(calc,term(",").next(calc).many()).map(new Map<Pair<GAL_InterpreterNode,List<GAL_InterpreterNode>>,List<GAL_InterpreterNode>>(){
+			public List<GAL_InterpreterNode> map(Pair<GAL_InterpreterNode,List<GAL_InterpreterNode>> arg){
+				arg.b.add(0, arg.a);
+				return arg.b;
+			}
+		});
+		return term("Bin2Int").next(Parsers.between(term("("), calc2, term(")"))).map(new Map<List<GAL_InterpreterNode>,GAL_InterpreterNode>(){
+			public GAL_InterpreterNode map(List<GAL_InterpreterNode> arg){
+				return new GAL_InterpreterNode(arg.toArray(new GAL_InterpreterNode[0]),52,interpreter);
+			}
+		});
+	}
+	
+	private Parser<GAL_InterpreterNode> Pos(Parser<GAL_InterpreterNode> identifier){
+		return term("Pos").next(Parsers.between(term("("), identifier, term(")"))).map(new Map<GAL_InterpreterNode, GAL_InterpreterNode>(){
+			public GAL_InterpreterNode map(GAL_InterpreterNode arg){
+				return new GAL_InterpreterNode(new GAL_InterpreterNode[]{arg},53,interpreter);
+			}
+		});
+	}
+	
 	private Parser<GAL_InterpreterNode> complexOperators(Parser<GAL_InterpreterNode> calc){
 		Parser<GAL_InterpreterNode> complex= Parsers.or(Abs(calc),Max(calc),Min(calc),Root(calc),Log(calc));
 		Parser<GAL_InterpreterNode> trig= Parsers.or(Sin(calc),Cos(calc),Tan(calc),Asin(calc),Acos(calc),Atan(calc),Rad(calc),Grad(calc),Hypot(calc));
-		Parser<GAL_InterpreterNode> otros= Parsers.or(Round(calc),Ceil(calc),Floor(calc),RandI(calc),RandD(calc),RandB());
+		Parser<GAL_InterpreterNode> otros= Parsers.or(Round(calc),Ceil(calc),Floor(calc),RandI(calc),RandD(calc),RandB(),Bin2Int(calc));
 		return Parsers.or(complex,trig,otros);
 	}
 
@@ -361,13 +384,15 @@ public class GAL_InterpreterParser {
 	private Parser<GAL_InterpreterNode> allAritmeticOperators(){
 		Parser.Reference<GAL_InterpreterNode> complex_ref= Parser.newReference();
 		Parser.Reference<GAL_InterpreterNode> simple_ref= Parser.newReference();
-		Parser<GAL_InterpreterNode> op= Parsers.or(simple_ref.lazy(),complex_ref.lazy());
+		Parser.Reference<GAL_InterpreterNode> pos_ref= Parser.newReference();
+		Parser<GAL_InterpreterNode> op= Parsers.or(simple_ref.lazy(),complex_ref.lazy(),pos_ref.lazy());
 		Parser<GAL_InterpreterNode> complex= complexOperators(op);
 		identifier= identifier(op);
-		Parser<GAL_InterpreterNode> simpleCalc= calculator(Parsers.or(identifier,NUMBER,complex));
+		Parser<GAL_InterpreterNode> pos= Pos(identifier);
+		pos_ref.set(pos);
+		Parser<GAL_InterpreterNode> simpleCalc= calculator(Parsers.or(identifier,NUMBER,complex,pos));
 		simple_ref.set(simpleCalc);
 		complex_ref.set(complex);
-		
 		return op;
 	}
 	
@@ -523,7 +548,7 @@ public class GAL_InterpreterParser {
 	
 	private Parser<GAL_InterpreterNode> Factory(Parser<GAL_InterpreterNode> exec){
 		Parser<String> factoryIdentifier= term("$").next(Terminals.Identifier.PARSER);
-		return term("Factory").next(Parsers.between(term("("), Parsers.tuple(factoryIdentifier, term(",").next(Parsers.between(term("{"), exec.many1(), term("}")))), term(")"))).
+		return term("Array").next(Parsers.between(term("("), Parsers.tuple(factoryIdentifier, term(",").next(Parsers.between(term("{"), exec.many1(), term("}")))), term(")"))).
 			map(new Map< Pair<String,List<GAL_InterpreterNode>>, GAL_InterpreterNode>(){
 				public GAL_InterpreterNode map(Pair<String,List<GAL_InterpreterNode>> arg){
 					int i, j, size= arg.b.size();

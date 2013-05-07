@@ -94,26 +94,26 @@ public class LanguagesReader {
 
 		//Configuracion de operadores
 		S.nextLine();
-		OperatorsConfiguration= new String[22];
-		for(i=0;i<22;i++)
+		OperatorsConfiguration= new String[23];
+		for(i=0;i<23;i++)
 			OperatorsConfiguration[i]= S.nextLine();
 		
 		//Configuracion de parametros
 		S.nextLine();
-		ParametersConfiguration= new String[6];
-		for(i=0;i<6;i++)
+		ParametersConfiguration= new String[8];
+		for(i=0;i<8;i++)
 			ParametersConfiguration[i]= S.nextLine();
 
 		//Configuracion de guardado
 		S.nextLine();
-		Questions= new String[6];
-		for(i=0;i<6;i++)
+		Questions= new String[7];
+		for(i=0;i<7;i++)
 			Questions[i]= S.nextLine();
 
 		//Palabras Comunes
 		S.nextLine();
-		CommonWords= new String[8];
-		for(i=0;i<8;i++)
+		CommonWords= new String[9];
+		for(i=0;i<9;i++)
 			CommonWords[i]= S.nextLine();
 
 		//Ventana de Resultados
@@ -124,8 +124,8 @@ public class LanguagesReader {
 		
 		//Errores
 		S.nextLine();
-		Errors= new String[30];
-		for(i=0;i<30;i++)
+		Errors= new String[32];
+		for(i=0;i<32;i++)
 			Errors[i]= S.nextLine();
 		
 		//Errores

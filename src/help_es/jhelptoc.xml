@@ -11,8 +11,8 @@
 				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.DefinirTipo" text="Definir Tipo del Gen"/>
 				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.ConfiguracionAdicional" text="Configuración Adicional del Gen"/>
 				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.Agregar" text="Agregar Gen"/>
+				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.AgregarVarios" text="Agregar Varios"/>
 				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.VariablesDefinidas" text="Variables Definidas del Cromosoma"/>
-				<tocitem target="JGAL.DefinirCromosoma.DefinirGenes.Fabrica" text="Fábrica"/>
 			</tocitem>
 		</tocitem>
 		
@@ -22,7 +22,7 @@
 				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Ciclos" text="Sintaxis para Ciclos"/>
 				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Condicional" text="Sintaxis para Condicionales"/>
 				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Asignacion" text="Sintaxis para Asignaciones">
-					<tocitem target="JGAL.DefinirFuncion.Sintaxis.Fabrica" text="Sintaxis para Fábricas"/>
+					<tocitem target="JGAL.DefinirFuncion.Sintaxis.Fabrica" text="Sintaxis para Array"/>
 				</tocitem>
 				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Logical" text="Sintaxis para Operaciones Lógicas"/>
 				<tocitem target="JGAL.DefinirFuncion.Sintaxis.Arithmetic" text="Sintaxis para Operaciones Aritmeticas"/>
@@ -64,6 +64,7 @@
 						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Uniforme" text="Cruce Uniforme"/>
 						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Segmento" text="Cruce por Segmento"/>
 						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Aleatorio" text="Cruce Aleatorio"/>
+						<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.Cruce.Ordenado" text="Cruce Ordenado"/>
 					</tocitem>
 					<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionClasica" text="Mutación Clásica"/>
 					<tocitem target="JGAL.ConfigurarAlgoritmo.Operador.DefinirTipo.MutacionIndividuo" text="Mutación por Individuo">
@@ -80,6 +81,7 @@
 			<tocitem target="JGAL.ConfigurarAlgoritmo.Parametros" text="Parametros">
 				<tocitem target="JGAL.ConfigurarAlgoritmo.Parametros.Clasico" text="Manejador Clásico"/>
 				<tocitem target="JGAL.ConfigurarAlgoritmo.Parametros.Modificado" text="Manejador Modificado"/>
+				<tocitem target="JGAL.ConfigurarAlgoritmo.Parametros.Inicializador" text="Inicializadores"/>
 			</tocitem>
 		</tocitem>
 		

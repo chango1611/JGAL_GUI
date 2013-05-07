@@ -110,6 +110,8 @@ public class GAL_InterpreterNode {
 	 * 43. E
 	 * 46. RandB
 	 * 48. Identifier
+	 * 52. Bin2Int
+	 * 53. Pos
 	 */
 	public double aritmetic_operate(){
 		if(operation<13)
@@ -124,6 +126,19 @@ public class GAL_InterpreterNode {
 			return Math.E;
 		if(operation==46)
 			return (new Random()).nextDouble()>0.5?1:0;
+		if(operation==52){
+			String aux="";
+			for(GAL_InterpreterNode hijo: hijos){
+				if(hijo.aritmetic_operate()>0)
+					aux+= "1";
+				else
+					aux+= "0";
+			}
+			return ((Integer) Integer.parseInt(aux,2)).doubleValue();
+		}
+		if(operation==53){
+			return hijos[0].getHijo(0).aritmetic_operate();
+		}
 		Object aux= identifier();
 		if(aux instanceof Double)
 			return (Double) aux;
@@ -328,7 +343,7 @@ public class GAL_InterpreterNode {
 			hijos[0].operate();
 			return hijos[1].operate();
 		}
-		if(operation < 26 || operation==39 || operation==42 || operation==43)
+		if(operation < 26 || operation==39 || operation==42 || operation==43 || operation==52 || operation==53)
 			return aritmetic_operate();
 		if((operation > 25 && operation<36) || operation==44 || operation==45)
 			return logic_operate();
@@ -347,7 +362,7 @@ public class GAL_InterpreterNode {
 			return ((Byte) aux).doubleValue();
 		if(aux instanceof Integer)
 			return ((Integer) aux).doubleValue();
-		return aux;
+		return (Double)aux;
 	}
 	
 	public String toString(String prof){

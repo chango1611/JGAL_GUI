@@ -331,7 +331,7 @@ public class TerminationFunctionWindow extends JFrame {
 		btn_Optional7.setBounds(331, 247, 64, 23);
 		contentPane.add(btn_Optional7);
 		
-		final JButton btn_Optional8 = new JButton("");
+		final JButton btn_Optional8 = new JButton("Bin2Int");
 		btn_Optional8.addActionListener(al);
 		btn_Optional8.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		btn_Optional8.setBounds(398, 247, 64, 23);
@@ -365,7 +365,7 @@ public class TerminationFunctionWindow extends JFrame {
 						btn_Optional5.setText("Min");
 						btn_Optional6.setText("Abs");
 						btn_Optional7.setText("Log");
-						btn_Optional8.setText("");
+						btn_Optional8.setText("Bin2Int");
 						btn_Optional9.setText("");
 					break;
 					case 1:
@@ -408,8 +408,8 @@ public class TerminationFunctionWindow extends JFrame {
 						btn_Optional4.setText(":=");
 						btn_Optional5.setText("\"");
 						btn_Optional6.setText("'");
-						btn_Optional7.setText("Factory");
-						btn_Optional8.setText("");
+						btn_Optional7.setText("Array");
+						btn_Optional8.setText("Pos");
 						btn_Optional9.setText("");
 					break;
 					case 5:

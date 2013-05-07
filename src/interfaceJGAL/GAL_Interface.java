@@ -19,11 +19,13 @@ import JGAL.GAL_ClassicHandler;
 import JGAL.GAL_ClassicMutation;
 import JGAL.GAL_ClassicRankingSelector;
 import JGAL.GAL_Configuration;
+import JGAL.GAL_DefaultInitializer;
 import JGAL.GAL_DoubleGeneConfig;
 import JGAL.GAL_ElitistSelector;
 import JGAL.GAL_GeneConfig;
 import JGAL.GAL_GeneticOperator;
 import JGAL.GAL_Handler;
+import JGAL.GAL_Initializer;
 import JGAL.GAL_IntegerGeneConfig;
 import JGAL.GAL_Inversion;
 import JGAL.GAL_LinealRankingSelector;
@@ -32,6 +34,8 @@ import JGAL.GAL_MultiPointCrossover;
 import JGAL.GAL_NaturalSelector;
 import JGAL.GAL_NominalGeneConfig;
 import JGAL.GAL_NonLinealRankingSelector;
+import JGAL.GAL_OrderedCrossover;
+import JGAL.GAL_PermutationsInitializer;
 import JGAL.GAL_RandomCrossover;
 import JGAL.GAL_RouletteSelector;
 import JGAL.GAL_SegmentCrossover;
@@ -49,9 +53,10 @@ public class GAL_Interface {
 	private LinkedList<GAL_GeneticOperator> operators; //Los operadores a ser usado
 	private GAL_Interpreter fitnessFunctionInterpreter, terminationInterpreter; //Interpretes para la funcion de Aptitud y Terminacion
 	private GAL_InterpreterNode fitness, termination;
-	private int handlerToUse, popSize, maxGen, modParam, windowSize, elitistSize; //Parametros especificos
+	private int handlerToUse, initializerToUse, popSize, maxGen, modParam, windowSize, elitistSize; //Parametros especificos
 	private boolean parameters, optimizationType, elitist; //Booleano que define si los parametros especificos fueron definidos
 	private GAL_Handler handler;
+	private GAL_Initializer initializer;
 	
 	GAL_Interface(){
 		GeneConfig= new LinkedList<GAL_GeneConfig<?>>();
@@ -60,6 +65,7 @@ public class GAL_Interface {
 		parameters= false;
 		elitist= false;
 		handlerToUse= 0;
+		initializerToUse= 0;
 		popSize= 1;
 		maxGen= 1;
 		modParam= 1;
@@ -70,6 +76,7 @@ public class GAL_Interface {
 		fitnessFunctionInterpreter.initializeFitness(GeneNames.toArray(new String[0]));
 		terminationInterpreter= new GAL_Interpreter("",0);
 		terminationInterpreter.initializeTermination(windowSize);
+		initializer= null;
 		handler= null;
 		fitness= null;
 		termination= null;
@@ -189,22 +196,26 @@ public class GAL_Interface {
 			return GAL_GUI.language.OperatorsConfiguration[5];
 		if(operators.get(i) instanceof GAL_RandomCrossover)
 			return GAL_GUI.language.OperatorsConfiguration[6];
-		if(operators.get(i) instanceof GAL_ClassicMutation)
+		if(operators.get(i) instanceof GAL_OrderedCrossover)
 			return GAL_GUI.language.OperatorsConfiguration[7];
-		if(operators.get(i) instanceof GAL_ChromosomeMutation)
+		if(operators.get(i) instanceof GAL_ClassicMutation)
 			return GAL_GUI.language.OperatorsConfiguration[8];
-		if(operators.get(i) instanceof GAL_SwapMutation)
+		if(operators.get(i) instanceof GAL_ChromosomeMutation)
 			return GAL_GUI.language.OperatorsConfiguration[9];
-		if(operators.get(i) instanceof GAL_ShuffleMutation)
+		if(operators.get(i) instanceof GAL_SwapMutation)
 			return GAL_GUI.language.OperatorsConfiguration[10];
-		if(operators.get(i) instanceof GAL_Inversion)
+		if(operators.get(i) instanceof GAL_ShuffleMutation)
 			return GAL_GUI.language.OperatorsConfiguration[11];
+		if(operators.get(i) instanceof GAL_Inversion)
+			return GAL_GUI.language.OperatorsConfiguration[12];
 		return "";
 	}
 	
 	//Usado para comprobar la presencia de operadores de mutacion individual
 	private boolean isMutableOperatorPresent(){
 		for(int i=0;i<operators.size();i++){
+			if(operators.get(i) instanceof GAL_OrderedCrossover)
+				return true;
 			if(operators.get(i) instanceof GAL_SwapMutation)
 				return true;
 			if(operators.get(i) instanceof GAL_ShuffleMutation)
@@ -279,8 +290,9 @@ public class GAL_Interface {
 	}
 	
 	//Asigna los parametros
-	void setParameters(int handlerToUse, int popSize, int maxGen, int modParam){
+	void setParameters(int handlerToUse, int initializerToUse, int popSize, int maxGen, int modParam){
 		this.handlerToUse= handlerToUse;
+		this.initializerToUse= initializerToUse;
 		this.popSize= popSize;
 		this.maxGen= maxGen;
 		this.modParam= modParam;
@@ -291,6 +303,8 @@ public class GAL_Interface {
 	int getParameter(String name){
 		if(name.equals("handlerToUse"))
 			return handlerToUse;
+		if(name.equals("initializerToUse"))
+			return initializerToUse;
 		if(name.equals("popSize"))
 			return popSize;
 		if(name.equals("maxGen"))
@@ -298,6 +312,20 @@ public class GAL_Interface {
 		if(name.equals("modParam"))
 			return modParam;
 		return -1;
+	}
+	
+	public void validateInitializer()throws Exception{
+		initializer= new GAL_PermutationsInitializer();
+		initializer.initialize(new GAL_ChromosomeConfig(GeneConfig.toArray(new GAL_GeneConfig[0])), 2);
+		initializer= null;
+	}
+	
+	public void setInitializer(){
+		initializerToUse= 0;
+	}
+	
+	public void resetParameters(){
+		parameters= false;
 	}
 	
 	//Reorna si ya fueron asignados los parametros
@@ -428,7 +456,7 @@ public class GAL_Interface {
 	
 	//Convierte en String los parametros
 	private String toStringParameters(){
-		return handlerToUse + " " + popSize + " " + maxGen + " " + modParam + "\n";
+		return handlerToUse + " " + initializerToUse +" " + popSize + " " + maxGen + " " + modParam + "\n";
 	}
 	
 	//Guarda los parametros en un archivo
@@ -445,6 +473,7 @@ public class GAL_Interface {
 	//Lee de un string los parametros
 	private void readParameters(Scanner fr)throws Exception{
 		handlerToUse= fr.nextInt();
+		initializerToUse= fr.nextInt();
 		popSize= fr.nextInt();
 		maxGen= fr.nextInt();
 		modParam= fr.nextInt();
@@ -532,16 +561,18 @@ public class GAL_Interface {
 				ret+= "3 " + aux.getProb() + " " + ((GAL_SegmentCrossover) aux).getSegmetChangeProb() + "\n";
 			else if(aux instanceof GAL_RandomCrossover)
 				ret+= "4 " + aux.getProb() + "\n";
-			else if(aux instanceof GAL_ClassicMutation)
+			else if(aux instanceof GAL_OrderedCrossover)
 				ret+= "5 " + aux.getProb() + "\n";
+			else if(aux instanceof GAL_ClassicMutation)
+				ret+= "6 " + aux.getProb() + "\n";
 			else if(aux instanceof GAL_ChromosomeMutation)
-				ret+= "6 " + aux.getProb() + " " + ((GAL_ChromosomeMutation) aux).getSecondProb() +"\n";
+				ret+= "7 " + aux.getProb() + " " + ((GAL_ChromosomeMutation) aux).getSecondProb() +"\n";
 			else if(aux instanceof GAL_SwapMutation)
-				ret+= "7 " + aux.getProb() + "\n";
-			else if(aux instanceof GAL_ShuffleMutation)
 				ret+= "8 " + aux.getProb() + "\n";
-			else if(aux instanceof GAL_Inversion)
+			else if(aux instanceof GAL_ShuffleMutation)
 				ret+= "9 " + aux.getProb() + "\n";
+			else if(aux instanceof GAL_Inversion)
+				ret+= "10 " + aux.getProb() + "\n";
 		}
 		return ret;
 	}
@@ -579,18 +610,21 @@ public class GAL_Interface {
 					operators.add(new GAL_RandomCrossover(0.0,new GAL_ClassicCrossover(Double.parseDouble(fr.next()))));
 				break;
 				case 5:
-					operators.add(new GAL_ClassicMutation(Double.parseDouble(fr.next())));
+					operators.add(new GAL_OrderedCrossover(Double.parseDouble(fr.next())));
 				break;
 				case 6:
-					operators.add(new GAL_ChromosomeMutation(Double.parseDouble(fr.next()),Double.parseDouble(fr.next())));
+					operators.add(new GAL_ClassicMutation(Double.parseDouble(fr.next())));
 				break;
 				case 7:
-					operators.add(new GAL_SwapMutation(Double.parseDouble(fr.next())));
+					operators.add(new GAL_ChromosomeMutation(Double.parseDouble(fr.next()),Double.parseDouble(fr.next())));
 				break;
 				case 8:
-					operators.add(new GAL_ShuffleMutation(Double.parseDouble(fr.next())));
+					operators.add(new GAL_SwapMutation(Double.parseDouble(fr.next())));
 				break;
 				case 9:
+					operators.add(new GAL_ShuffleMutation(Double.parseDouble(fr.next())));
+				break;
+				case 10:
 					operators.add(new GAL_Inversion(Double.parseDouble(fr.next())));
 				break;
 			}
@@ -719,11 +753,17 @@ public class GAL_Interface {
 			return false;
 		}
 		
+		if(initializerToUse==0)
+			initializer= new GAL_DefaultInitializer();
+		else
+			initializer= new GAL_PermutationsInitializer();
+		
 		try{
 			//Creo la configuracion
 			GAL_Configuration config;
 			config= new GAL_Configuration
 					(new GAL_ChromosomeConfig(GeneConfig.toArray(new GAL_GeneConfig[0])),
+					initializer,
 					terminationInterpreter.getValid()?new TerminationCondition(termination, windowSize):new TerminationCondition(windowSize),
 					new FitnessFunction(fitness,optimizationType),
 					elitist?new GAL_ElitistSelector(elitistSize, selector):selector,
@@ -810,12 +850,13 @@ public class GAL_Interface {
 	}
 	
 	public void limpiarTodo(){
-		GeneConfig= new LinkedList<GAL_GeneConfig<?>>();
-		GeneNames= new LinkedList<String>();
-		operators= new LinkedList<GAL_GeneticOperator>();
+		GeneConfig.clear();
+		GeneNames.clear();
+		operators.clear();
 		parameters= false;
 		elitist= false;
 		handlerToUse= 0;
+		initializerToUse= 0;
 		popSize= 1;
 		maxGen= 1;
 		modParam= 1;
@@ -826,8 +867,18 @@ public class GAL_Interface {
 		fitnessFunctionInterpreter.initializeFitness(GeneNames.toArray(new String[0]));
 		terminationInterpreter= new GAL_Interpreter("",0);
 		terminationInterpreter.initializeTermination(windowSize);
+		initializer= null;
 		handler= null;
 		fitness= null;
 		termination= null;
+	}
+	
+	public void limpiarGenes(){
+		GeneConfig.clear();
+		GeneNames.clear();
+	}
+	
+	public void limpiarOperadores(){
+		operators.clear();
 	}
 }

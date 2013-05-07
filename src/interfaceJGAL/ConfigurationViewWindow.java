@@ -211,7 +211,7 @@ public class ConfigurationViewWindow extends JFrame {
 		configuracionEspecifica.add(CruceMultiPuntos, "Multi");
 		CruceMultiPuntos.setLayout(null);
 		
-		JLabel lblMin = new JLabel(GAL_GUI.language.OperatorsConfiguration[14]);
+		JLabel lblMin = new JLabel(GAL_GUI.language.OperatorsConfiguration[15]);
 		lblMin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMin.setBounds(10, 29, 107, 14);
 		CruceMultiPuntos.add(lblMin);
@@ -233,7 +233,7 @@ public class ConfigurationViewWindow extends JFrame {
 		CruceUniforme.setLayout(null);
 		configuracionEspecifica.add(CruceUniforme, "Uniforme");
 		
-		JLabel lblProbDeCambio = new JLabel(GAL_GUI.language.OperatorsConfiguration[15]);
+		JLabel lblProbDeCambio = new JLabel(GAL_GUI.language.OperatorsConfiguration[16]);
 		lblProbDeCambio.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProbDeCambio.setBounds(10, 29, 107, 14);
 		CruceUniforme.add(lblProbDeCambio);
@@ -252,7 +252,7 @@ public class ConfigurationViewWindow extends JFrame {
 		CruceSegmentos.setLayout(null);
 		configuracionEspecifica.add(CruceSegmentos, "Segmentos");
 		
-		JLabel lblProbSegmentos = new JLabel(GAL_GUI.language.OperatorsConfiguration[16]);
+		JLabel lblProbSegmentos = new JLabel(GAL_GUI.language.OperatorsConfiguration[17]);
 		lblProbSegmentos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProbSegmentos.setBounds(10, 29, 107, 14);
 		CruceSegmentos.add(lblProbSegmentos);
@@ -271,7 +271,7 @@ public class ConfigurationViewWindow extends JFrame {
 		MutacionCromosoma.setLayout(null);
 		configuracionEspecifica.add(MutacionCromosoma, "Mut Crom");
 		
-		JLabel lblProbDeMutacin = new JLabel(GAL_GUI.language.OperatorsConfiguration[17]);
+		JLabel lblProbDeMutacin = new JLabel(GAL_GUI.language.OperatorsConfiguration[18]);
 		lblProbDeMutacin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProbDeMutacin.setBounds(10, 29, 107, 14);
 		MutacionCromosoma.add(lblProbDeMutacin);
@@ -300,7 +300,7 @@ public class ConfigurationViewWindow extends JFrame {
 		separator.setBounds(5, 90, 255, 1);
 		Configuracion.add(separator);
 		
-		JLabel lblProbDeOcurrencia = new JLabel(GAL_GUI.language.OperatorsConfiguration[12]);
+		JLabel lblProbDeOcurrencia = new JLabel(GAL_GUI.language.OperatorsConfiguration[13]);
 		lblProbDeOcurrencia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProbDeOcurrencia.setBounds(20, 62, 113, 14);
 		Configuracion.add(lblProbDeOcurrencia);
@@ -354,7 +354,7 @@ public class ConfigurationViewWindow extends JFrame {
 		operadoresDefinidos.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		operadoresDefinidos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JLabel lblOperadores = new JLabel(GAL_GUI.language.OperatorsConfiguration[19]);
+		JLabel lblOperadores = new JLabel(GAL_GUI.language.OperatorsConfiguration[20]);
 		lblOperadores.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblOperadores.setBounds(10, 7, 143, 14);
 		Operadores.add(lblOperadores);
@@ -365,12 +365,12 @@ public class ConfigurationViewWindow extends JFrame {
 		
 		JLabel label_4 = new JLabel(GAL_GUI.language.ParametersConfiguration[4]);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_4.setBounds(12, 67, 161, 14);
+		label_4.setBounds(12, 94, 161, 14);
 		Parametros.add(label_4);
 		
 		JLabel label_11 = new JLabel(GAL_GUI.language.ParametersConfiguration[3]);
 		label_11.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		label_11.setBounds(12, 40, 150, 14);
+		label_11.setBounds(12, 67, 150, 14);
 		Parametros.add(label_11);
 		
 		JLabel label_12 = new JLabel(GAL_GUI.language.ParametersConfiguration[0]);
@@ -385,16 +385,16 @@ public class ConfigurationViewWindow extends JFrame {
 		
 		final JLabel lbl_popsizeReal = new JLabel("");
 		lbl_popsizeReal.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lbl_popsizeReal.setBounds(215, 38, 70, 16);
+		lbl_popsizeReal.setBounds(215, 65, 70, 16);
 		Parametros.add(lbl_popsizeReal);
 		
 		final JLabel lbl_maxGenReal = new JLabel("");
 		lbl_maxGenReal.setFont(new Font("Segoe UI", Font.BOLD, 12));
-		lbl_maxGenReal.setBounds(215, 65, 70, 16);
+		lbl_maxGenReal.setBounds(215, 92, 70, 16);
 		Parametros.add(lbl_maxGenReal);
 		
 		final JPanel pnl_modificado = new JPanel();
-		pnl_modificado.setBounds(12, 94, 319, 28);
+		pnl_modificado.setBounds(12, 121, 319, 28);
 		Parametros.add(pnl_modificado);
 		pnl_modificado.setLayout(null);
 		
@@ -407,6 +407,16 @@ public class ConfigurationViewWindow extends JFrame {
 		lbl_ModReal.setFont(new Font("Segoe UI", Font.BOLD, 12));
 		lbl_ModReal.setBounds(203, -2, 70, 16);
 		pnl_modificado.add(lbl_ModReal);
+		
+		JLabel label_13 = new JLabel(GAL_GUI.language.ParametersConfiguration[6]);
+		label_13.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		label_13.setBounds(10, 42, 66, 14);
+		Parametros.add(label_13);
+		
+		final JLabel lbl_InitializerReal = new JLabel("");
+		lbl_InitializerReal.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		lbl_InitializerReal.setBounds(197, 39, 161, 16);
+		Parametros.add(lbl_InitializerReal);
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -441,6 +451,10 @@ public class ConfigurationViewWindow extends JFrame {
 						pnl_modificado.setVisible(true);
 						lbl_ModReal.setText("" + GAL_GUI.gal.getParameter("modParam"));
 					}
+					if(GAL_GUI.gal.getParameter("initializerToUse")==0)
+						lbl_InitializerReal.setText(GAL_GUI.language.ParametersConfiguration[1]);
+					else
+						lbl_InitializerReal.setText(GAL_GUI.language.ParametersConfiguration[7]);
 				}
 			}
 		});

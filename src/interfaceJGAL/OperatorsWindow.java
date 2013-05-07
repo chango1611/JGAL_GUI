@@ -35,11 +35,13 @@ import JGAL.GAL_ClassicMutation;
 import JGAL.GAL_GeneticOperator;
 import JGAL.GAL_Inversion;
 import JGAL.GAL_MultiPointCrossover;
+import JGAL.GAL_OrderedCrossover;
 import JGAL.GAL_RandomCrossover;
 import JGAL.GAL_SegmentCrossover;
 import JGAL.GAL_ShuffleMutation;
 import JGAL.GAL_SwapMutation;
 import JGAL.GAL_UniformCrossover;
+import javax.swing.ImageIcon;
 
 public class OperatorsWindow extends JFrame {
 
@@ -68,7 +70,7 @@ public class OperatorsWindow extends JFrame {
 		setTitle(GAL_GUI.language.botonesPrincipales[5]);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 442, 307);
+		setBounds(100, 100, 442, 350);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -157,7 +159,7 @@ public class OperatorsWindow extends JFrame {
 		configuracionEspecifica.add(CruceMultiPuntos, "Multi");
 		CruceMultiPuntos.setLayout(null);
 		
-		JLabel lblMin = new JLabel(GAL_GUI.language.OperatorsConfiguration[14]);
+		JLabel lblMin = new JLabel(GAL_GUI.language.OperatorsConfiguration[15]);
 		lblMin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMin.setBounds(10, 29, 107, 14);
 		CruceMultiPuntos.add(lblMin);
@@ -168,7 +170,7 @@ public class OperatorsWindow extends JFrame {
 		spn_MultiPuntos.setBounds(129, 26, 70, 20);
 		CruceMultiPuntos.add(spn_MultiPuntos);
 		
-		JLabel lblConfiguracinAdicional = new JLabel(GAL_GUI.language.OperatorsConfiguration[13]);
+		JLabel lblConfiguracinAdicional = new JLabel(GAL_GUI.language.OperatorsConfiguration[14]);
 		lblConfiguracinAdicional.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblConfiguracinAdicional.setBounds(10, 4, 192, 14);
 		CruceMultiPuntos.add(lblConfiguracinAdicional);
@@ -180,7 +182,7 @@ public class OperatorsWindow extends JFrame {
 		CruceUniforme.setLayout(null);
 		configuracionEspecifica.add(CruceUniforme, "Uniforme");
 		
-		JLabel lblProbDeCambio = new JLabel(GAL_GUI.language.OperatorsConfiguration[15]);
+		JLabel lblProbDeCambio = new JLabel(GAL_GUI.language.OperatorsConfiguration[16]);
 		lblProbDeCambio.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProbDeCambio.setBounds(10, 29, 107, 14);
 		CruceUniforme.add(lblProbDeCambio);
@@ -191,7 +193,7 @@ public class OperatorsWindow extends JFrame {
 		spn_uniforme.setBounds(129, 26, 70, 20);
 		CruceUniforme.add(spn_uniforme);
 		
-		JLabel label_1 = new JLabel(GAL_GUI.language.OperatorsConfiguration[13]);
+		JLabel label_1 = new JLabel(GAL_GUI.language.OperatorsConfiguration[14]);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		label_1.setBounds(10, 4, 192, 14);
 		CruceUniforme.add(label_1);
@@ -200,7 +202,7 @@ public class OperatorsWindow extends JFrame {
 		CruceSegmentos.setLayout(null);
 		configuracionEspecifica.add(CruceSegmentos, "Segmentos");
 		
-		JLabel lblProbSegmentos = new JLabel(GAL_GUI.language.OperatorsConfiguration[16]);
+		JLabel lblProbSegmentos = new JLabel(GAL_GUI.language.OperatorsConfiguration[17]);
 		lblProbSegmentos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProbSegmentos.setBounds(10, 29, 107, 14);
 		CruceSegmentos.add(lblProbSegmentos);
@@ -211,7 +213,7 @@ public class OperatorsWindow extends JFrame {
 		spn_Segmentos.setBounds(129, 26, 70, 20);
 		CruceSegmentos.add(spn_Segmentos);
 		
-		JLabel label_2 = new JLabel(GAL_GUI.language.OperatorsConfiguration[13]);
+		JLabel label_2 = new JLabel(GAL_GUI.language.OperatorsConfiguration[14]);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		label_2.setBounds(10, 4, 192, 14);
 		CruceSegmentos.add(label_2);
@@ -220,7 +222,7 @@ public class OperatorsWindow extends JFrame {
 		MutacionCromosoma.setLayout(null);
 		configuracionEspecifica.add(MutacionCromosoma, "Mut Crom");
 		
-		JLabel lblProbDeMutacin = new JLabel(GAL_GUI.language.OperatorsConfiguration[17]);
+		JLabel lblProbDeMutacin = new JLabel(GAL_GUI.language.OperatorsConfiguration[18]);
 		lblProbDeMutacin.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProbDeMutacin.setBounds(10, 29, 107, 14);
 		MutacionCromosoma.add(lblProbDeMutacin);
@@ -231,7 +233,7 @@ public class OperatorsWindow extends JFrame {
 		spn_MutCrom.setBounds(129, 26, 70, 20);
 		MutacionCromosoma.add(spn_MutCrom);
 		
-		JLabel label_3 = new JLabel(GAL_GUI.language.OperatorsConfiguration[13]);
+		JLabel label_3 = new JLabel(GAL_GUI.language.OperatorsConfiguration[14]);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		label_3.setBounds(10, 4, 192, 14);
 		MutacionCromosoma.add(label_3);
@@ -251,7 +253,7 @@ public class OperatorsWindow extends JFrame {
 					case 3:
 						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Segmentos");
 					break;
-					case 6:
+					case 7:
 						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Mut Crom");
 					break;
 					default:
@@ -263,8 +265,8 @@ public class OperatorsWindow extends JFrame {
 		cb_TiposDeOperadores.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		cb_TiposDeOperadores.setBounds(75, 32, 180, 20);
 		Configuracion.add(cb_TiposDeOperadores);
-		String[] tipos= new String[10];
-		System.arraycopy(GAL_GUI.language.OperatorsConfiguration, 2, tipos, 0, 10);
+		String[] tipos= new String[11];
+		System.arraycopy(GAL_GUI.language.OperatorsConfiguration, 2, tipos, 0, 11);
 		cb_TiposDeOperadores.setModel(new DefaultComboBoxModel<String>(tipos));
 		cb_TiposDeOperadores.setSelectedIndex(0);
 		
@@ -290,12 +292,12 @@ public class OperatorsWindow extends JFrame {
 		operadoresDefinidos.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		operadoresDefinidos.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
-		JLabel lblOperadores = new JLabel(GAL_GUI.language.OperatorsConfiguration[19]);
+		JLabel lblOperadores = new JLabel(GAL_GUI.language.OperatorsConfiguration[20]);
 		lblOperadores.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblOperadores.setBounds(10, 7, 143, 14);
+		lblOperadores.setBounds(10, 7, 118, 14);
 		Operadores.add(lblOperadores);
 		
-		JButton btnEliminar = new JButton(GAL_GUI.language.OperatorsConfiguration[21]);
+		JButton btnEliminar = new JButton(GAL_GUI.language.OperatorsConfiguration[22]);
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editar= operadoresDefinidos.getSelectedIndex();
@@ -310,7 +312,7 @@ public class OperatorsWindow extends JFrame {
 		btnEliminar.setBounds(81, 221, 77, 23);
 		Operadores.add(btnEliminar);
 		
-		JButton btnEditar = new JButton(GAL_GUI.language.OperatorsConfiguration[20]);
+		JButton btnEditar = new JButton(GAL_GUI.language.OperatorsConfiguration[21]);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				editar= operadoresDefinidos.getSelectedIndex();
@@ -338,7 +340,22 @@ public class OperatorsWindow extends JFrame {
 		btnEditar.setBounds(10, 221, 69, 23);
 		Operadores.add(btnEditar);
 		
-		JButton btnCrear = new JButton(GAL_GUI.language.OperatorsConfiguration[18]);
+		JButton clean = new JButton("");
+		clean.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int ret=JOptionPane.showConfirmDialog(null, GAL_GUI.language.Questions[6],GAL_GUI.language.CommonWords[8],JOptionPane.OK_CANCEL_OPTION);
+				if(ret== JOptionPane.OK_OPTION){
+					GAL_GUI.gal.limpiarOperadores();
+					actualizar();
+				}
+			}
+		});
+		clean.setIcon(new ImageIcon(OperatorsWindow.class.getResource("/Images/limpiar.png")));
+		clean.setToolTipText(GAL_GUI.language.CommonWords[8]);
+		clean.setBounds(138, 7, 20, 20);
+		Operadores.add(clean);
+		
+		JButton btnCrear = new JButton(GAL_GUI.language.OperatorsConfiguration[19]);
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int tipo= cb_TiposDeOperadores.getSelectedIndex();
@@ -362,22 +379,27 @@ public class OperatorsWindow extends JFrame {
 							aux= new GAL_RandomCrossover(0.0,new GAL_ClassicCrossover(prob));
 						break;
 						case 5:
-							aux= new GAL_ClassicMutation(prob);
-						break;
-						case 6:
-							aux= new GAL_ChromosomeMutation(prob, (double) spn_MutCrom.getValue());
-						break;
-						case 7:
 							if(!GAL_GUI.gal.isMutableGeneConfig())
 								throw new Exception(GAL_GUI.language.Errors[23]);
-							aux= new GAL_SwapMutation(prob);
+							aux= new GAL_OrderedCrossover(prob);
+						break;
+						case 6:
+							aux= new GAL_ClassicMutation(prob);
+						break;
+						case 7:
+							aux= new GAL_ChromosomeMutation(prob, (double) spn_MutCrom.getValue());
 						break;
 						case 8:
 							if(!GAL_GUI.gal.isMutableGeneConfig())
 								throw new Exception(GAL_GUI.language.Errors[23]);
-							aux= new GAL_ShuffleMutation(prob);
+							aux= new GAL_SwapMutation(prob);
 						break;
 						case 9:
+							if(!GAL_GUI.gal.isMutableGeneConfig())
+								throw new Exception(GAL_GUI.language.Errors[23]);
+							aux= new GAL_ShuffleMutation(prob);
+						break;
+						case 10:
 							if(!GAL_GUI.gal.isMutableGeneConfig())
 								throw new Exception(GAL_GUI.language.Errors[23]);
 							aux= new GAL_Inversion(prob);
@@ -414,10 +436,26 @@ public class OperatorsWindow extends JFrame {
 		separator.setBounds(5, 90, 255, 1);
 		Configuracion.add(separator);
 		
-		JLabel lblProbDeOcurrencia = new JLabel(GAL_GUI.language.OperatorsConfiguration[12]);
+		JLabel lblProbDeOcurrencia = new JLabel(GAL_GUI.language.OperatorsConfiguration[13]);
 		lblProbDeOcurrencia.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblProbDeOcurrencia.setBounds(20, 62, 113, 14);
 		Configuracion.add(lblProbDeOcurrencia);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		panel.setBounds(2, 255, 432, 46);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JButton btnAceptar = new JButton(GAL_GUI.language.CommonWords[0]);
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnAceptar.setBounds(171, 11, 89, 23);
+		panel.add(btnAceptar);
 	}
 	
 	void actualizar(){
