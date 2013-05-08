@@ -9,16 +9,10 @@ if you wish to use the framework instead of the application,
 it can be downloaded from this address:
 https://github.com/chango1611/JGAL
 
-bin
----
-
-The bin folder contains all the .class files of the program
-
 JGAL_GUI
 --------
 
-This folder contains the .jar that runs this program,
-it can also be executed with the .exe file in this folder
+This folder contains the .jar that runs this program. You must have at least Java 1.5 to run this program.
 
 resources
 ---------
