@@ -227,7 +227,7 @@ public class ResultsViewWindow extends JFrame {
 		JSpinner spinner = new JSpinner();
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				int gen= (int)((JSpinner)e.getSource()).getValue(), i;
+				int gen= (Integer)((JSpinner)e.getSource()).getValue(), i;
 				//Selecciono el mejor de la generación seleccionada
 				bestFrom= GAL_GUI.gal.getBestChromosomeFrom(gen);
 				

@@ -243,30 +243,38 @@ public class OperatorsWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				@SuppressWarnings("unchecked")
 				int option= ((JComboBox<String>) e.getSource()).getSelectedIndex();
-				switch(option){
-					case 1:
-						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Multi");
-					break;
-					case 2:
-						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Uniforme");
-					break;
-					case 3:
-						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Segmentos");
-					break;
-					case 7:
-						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Mut Crom");
-					break;
-					default:
-						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Otros");
-					break;	
+				if(option<11){
+					switch(option){
+						case 1:
+							((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Multi");
+						break;
+						case 2:
+							((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Uniforme");
+						break;
+						case 3:
+							((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Segmentos");
+						break;
+						case 7:
+							((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Mut Crom");
+						break;
+						default:
+							((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Otros");
+						break;	
+					}
+				}else{
+					((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,GAL_GUI.metadatas.operator_metadatas[option-11].name);
 				}
 			}
 		});
 		cb_TiposDeOperadores.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		cb_TiposDeOperadores.setBounds(75, 32, 180, 20);
 		Configuracion.add(cb_TiposDeOperadores);
-		String[] tipos= new String[11];
+		String[] tipos= new String[11+GAL_GUI.metadatas.operator_metadatas.length];
 		System.arraycopy(GAL_GUI.language.OperatorsConfiguration, 2, tipos, 0, 11);
+		for(int i=0;i<GAL_GUI.metadatas.operator_metadatas.length;i++){
+			tipos[i+11]= GAL_GUI.metadatas.operator_metadatas[i].name;
+			configuracionEspecifica.add(GAL_GUI.metadatas.operator_metadatas[i].metaPanel,tipos[i+11]);
+		}
 		cb_TiposDeOperadores.setModel(new DefaultComboBoxModel<String>(tipos));
 		cb_TiposDeOperadores.setSelectedIndex(0);
 		
@@ -332,6 +340,16 @@ public class OperatorsWindow extends JFrame {
 					}else if(aux instanceof GAL_ChromosomeMutation){
 						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Mut Crom");
 						spn_MutCrom.setValue(((GAL_ChromosomeMutation) aux).getSecondProb());
+					}else{
+						int type= GAL_GUI.gal.getOperatorType(editar);
+						if(type>10){
+							((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,GAL_GUI.metadatas.operator_metadatas[type-11].name);
+							try {
+								GAL_GUI.metadatas.operator_metadatas[type-11].extractOperatorData(aux,((JPanel)configuracionEspecifica.getComponent(type-6)).getComponents());
+							} catch (Exception e1) {
+								JOptionPane.showMessageDialog(null, e1.getMessage());
+							}
+						}
 					}
 				}
 			}
@@ -359,7 +377,7 @@ public class OperatorsWindow extends JFrame {
 		btnCrear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int tipo= cb_TiposDeOperadores.getSelectedIndex();
-				double prob= (double) spn_Prob.getValue();
+				double prob= (Double) spn_Prob.getValue();
 				try{
 					GAL_GeneticOperator aux= new GAL_ClassicCrossover(prob);
 					switch(tipo){
@@ -367,13 +385,13 @@ public class OperatorsWindow extends JFrame {
 							;
 						break;
 						case 1:
-							aux= new GAL_MultiPointCrossover(prob, (int)spn_MultiPuntos.getValue());
+							aux= new GAL_MultiPointCrossover(prob, (Integer)spn_MultiPuntos.getValue());
 						break;
 						case 2:
-							aux= new GAL_UniformCrossover(prob, (double)spn_uniforme.getValue());
+							aux= new GAL_UniformCrossover(prob, (Double)spn_uniforme.getValue());
 						break;
 						case 3:
-							aux= new GAL_SegmentCrossover(prob, (double)spn_Segmentos.getValue());
+							aux= new GAL_SegmentCrossover(prob, (Double)spn_Segmentos.getValue());
 						break;
 						case 4:
 							aux= new GAL_RandomCrossover(0.0,new GAL_ClassicCrossover(prob));
@@ -387,7 +405,7 @@ public class OperatorsWindow extends JFrame {
 							aux= new GAL_ClassicMutation(prob);
 						break;
 						case 7:
-							aux= new GAL_ChromosomeMutation(prob, (double) spn_MutCrom.getValue());
+							aux= new GAL_ChromosomeMutation(prob, (Double) spn_MutCrom.getValue());
 						break;
 						case 8:
 							if(!GAL_GUI.gal.isMutableGeneConfig())
@@ -404,16 +422,20 @@ public class OperatorsWindow extends JFrame {
 								throw new Exception(GAL_GUI.language.Errors[23]);
 							aux= new GAL_Inversion(prob);
 						break;
+						default:
+							aux= GAL_GUI.metadatas.operator_metadatas[tipo-11].operatorConstructor(((JPanel)configuracionEspecifica.getComponent(tipo-6)).getComponents(),prob);
+						break;
 					}
 					if(editar==-1){
-						GAL_GUI.gal.addOperator(aux);
+						GAL_GUI.gal.addOperator(aux, tipo);
 						lm_OperadoresDefinidos.addElement((String)cb_TiposDeOperadores.getSelectedItem());
 					}else{
-						GAL_GUI.gal.editOperator(editar, aux);
+						GAL_GUI.gal.editOperator(editar, aux, tipo);
 						lm_OperadoresDefinidos.set(editar, (String)cb_TiposDeOperadores.getSelectedItem());
 						editar= -1;
 					}
 				}catch(Exception ex){
+					ex.printStackTrace();
 					JOptionPane.showMessageDialog(null, ex.getMessage());
 				}
 			}

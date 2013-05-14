@@ -321,6 +321,10 @@ public class ConfigurationViewWindow extends JFrame {
 		Operadores.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
 		Operadores.setLayout(null);
 		
+		for(int i=0;i<GAL_GUI.metadatas.operator_metadatas.length;i++){
+			configuracionEspecifica.add(GAL_GUI.metadatas.operator_metadatas[i].viewPanel,GAL_GUI.metadatas.operator_metadatas[i].name);
+		}
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 32, 148, 184);
 		Operadores.add(scrollPane);
@@ -328,7 +332,8 @@ public class ConfigurationViewWindow extends JFrame {
 		operadoresDefinidos.addListSelectionListener(new ListSelectionListener() {
 			@SuppressWarnings("unchecked")
 			public void valueChanged(ListSelectionEvent e) {
-				GAL_GeneticOperator aux= GAL_GUI.gal.getOperator(((JList<String>)e.getSource()).getSelectedIndex());
+				int option= ((JList<String>)e.getSource()).getSelectedIndex();
+				GAL_GeneticOperator aux= GAL_GUI.gal.getOperator(option);
 				lbl_OperadorReal.setText((String)((JList<String>)e.getSource()).getSelectedValue());
 				lbl_ProbReal.setText(""+df.format(aux.getProb()));
 				if(aux instanceof GAL_MultiPointCrossover){
@@ -344,7 +349,16 @@ public class ConfigurationViewWindow extends JFrame {
 					((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Mut Crom");
 					lbl_MutCromReal.setText(""+df.format(((GAL_ChromosomeMutation) aux).getSecondProb()));
 				}else{
-					((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Otros");
+					int type= GAL_GUI.gal.getOperatorType(option);
+					if(type>10){
+						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,GAL_GUI.metadatas.operator_metadatas[type-11].name);
+						try {
+							GAL_GUI.metadatas.operator_metadatas[type-11].extractViewData(aux,((JPanel)configuracionEspecifica.getComponent(type-6)).getComponents());
+						} catch (Exception e1) {
+							;
+						}
+					}else
+						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Otros");
 				}
 			}
 		});
@@ -418,6 +432,10 @@ public class ConfigurationViewWindow extends JFrame {
 		lbl_InitializerReal.setBounds(197, 39, 161, 16);
 		Parametros.add(lbl_InitializerReal);
 		
+		for(int i=0;i<GAL_GUI.metadatas.selector_metadatas.length;i++){
+			ConfigAdicional.add(GAL_GUI.metadatas.selector_metadatas[i].viewPanel,GAL_GUI.metadatas.selector_metadatas[i].name);
+		}
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -438,6 +456,14 @@ public class ConfigurationViewWindow extends JFrame {
 					}else if(aux instanceof GAL_NonLinealRankingSelector){
 						((CardLayout)ConfigAdicional.getLayout()).show(ConfigAdicional,"Rank Otros");
 						lbl_RankingReal.setText(""+df.format(((GAL_NonLinealRankingSelector) aux).getQ()));
+					}else{
+						int type= GAL_GUI.gal.getSelectorType();
+						((CardLayout)ConfigAdicional.getLayout()).show(ConfigAdicional,GAL_GUI.metadatas.selector_metadatas[type-5].name);
+						try {
+							GAL_GUI.metadatas.selector_metadatas[type-5].extractViewData(aux, ((JPanel)ConfigAdicional.getComponent(type-1)).getComponents());
+						} catch (Exception e1) {
+							;
+						}
 					}
 				}
 				if(GAL_GUI.gal.parametersAssigned()){
@@ -451,10 +477,13 @@ public class ConfigurationViewWindow extends JFrame {
 						pnl_modificado.setVisible(true);
 						lbl_ModReal.setText("" + GAL_GUI.gal.getParameter("modParam"));
 					}
-					if(GAL_GUI.gal.getParameter("initializerToUse")==0)
+					int type= GAL_GUI.gal.getParameter("initializerToUse");
+					if(type==0)
 						lbl_InitializerReal.setText(GAL_GUI.language.ParametersConfiguration[1]);
-					else
+					else if(type==1)
 						lbl_InitializerReal.setText(GAL_GUI.language.ParametersConfiguration[7]);
+					else
+						lbl_InitializerReal.setText(GAL_GUI.metadatas.initializer_metadatas[type-2].name);
 				}
 			}
 		});

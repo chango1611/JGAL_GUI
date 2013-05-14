@@ -345,15 +345,22 @@ public class GeneConfigurationWindow extends JFrame {
 					break;
 					case 4:
 						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Nominal");
-					break;	
+					break;
+					default:
+						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,GAL_GUI.metadatas.gene_metadatas[option-5].name);
+					break;
 				}
 			}
 		});
 		cb_TiposDeGenes.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		cb_TiposDeGenes.setBounds(57, 64, 196, 20);
 		Configuracion.add(cb_TiposDeGenes);
-		String[] tipos= new String[5];
+		String[] tipos= new String[5+GAL_GUI.metadatas.gene_metadatas.length];
 		System.arraycopy(GAL_GUI.language.GeneConfiguration, 3, tipos, 0, 5);
+		for(int i=0; i<GAL_GUI.metadatas.gene_metadatas.length;i++){
+			tipos[5+i]= GAL_GUI.metadatas.gene_metadatas[i].name;
+			configuracionEspecifica.add(GAL_GUI.metadatas.gene_metadatas[i].metaPanel, tipos[5+i]);
+		}
 		cb_TiposDeGenes.setModel(new DefaultComboBoxModel<String>(tipos));
 		cb_TiposDeGenes.setSelectedIndex(0);
 		
@@ -447,6 +454,15 @@ public class GeneConfigurationWindow extends JFrame {
 						String[] alleles= ((GAL_NominalGeneConfig) aux).getAlleles();
 						for(int i=0;i<alleles.length;i++)
 							lm_ValoresAllele.addElement(alleles[i]);
+					}else{
+						int type= GAL_GUI.gal.getGeneType(editar);
+						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,GAL_GUI.metadatas.gene_metadatas[type-5].name);
+						cb_TiposDeGenes.setSelectedIndex(type);
+						try {
+							GAL_GUI.metadatas.gene_metadatas[type-5].extractGeneData(aux,((JPanel)configuracionEspecifica.getComponent(type)).getComponents());
+						} catch (Exception e1) {
+							JOptionPane.showMessageDialog(null, e1.getMessage());
+						}
 					}
 				}
 			}
@@ -490,8 +506,8 @@ public class GeneConfigurationWindow extends JFrame {
 					}
 					switch(tipo){
 						case 0:
-							int minEntero= (int)spn_MinEntero.getValue(),
-							maxEntero= (int)spn_MaxEntero.getValue();
+							int minEntero= (Integer)spn_MinEntero.getValue(),
+							maxEntero= (Integer)spn_MaxEntero.getValue();
 							if(minEntero>=maxEntero)
 								throw new Exception("Min("+minEntero+") >= Max("+maxEntero+")");
 							if(maxEntero-minEntero==1)
@@ -499,8 +515,8 @@ public class GeneConfigurationWindow extends JFrame {
 							aux= new GAL_IntegerGeneConfig(nombre,minEntero,maxEntero);
 						break;
 						case 1:
-							double minReal= (double)spn_MinReal.getValue(),
-							maxReal= (double)spn_MaxReal.getValue();
+							double minReal= (Double)spn_MinReal.getValue(),
+							maxReal= (Double)spn_MaxReal.getValue();
 							if(minReal>=maxReal)
 								throw new Exception("Min("+minReal+") >= Max("+maxReal+")");
 							aux= new GAL_DoubleGeneConfig(nombre,minReal,maxReal);
@@ -527,12 +543,15 @@ public class GeneConfigurationWindow extends JFrame {
 								alelos[i]= (String) valoresAllele2.getModel().getElementAt(i);
 							aux= new GAL_NominalGeneConfig(nombre,alelos);
 						break;
+						default:
+							aux= GAL_GUI.metadatas.gene_metadatas[tipo-5].geneConstructor(((JPanel)configuracionEspecifica.getComponent(tipo)).getComponents(), nombre);
+						break;
 					}
 					if(editar<0){
-						GAL_GUI.gal.addGeneConfig(aux,nombre);
+						GAL_GUI.gal.addGeneConfig(aux,nombre,tipo);
 						lm_VariablesDefinidas.addElement(nombre);
 					}else{
-						GAL_GUI.gal.editGeneConfig(editar, aux, nombre);
+						GAL_GUI.gal.editGeneConfig(editar, aux, nombre,tipo);
 						lm_VariablesDefinidas.set(editar, nombre);
 						editar= -1;
 					}
@@ -591,8 +610,8 @@ public class GeneConfigurationWindow extends JFrame {
 					for(i=0;i<fact_size;i++){
 						switch(tipo){
 							case 0:
-								int minEntero= (int)spn_MinEntero.getValue(),
-								maxEntero= (int)spn_MaxEntero.getValue();
+								int minEntero= (Integer)spn_MinEntero.getValue(),
+								maxEntero= (Integer)spn_MaxEntero.getValue();
 								if(minEntero>=maxEntero)
 									throw new Exception("Min("+minEntero+") >= Max("+maxEntero+")");
 								if(maxEntero-minEntero==1)
@@ -600,8 +619,8 @@ public class GeneConfigurationWindow extends JFrame {
 								aux= new GAL_IntegerGeneConfig(nombres[i],minEntero,maxEntero);
 							break;
 							case 1:
-								double minReal= (double)spn_MinReal.getValue(),
-								maxReal= (double)spn_MaxReal.getValue();
+								double minReal= (Double)spn_MinReal.getValue(),
+								maxReal= (Double)spn_MaxReal.getValue();
 								if(minReal>=maxReal)
 									throw new Exception("Min("+minReal+") >= Max("+maxReal+")");
 								aux= new GAL_DoubleGeneConfig(nombres[i],minReal,maxReal);
@@ -628,8 +647,11 @@ public class GeneConfigurationWindow extends JFrame {
 									alelos[j]= (String) valoresAllele2.getModel().getElementAt(i);
 								aux= new GAL_NominalGeneConfig(nombres[i],alelos);
 							break;
+							default:
+								aux= GAL_GUI.metadatas.gene_metadatas[tipo-5].geneConstructor(((JPanel)configuracionEspecifica.getComponent(tipo)).getComponents(), nombres[i]);
+							break;
 						}
-						GAL_GUI.gal.addGeneConfig(aux,nombres[i]);
+						GAL_GUI.gal.addGeneConfig(aux,nombres[i],tipo);
 						lm_VariablesDefinidas.addElement(nombres[i]);
 					}
 					editar= -1;

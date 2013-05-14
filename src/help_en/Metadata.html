@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+			<div class="titlepage">
+				<div>
+					<h3 class="title"><a id="JGAL.Metadata"></a>Metadata</h3>
+				</div>
+			</div>
+			
+			<p>
+				The library allows to implement new classes JGAL,
+				in order to develop GA with different configurations than the default ones.
+				This tool allows you to add these file types through the metadata.file
+			</p>
+			
+			<p>
+				The new classes to be added must be already compiled (.class)
+				and must be located in a folder that is within the classpath
+				(eg. The folder where the application .jar is)
+			</p>
+			
+			<div class="section">
+				<div class="titlepage">
+					<div>
+						<h3 class="title"><a id="JGAL.Metadata.File"></a>Archivo Metadata.file</h3>
+					</div>
+				</div>
+				
+				<p>
+					The metadata file follows this format:
+				</p>
+				
+				<div class="itemizedlist">
+					<ul style="list-style: none;">
+						<li><p><tt>
+							&#60Metadata File&gt ::= &#60Genes Metadata&gt &quot\n&quot &#60Selectors Metadata&gt &quot\n&quot &#60Operators Metadata&gt &quot\n&quot &#60Initializers Metadata&gt
+						</tt></p></li>
+						<li><p><tt>
+							&#60Genes Metadata&gt ::= Genes: &quot\n&quot &#60Number of Genes&gt {&quot\n&quot &#60Metadata&gt}
+						</tt></p></li>
+						<li><p><tt>
+							&#60Selectors Metadata&gt ::= Selectors: &quot\n&quot &#60Number of Selectors&gt {&quot\n&quot &#60Metadata&gt}
+						</tt></p></li>
+						<li><p><tt>
+							&#60Operators Metadata&gt ::= Operators: &quot\n&quot &#60Number of Operators&gt {&quot\n&quot &#60Metadata&gt}
+						</tt></p></li>
+						<li><p><tt>
+							&#60 Metadata&gt ::= Inizializadores: &quot\n&quot &#60Number of Operators&gt {&quot\n&quot &#60Class Name&gt &quot\n&quot &#60Name&gt}
+						</tt></p></li>
+						<li><p><tt>
+							&#60Metadata&gt ::= &#60Class Name&gt &quot\n&quot &#60Name&gt &quot\n&quot &#60Number of Parameters&gt {&quot\n&quot &#60Parameters&gt}
+						</tt></p></li>
+						<li><p><tt>
+							&#60Parameters&gt ::= &#60Param Name&gt &quot\n&quot &#60Param Class&gt
+						</tt></p></li>
+					</ul>
+				</div>
+				
+				<p>
+					<b>Example:</b>
+				</p>
+				
+				<p><tt>
+					Genes:<br>
+					2<br>
+					GAL_ShortGeneConfig<br>
+					Short<br>
+					2<br>
+					Min java.lang.Short<br>
+					Max java.lang.Short<br>
+					GAL_LongGeneConfig<br>
+					Long<br>
+					2<br>
+					Min java.lang.Long<br>
+					Max java.lang.Long<br>
+					Selectors:<br>
+					1<br>
+					GAL_RandomSelector<br>
+					Random Selector<br>
+					0<br>
+					Operators:<br>
+					1<br>
+					GAL_CrazyCrossover<br>
+					Crazy Crossover<br>
+					2<br>
+					SomeProb java.lang.Double<br>
+					SomeChar java.lang.Character<br>
+					Initializers:<br>
+					1<br>
+					JGAL.GAL_DefaultInitializer<br>
+					Default Initializer
+				</tt></p>
+				
+				<p>
+					As shown in the example, the genes has not the name as a parameter (This should be in the class constructor anyway).
+					The same happens with the Operators probability of occurrence (It should be in the constructor anyway).
+				</p>
+				
+				<p>
+					<b>Note 1.</b> The classes for the accepted parameters are:
+				</p>
+				<div class="itemizedlist">
+					<ul style="list-style: none;">
+						<li><p><tt>
+							java.lang.Integer
+						</tt></p></li>
+						<li><p><tt>
+							java.lang.Long
+						</tt></p></li>
+						<li><p><tt>
+							java.lang.Short
+						</tt></p></li>
+						<li><p><tt>
+							java.lang.Byte
+						</tt></p></li>
+						<li><p><tt>
+							java.lang.Double
+						</tt></p></li>
+						<li><p><tt>
+							java.lang.Float
+						</tt></p></li>
+						<li><p><tt>
+							java.lang.String
+						</tt></p></li>
+						<li><p><tt>
+							java.lang.Character
+						</tt></p></li>
+					</ul>
+				</div>
+			</div>
+			
+			<p>
+				<b>Note 2.</b> The classes in the metadata must have methods get for all the parameters described in the constructor.
+			</p>
+			
+		</div>
+	</body>
+</html>

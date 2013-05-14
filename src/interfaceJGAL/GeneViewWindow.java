@@ -173,6 +173,8 @@ public class GeneViewWindow extends JFrame {
 		for(String name: GAL_GUI.gal.getGeneNames())
 			lm_VariablesDefinidas.addElement(name);
 		
+		for(int i=0;i<GAL_GUI.metadatas.gene_metadatas.length;i++)
+			configuracionEspecifica.add(GAL_GUI.metadatas.gene_metadatas[i].viewPanel,GAL_GUI.metadatas.gene_metadatas[i].name);
 		((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Otros");
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -183,7 +185,8 @@ public class GeneViewWindow extends JFrame {
 		variablesDefinidas.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				@SuppressWarnings("unchecked")
-				GAL_GeneConfig<?> aux= GAL_GUI.gal.getGeneConfig(((JList<String>)e.getSource()).getSelectedIndex());
+				int option= ((JList<String>)e.getSource()).getSelectedIndex();
+				GAL_GeneConfig<?> aux= GAL_GUI.gal.getGeneConfig(option);
 				lblNombreReal.setText(aux.getName());
 				if(aux instanceof GAL_BinaryGeneConfig){
 					((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Otros");
@@ -210,6 +213,15 @@ public class GeneViewWindow extends JFrame {
 					String[] alleles= ((GAL_NominalGeneConfig) aux).getAlleles();
 					for(int i=0;i<alleles.length;i++)
 						lm_ValoresAllele.addElement(alleles[i]);
+				}else{
+					int type= GAL_GUI.gal.getGeneType(option);
+					((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,GAL_GUI.metadatas.gene_metadatas[type-5].name);
+					try {
+						GAL_GUI.metadatas.gene_metadatas[type-5].extractViewData(aux, ((JPanel) configuracionEspecifica.getComponent(type-2)).getComponents());
+						lbl_TipoReal.setText(GAL_GUI.metadatas.gene_metadatas[type-5].name);
+					} catch (Exception e1) {
+						//e1.printStackTrace();
+					}
 				}
 			}
 		});

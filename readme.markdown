@@ -23,3 +23,8 @@ src
 ---
 
 It contains the src that was developed for this application.
+
+MetadataExample.rar
+-------------------
+
+It contains an example to use with the metadata for learning purpose only.

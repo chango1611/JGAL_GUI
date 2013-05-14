@@ -107,7 +107,7 @@ public class SelectorWindow extends JFrame {
 					//Guardar Selector en gal primero
 					int tipo= cb_Selector.getSelectedIndex();
 					try{
-						GAL_GUI.gal.setSelector(createSelector(tipo));
+						GAL_GUI.gal.setSelector(createSelector(tipo),tipo);
 					}catch(Exception ex){
 						JOptionPane.showMessageDialog(null, ex.getMessage());
 					}
@@ -179,12 +179,19 @@ public class SelectorWindow extends JFrame {
 					case 4:
 						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Rank No Lineal");
 					break;
+					default:
+						((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,GAL_GUI.metadatas.selector_metadatas[option-5].name);
+					break;
 				}
 			}
 		});
 		cb_Selector.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		String[] tipos= new String[5];
+		String[] tipos= new String[5+GAL_GUI.metadatas.selector_metadatas.length];
 		System.arraycopy(GAL_GUI.language.SelectorConfiguration, 1, tipos, 0, 5);
+		for(int i=0;i<GAL_GUI.metadatas.selector_metadatas.length;i++){
+			tipos[5+i]= GAL_GUI.metadatas.selector_metadatas[i].name;
+			configuracionEspecifica.add(GAL_GUI.metadatas.selector_metadatas[i].metaPanel,tipos[5+i]);
+		}
 		cb_Selector.setModel(new DefaultComboBoxModel<String>(tipos));
 		cb_Selector.setSelectedIndex(0);
 		cb_Selector.setBounds(12, 35, 327, 20);
@@ -283,7 +290,7 @@ public class SelectorWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int tipo= cb_Selector.getSelectedIndex();
 				try{
-					GAL_GUI.gal.setSelector(createSelector(tipo));
+					GAL_GUI.gal.setSelector(createSelector(tipo),tipo);
 					GAL_GUI.gal.setElitistSize((Integer)spn_elitist.getValue());
 					dispose();
 				}catch(Exception ex){
@@ -326,6 +333,7 @@ public class SelectorWindow extends JFrame {
 
 	public void actualizar(){
 		GAL_NaturalSelector selector= GAL_GUI.gal.getSelector();
+		cb_Selector.setSelectedIndex(0);
 		if(selector!=null){
 			if(selector instanceof GAL_RouletteSelector)
 				;
@@ -345,6 +353,15 @@ public class SelectorWindow extends JFrame {
 				cb_Selector.setSelectedIndex(4);
 				((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,"Rank No Lineal");
 				spn_NoLineal.setValue(((GAL_NonLinealRankingSelector) selector).getQ());
+			}else{
+				int type= GAL_GUI.gal.getSelectorType();
+				cb_Selector.setSelectedIndex(type);
+				((CardLayout)configuracionEspecifica.getLayout()).show(configuracionEspecifica,GAL_GUI.metadatas.selector_metadatas[type-5].name);
+				try {
+					GAL_GUI.metadatas.selector_metadatas[type-5].extractData(selector,((JPanel)configuracionEspecifica.getComponent(type-5)).getComponents());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}
 			}
 		}
 		chckbxElitismo.setSelected(GAL_GUI.gal.isElitist());
@@ -359,16 +376,19 @@ public class SelectorWindow extends JFrame {
 				;
 			break;
 			case 1:
-				aux= new GAL_TournamentSelector((int)spn_Torneo.getValue());
+				aux= new GAL_TournamentSelector((Integer)spn_Torneo.getValue());
 			break;
 			case 2:
-				aux= new GAL_ClassicRankingSelector((int)spn_Clasico.getValue());
+				aux= new GAL_ClassicRankingSelector((Integer)spn_Clasico.getValue());
 			break;
 			case 3:
-				aux= new GAL_LinealRankingSelector((double)spn_Lineal.getValue());
+				aux= new GAL_LinealRankingSelector((Double)spn_Lineal.getValue());
 			break;
 			case 4:
-				aux= new GAL_NonLinealRankingSelector((double)spn_NoLineal.getValue());
+				aux= new GAL_NonLinealRankingSelector((Double)spn_NoLineal.getValue());
+			break;
+			default:
+				aux= GAL_GUI.metadatas.selector_metadatas[tipo-5].selectorConstructor(((JPanel)configuracionEspecifica.getComponent(tipo-5)).getComponents());
 			break;
 		}
 		return aux;

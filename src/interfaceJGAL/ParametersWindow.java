@@ -90,7 +90,7 @@ public class ParametersWindow extends JFrame {
 				JFileChooser fc= new JFileChooser();
 				int returnVal= fc.showSaveDialog(ParametersWindow.this);
 				if(returnVal == JFileChooser.APPROVE_OPTION){
-					GAL_GUI.gal.setParameters(cb_Handler.getSelectedIndex(), cb_initializer.getSelectedIndex(), (int)spn_TamPob.getValue(), (int)spn_maxGen.getValue(), (int)spn_Mod.getValue());
+					GAL_GUI.gal.setParameters(cb_Handler.getSelectedIndex(), cb_initializer.getSelectedIndex(), (Integer)spn_TamPob.getValue(), (Integer)spn_maxGen.getValue(), (Integer)spn_Mod.getValue());
 					GAL_GUI.gal.saveParameters(fc.getSelectedFile());
 				}
 			}
@@ -190,7 +190,7 @@ public class ParametersWindow extends JFrame {
 		JButton btnAceptar = new JButton(GAL_GUI.language.CommonWords[0]);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GAL_GUI.gal.setParameters(cb_Handler.getSelectedIndex(), cb_initializer.getSelectedIndex(), (int)spn_TamPob.getValue(), (int)spn_maxGen.getValue(), (int)spn_Mod.getValue());
+				GAL_GUI.gal.setParameters(cb_Handler.getSelectedIndex(), cb_initializer.getSelectedIndex(), (Integer)spn_TamPob.getValue(), (Integer)spn_maxGen.getValue(), (Integer)spn_Mod.getValue());
 				dispose();
 			}
 		});
@@ -203,7 +203,13 @@ public class ParametersWindow extends JFrame {
 		lblInicializador.setBounds(12, 40, 66, 14);
 		contentPane.add(lblInicializador);
 		
-		cb_initializer = new JComboBox<String>(new String[]{GAL_GUI.language.ParametersConfiguration[1],GAL_GUI.language.ParametersConfiguration[7]});
+		String[] tipos_ini= new String[2+GAL_GUI.metadatas.initializer_metadatas.length];
+		tipos_ini[0]= GAL_GUI.language.ParametersConfiguration[1];
+		tipos_ini[1]= GAL_GUI.language.ParametersConfiguration[7];
+		for(int i=0;i<GAL_GUI.metadatas.initializer_metadatas.length;i++){
+			tipos_ini[2+i]= GAL_GUI.metadatas.initializer_metadatas[i].name;
+		}
+		cb_initializer = new JComboBox<String>(tipos_ini);
 		cb_initializer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{

@@ -12,18 +12,22 @@ public class GAL_GUI {
 	
 	static GAL_Interface gal;
 	static LanguagesReader language;
+	static MetadataReader metadatas;
 	static JHelp helpViewer;
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		helpViewer = null;
 		
 		
 		try{
 			//Leo el lenguaje
 			language= new LanguagesReader();
+			
+			//Leo la Metada
+			metadatas= new MetadataReader();
 			
 			//Abro el help
 			ClassLoader cl = GAL_GUI.class.getClassLoader();

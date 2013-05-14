@@ -144,6 +144,12 @@ public class GAL_InterpreterNode {
 			return (Double) aux;
 		if(aux instanceof Integer)
 			return ((Integer) aux).doubleValue();
+		if(aux instanceof Short)
+			return ((Short) aux).doubleValue();
+		if(aux instanceof Long)
+			return ((Long) aux).doubleValue();
+		if(aux instanceof Float)
+			return ((Float) aux).doubleValue();
 		if(aux instanceof Byte)
 			return ((Byte) aux).doubleValue();
 		throw new RuntimeException(GAL_GUI.language.Errors[25]);

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>JGAL</title>
+		<meta name="generator" content="DocBook XSL Stylesheets V1.53.0">
+		<link rel="home" href="JGAL.html" title="Title">
+		<link rel="up" href="JGAL.html" title="Title">
+		<link rel="previous" href="index.html" title="Title">
+	</head>
+
+	<body>
+		<div class="section">
+
+			<div class="titlepage">
+				<div>
+					<h2 class="title" style="clear: both"><a id="JGAL.Example"></a>Step by Step Example</h2>
+				</div>
+			</div>
+
+			<p>
+				Is proposed to minimize the value returned by the function:
+			</p>
+			
+			<p><tt>
+				Sum(x_i^2);<br>
+				Where x_i is in the range [-512,512)<br>
+				And i goes from 0 to 19
+			</tt></p>
+			
+			<p>
+				First is defined the chromosome genes in Define Genes,
+				as they all share the same configuration can be used the Add Many option.
+				For this, you should create the gene configuration, as shown in the figure.
+			</p>
+			
+			<img src="images/Example_DefineGenes1.PNG" alt="">
+			
+			<p>
+				Then you should press Add Many,
+				opening a popup window that asks how many genes to add;
+				as 20 genes are needed, you should write 20.
+				By pressing accept, the window should look like the following figure.
+			</p>
+			
+			<img src="images/Example_DefineGenes2.PNG" alt="">
+			
+			<p>
+				Following this, close the window to define genes and continues to build the fitness function,
+				which should be observed similar to that shown in the figure below.
+			</p>
+			
+			<img src="images/Example_FitnessFunction.PNG" alt="">
+			
+			<p>
+				Press accept and continue to choose the Selector,
+				since for this example there is no plan to use termination condition.
+				It was decided to use the tournament selector with tournament size 2.
+			</p>
+			
+			<img src="images/Example_Selector.PNG" alt="">
+			
+			<p>
+				Press accept and continue to choose the Operators.
+				It was decided to use Uniform Crossover and Classic Mutation.
+			</p>
+			
+			<img src="images/Example_Operators.PNG" alt="">
+			
+			<p>
+				It continue to place the remaining parameters.
+				Was decided to place 50 to the population size and 100 to the maximum number of generations.
+			</p>
+			
+			<img src="images/Example_Parameters.PNG" alt="">
+			
+			<p>
+				Finally, the algorithm must be run selecting minimization as optimization type to be used.
+				After successfully running the GA, will display a results window as shown in the figure.
+			</p>
+			
+			<img src="images/Example_Results.PNG" alt="">
+			
+			<p>
+				It was obtained as better fitness of the population 15,795.
+				The average of the last generation fitness was 37,278, while the average total was 218,400.
+				Finally, it is noted in the chart that the GA acted as expected (At higher generation a best fitness).
+			</p>
+		</div>
+	</body>
+</html>

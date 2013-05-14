@@ -75,4 +75,8 @@
 		<mapID target="JGAL.WorkingProgress" url="WorkingProgress.html"/>
 		
 		<mapID target="JGAL.SaveAndOpen" url="SaveAndOpen.html"/>
+		
+		<mapID target="JGAL.Metadata" url="Metadata.html"/>
+		
+		<mapID target="JGAL.Example" url="Example.html"/>
 </map>

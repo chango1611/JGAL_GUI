@@ -93,5 +93,9 @@
 		<tocitem target="JGAL.ProgresoDeTrabajo" text="Progreso de Trabajo"/>
 		
 		<tocitem target="JGAL.GuardarYAbrir" text="Guardar y Abrir"/>
+		
+		<tocitem target="JGAL.Metadata" text="Metadata"/>
+		
+		<tocitem target="JGAL.Ejemplo" text="Ejemplo paso a paso"/>
 	</tocitem>
 </toc>

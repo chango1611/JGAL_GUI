@@ -499,8 +499,8 @@ public class TerminationFunctionWindow extends JFrame {
 		spinner = new JSpinner();
 		spinner.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				GAL_GUI.gal.setWindowSize((int)((JSpinner)e.getSource()).getValue());
-				GAL_GUI.gal.getInterpreter(1).initializeTermination((int)((JSpinner)e.getSource()).getValue());
+				GAL_GUI.gal.setWindowSize((Integer)((JSpinner)e.getSource()).getValue());
+				GAL_GUI.gal.getInterpreter(1).initializeTermination((Integer)((JSpinner)e.getSource()).getValue());
 				cbVariables.setModel(new DefaultComboBoxModel<String>(GAL_GUI.gal.getInterpreter(1).getvariablesNames()));
 				txt_Codigo.requestFocus();
 			}
