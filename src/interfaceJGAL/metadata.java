@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Scanner;
 
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -267,6 +268,52 @@ public class metadata {
 		try{
 			Constructor<GAL_Initializer> constructor= class_name.getConstructor();
 			return constructor.newInstance();
+		} catch (InvocationTargetException e) {
+			throw new Exception(e.getTargetException().getMessage());
+		} catch (Exception e) {
+			throw new Exception("Metadata Error:\n"+e.getMessage());
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String toString(Object invoke)throws Exception{
+		String ret="";
+		try{
+			for(int i=0;i<params_names.length;i++)
+				ret+= " " + class_name.getMethod("get"+params_names[i]).invoke(invoke);
+		}catch(Exception e){
+			throw new Exception("Metadata Error:\n"+e.getMessage());
+		}
+		return ret;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Object readerConstructor(Scanner fr, int type) throws Exception{
+		Object[] values;
+		//type: 0-genes; 1-selector; 2-operador
+		values= new Object[params.length];
+		try{
+			for(int i=0;i<values.length;i++){
+				if(params[i].equals(Class.forName("java.lang.Integer"))){
+					values[i]= new Integer(fr.nextInt());
+				}else if(params[i].equals(Class.forName("java.lang.Short"))){
+					values[i]= new Short(fr.nextShort());
+				}else if(params[i].equals(Class.forName("java.lang.Byte"))){
+					values[i]= new Byte(fr.nextByte());
+				}else if(params[i].equals(Class.forName("java.lang.Long"))){
+					values[i]= new Long(fr.nextLong());
+				}else if(params[i].equals(Class.forName("java.lang.Double"))){
+					values[i]= new Double(Double.parseDouble(fr.next()));
+				}else if(params[i].equals(Class.forName("java.lang.Float"))){
+					values[i]= new Float(Float.parseFloat(fr.next()));
+				}else if(params[i].equals(Class.forName("java.lang.String"))){
+					values[i]= fr.next();
+				}else{ //Tiene que ser character
+					values[i]= new Character(fr.next().charAt(0));
+				}
+			}
+			Constructor<GAL_GeneticOperator> constructor= class_name.getConstructor(params);
+			return constructor.newInstance(values);
 		} catch (InvocationTargetException e) {
 			throw new Exception(e.getTargetException().getMessage());
 		} catch (Exception e) {

@@ -155,7 +155,7 @@ public class ParametersWindow extends JFrame {
 		contentPane.add(lblTamaoDeLa);
 		
 		spn_TamPob = new JSpinner();
-		spn_TamPob.setModel(new SpinnerNumberModel(1, 1, 500, 1));
+		spn_TamPob.setModel(new SpinnerNumberModel(1, 1, null, 1));
 		spn_TamPob.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spn_TamPob.setBounds(188, 65, 52, 20);
 		contentPane.add(spn_TamPob);
@@ -166,7 +166,7 @@ public class ParametersWindow extends JFrame {
 		contentPane.add(lblNmeroMxDe);
 		
 		spn_maxGen = new JSpinner();
-		spn_maxGen.setModel(new SpinnerNumberModel(1, 1, 500, 1));
+		spn_maxGen.setModel(new SpinnerNumberModel(1, 1, null, 1));
 		spn_maxGen.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spn_maxGen.setBounds(188, 92, 52, 20);
 		contentPane.add(spn_maxGen);
@@ -181,7 +181,7 @@ public class ParametersWindow extends JFrame {
 		modHandler_panel.add(lblNumeroDePadres);
 		
 		spn_Mod = new JSpinner();
-		spn_Mod.setModel(new SpinnerNumberModel(1, 1, 500, 1));
+		spn_Mod.setModel(new SpinnerNumberModel(1, 1, null, 1));
 		spn_Mod.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		spn_Mod.setBounds(176, 3, 52, 20);
 		modHandler_panel.add(spn_Mod);

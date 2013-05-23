@@ -406,6 +406,7 @@ public class GAL_Interface {
 	private String toStringGeneConfig(){
 		String ret= "";
 		ret+= GeneConfig.size() + "\n";
+		int i=0;
 		for(GAL_GeneConfig<?> aux: GeneConfig){
 			if(aux instanceof GAL_IntegerGeneConfig)
 				ret+= "0 " + aux.getName() + " " + ((GAL_IntegerGeneConfig) aux).getMin() + " " + ((GAL_IntegerGeneConfig) aux).getMax() + "\n";
@@ -421,7 +422,15 @@ public class GAL_Interface {
 				for(String st: ((GAL_NominalGeneConfig) aux).getAlleles())
 					ret+= " " + st;
 				ret+="\n";
+			}else{
+				int type= GeneType.get(i);
+				try {
+					ret+= type + " " + aux.getName() + GAL_GUI.metadatas.gene_metadatas[type-5].toString(aux) + "\n";
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
 			}
+			i++;
 		}
 		return ret;
 	}
@@ -465,6 +474,9 @@ public class GAL_Interface {
 						alelos[j]= fr.next();
 					}
 					GeneConfig.add(new GAL_NominalGeneConfig(name,alelos));
+				break;
+				default:
+					GeneConfig.add((GAL_GeneConfig<?>) GAL_GUI.metadatas.gene_metadatas[type-5].readerConstructor(fr, 0));
 				break;
 			}
 			GeneNames.add(GeneConfig.getLast().getName());
@@ -517,13 +529,18 @@ public class GAL_Interface {
 		if(selector instanceof GAL_RouletteSelector)
 			return "0 " + (elitist?1:0) + " " + elitistSize + "\n";
 		if(selector instanceof GAL_TournamentSelector)
-			return "1 "+ ((GAL_TournamentSelector) selector).getTournamentSize() +" "+ (elitist?1:0) + " " + elitistSize + "\n";
+			return "1 "+ ((GAL_TournamentSelector) selector).getTournamentSize() + " " + (elitist?1:0) + " " + elitistSize + "\n";
 		if(selector instanceof GAL_ClassicRankingSelector)
-			return "2 "+ ((GAL_ClassicRankingSelector) selector).getMax() +" "+ (elitist?1:0) + " " + elitistSize + "\n";
+			return "2 "+ ((GAL_ClassicRankingSelector) selector).getMax() + " " + (elitist?1:0) + " " + elitistSize + "\n";
 		if(selector instanceof GAL_LinealRankingSelector)
-			return "3 "+ ((GAL_LinealRankingSelector) selector).getQ() +" "+ (elitist?1:0) + " " + elitistSize + "\n";
+			return "3 "+ ((GAL_LinealRankingSelector) selector).getQ() + " " + (elitist?1:0) + " " + elitistSize + "\n";
 		if(selector instanceof GAL_NonLinealRankingSelector)
-			return "4 "+ ((GAL_NonLinealRankingSelector) selector).getQ() +" "+ (elitist?1:0) + " " + elitistSize + "\n";
+			return "4 "+ ((GAL_NonLinealRankingSelector) selector).getQ() + " " + (elitist?1:0) + " " + elitistSize + "\n";
+		try {
+			return selectorType + GAL_GUI.metadatas.selector_metadatas[selectorType-5].toString(selector) + " " + (elitist?1:0) + " " + elitistSize + "\n";
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
 		return "";
 	}
 	
@@ -540,7 +557,8 @@ public class GAL_Interface {
 	
 	//Lee de un string al selector
 	private void readSelector(Scanner fr)throws Exception{
-		switch(fr.nextInt()){
+		int type= fr.nextInt();
+		switch(type){
 			case 0:
 				selector= new GAL_RouletteSelector();
 			break;
@@ -557,9 +575,10 @@ public class GAL_Interface {
 				selector= new GAL_NonLinealRankingSelector(Double.parseDouble(fr.next()));
 			break;
 			default:
-				selector= null;
+				selector= (GAL_NaturalSelector) GAL_GUI.metadatas.selector_metadatas[type-5].readerConstructor(fr, 1);
 			break;
 		}
+		selectorType= type;
 		elitist= fr.nextInt()==1;
 		elitistSize= fr.nextInt();
 	}
@@ -574,6 +593,7 @@ public class GAL_Interface {
 	private String toStringOperators(){
 		String ret= "";
 		ret+= operators.size() + "\n";
+		int i=0;
 		for(GAL_GeneticOperator aux: operators){
 			if(aux instanceof GAL_ClassicCrossover)
 				ret+= "0 " + aux.getProb() + "\n";
@@ -597,6 +617,15 @@ public class GAL_Interface {
 				ret+= "9 " + aux.getProb() + "\n";
 			else if(aux instanceof GAL_Inversion)
 				ret+= "10 " + aux.getProb() + "\n";
+			else{
+				int type= OperatorType.get(i);
+				try {
+					ret+= type + " " + aux.getProb() + GAL_GUI.metadatas.operator_metadatas[type-11].toString(aux) + "\n";
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e.getMessage());
+				}
+			}
+			i++;
 		}
 		return ret;
 	}
@@ -614,10 +643,12 @@ public class GAL_Interface {
 	
 	//Lee los operadores de un string
 	private void readOperators(Scanner fr) throws Exception{
-		int t= fr.nextInt(), i;
+		int t= fr.nextInt(), i, type;
 		operators.clear();
+		OperatorType.clear();
 		for(i=0;i<t;i++){
-			switch(fr.nextInt()){
+			type= fr.nextInt();
+			switch(type){
 				case 0:
 					operators.add(new GAL_ClassicCrossover(Double.parseDouble(fr.next())));
 				break;
@@ -651,7 +682,11 @@ public class GAL_Interface {
 				case 10:
 					operators.add(new GAL_Inversion(Double.parseDouble(fr.next())));
 				break;
+				default:
+					operators.add((GAL_GeneticOperator) GAL_GUI.metadatas.operator_metadatas[type-11].readerConstructor(fr, 2));
+				break;
 			}
+			OperatorType.add(type);
 		}
 	}
 	
